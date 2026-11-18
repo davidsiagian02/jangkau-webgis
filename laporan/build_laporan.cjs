@@ -347,7 +347,7 @@ add(Tbl('Lingkungan implementasi', ['Komponen', 'Teknologi', 'Keterangan'], [
   ['Analisis di browser', 'Turf.js 7', 'Untuk mode cadangan'],
   ['Frontend', 'Vite 6, HTML, CSS, JavaScript', 'Empat halaman (multi-page)'],
   ['Backend', 'Vercel Functions (Node.js 22), pg 8', 'Lima endpoint di folder /api'],
-  ['Database', 'PostgreSQL 16 + PostGIS 3 (Neon)', 'Terhubung lewat Vercel Marketplace'],
+  ['Database', 'PostgreSQL + PostGIS 3 (Neon)', 'Terhubung lewat Vercel Marketplace; uji lokal memakai PostgreSQL 16'],
   ['Pengolahan data', 'Python 3, pandas, lxml, shapely, pyproj', 'Skrip build_data.py'],
   ['Pengujian', 'node:test, pytest, Playwright', 'Tes otomatis API, data, dan tampilan'],
   ['Survei', 'Avenza Maps', 'Pengambilan data 30 September 2026'],
@@ -468,7 +468,7 @@ add(list([
 add(P('[[Catatan untuk penulis: jika file halte OSM sudah ditambahkan, jalankan ulang npm run data:build dan npm run db:setup, lalu perbarui angka pada subbab 4.4.1 dan 4.4.2.]]', { noIndent: true }));
 
 add(H2('Pengujian'));
-add(P('Pengujian dilakukan dengan dua cara, yaitu pengujian otomatis dan pengujian black-box. Pengujian otomatis terdiri dari 28 tes pipeline data (pytest), 54 tes API, database, dan analisis cadangan (node:test), serta 7 tes tampilan end-to-end dengan Playwright. Semua tes lulus. Salah satu tes penting adalah tes kesamaan hasil, yang memastikan status setiap sekolah dari database sama dengan hasil analisis cadangan di browser. Hasil pengujian black-box dapat dilihat pada Tabel 4.9.'));
+add(P('Pengujian dilakukan dengan dua cara, yaitu pengujian otomatis dan pengujian black-box. Pengujian otomatis terdiri dari 28 tes pipeline data (pytest), 56 tes API, database, dan analisis cadangan (node:test), serta 7 tes tampilan end-to-end dengan Playwright. Semua tes lulus. Salah satu tes penting adalah tes kesamaan hasil, yang memastikan status setiap sekolah dari database sama dengan hasil analisis cadangan di browser. Hasil pengujian black-box dapat dilihat pada Tabel 4.9.'));
 add(Tbl('Pengujian black-box', ['No', 'Skenario', 'Hasil yang diharapkan', 'Hasil'], [
   ['1', 'Membuka Beranda', 'Profil web tampil, tidak ada peta data', 'Sesuai'],
   ['2', 'Mematikan checkbox Halte', 'Layer halte hilang dari peta', 'Sesuai'],

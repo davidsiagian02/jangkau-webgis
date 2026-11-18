@@ -57,4 +57,5 @@ export function handle(fn) {
   };
 }
 
-export const cacheGet = { 'Cache-Control': 's-maxage=60, stale-while-revalidate=300', 'X-Sumber-Data': 'database' };
+// Tanpa cache CDN: perubahan dari halaman Admin harus langsung terlihat di peta dan analisis.
+export const cacheGet = { 'Cache-Control': 'no-store', 'X-Sumber-Data': 'database' };

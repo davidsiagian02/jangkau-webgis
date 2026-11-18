@@ -196,6 +196,23 @@ test('health: melaporkan status database dan admin', async () => {
   assert.equal(no.body.admin, false);
 });
 
+test('GET data tidak di-cache CDN supaya perubahan admin langsung terlihat', async () => {
+  for (const [h, url] of [[layers, '/api/layers?layer=titik'], [analysis, '/api/analysis?type=buffer&radius=500'], [stats, '/api/stats']]) {
+    const r = await call(h, { url });
+    assert.equal(r.headers['cache-control'], 'no-store', url);
+  }
+});
+
+test('database kosong (tabel belum dibuat) → 503 dengan petunjuk db:setup', async () => {
+  await _resetPool();
+  process.env.DATABASE_URL = DB_URL.replace('jangkau_test', 'jangkau_kosong');
+  const r = await call(layers, { url: '/api/layers?layer=titik' });
+  assert.equal(r.status, 503);
+  assert.match(r.body.error, /db:setup/);
+  await _resetPool();
+  process.env.DATABASE_URL = DB_URL;
+});
+
 // ---- Review Focus 1: database tidak tersedia → 503 (dijalankan terakhir)
 test('tanpa DATABASE_URL → 503 JSON dan health db:false', async () => {
   await _resetPool();
