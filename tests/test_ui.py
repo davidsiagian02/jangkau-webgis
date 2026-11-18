@@ -101,6 +101,14 @@ def test_tema_tanpa_localstorage(page):
     assert page.errors == []
 
 
+def test_ukuran_js_beranda(servers):
+    import gzip, re as _re
+    html = (ROOT / "dist" / "index.html").read_text()
+    srcs = set(_re.findall(r'<script type="module"[^>]*src="([^"]+)"', html)) | set(_re.findall(r'<link rel="modulepreload"[^>]*href="([^"]+)"', html))
+    total = sum(len(gzip.compress((ROOT / "dist" / s.lstrip("/")).read_bytes())) for s in srcs)
+    assert total <= 25_000, f"JS Beranda {total} byte gzip"
+
+
 def test_beranda_tanpa_peta(page):
     page.goto(BASE + "/")
     expect(page.locator("h1")).to_be_visible()

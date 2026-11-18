@@ -1,5 +1,6 @@
 // Klien data: memakai API (database PostGIS) dan otomatis jatuh ke GeoJSON cadangan + Turf bila gagal.
-import * as local from './local.js';
+// Analisis cadangan (Turf, cukup besar) hanya dimuat ketika server tidak terhubung.
+const muatLocal = () => import('./local.js');
 
 let _fetch = (...a) => globalThis.fetch(...a);
 let apiDown = false;
@@ -67,7 +68,7 @@ async function bundle() {
 export async function getAnalysis(type, params = {}) {
   const viaApi = await fromApi(`/api/analysis?${qs({ type, ...params })}`);
   if (viaApi) return { data: viaApi, sumber: 'database' };
-  const d = await bundle();
+  const [d, local] = await Promise.all([bundle(), muatLocal()]);
   const r = Number(params.radius) || 500;
   const out = {
     buffer: () => local.buffer(d.sekolah, d.halte, r),
@@ -82,7 +83,7 @@ export async function getAnalysis(type, params = {}) {
 export async function getStats() {
   const viaApi = await fromApi('/api/stats');
   if (viaApi) return { data: viaApi, sumber: 'database' };
-  const d = await bundle();
+  const [d, local] = await Promise.all([bundle(), muatLocal()]);
   return { data: local.stats(d.titik, d.area, d.jalur, d.sekolah), sumber: 'cadangan' };
 }
 
