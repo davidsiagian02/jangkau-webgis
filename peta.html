@@ -40,64 +40,71 @@
     <button type="button" data-theme-toggle aria-label="Ganti ke tema gelap"><svg viewBox="0 0 24 24" aria-hidden="true" class="ikon-tema"><circle cx="12" cy="12" r="4.2" class="matahari"/><path class="sinar" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/><path class="bulan" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Tema</span></button>
   </nav>
   <main class="peta" id="isi">
-    <aside class="panel" aria-label="Pengaturan peta">
-      <div class="tabs" role="tablist">
-        <button type="button" role="tab" data-tab="layer" aria-selected="true" aria-controls="tab-layer">Layer</button>
-        <button type="button" role="tab" data-tab="analisis" aria-selected="false" aria-controls="tab-analisis">Analisis</button>
+    <h1 class="sr-only">Peta jarak sekolah ke halte</h1>
+    <aside class="panel" aria-label="Pengaturan peta" data-sheet data-state="intip">
+      <div class="panel-kepala">
+        <button type="button" class="pegangan" data-sheet-handle aria-expanded="false" aria-controls="panel-isi" aria-label="Buka atau tutup panel"><span></span></button>
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" data-tab="layer" aria-selected="true" aria-controls="tab-layer">Lapisan</button>
+          <button type="button" role="tab" data-tab="analisis" aria-selected="false" aria-controls="tab-analisis">Analisis</button>
+        </div>
+        <p class="ringkas" data-ringkas aria-live="polite"></p>
       </div>
 
+      <div class="panel-isi" id="panel-isi">
       <section id="tab-layer" role="tabpanel" data-tabpanel="layer">
         <fieldset>
-          <legend>Titik</legend>
+          <legend>Tempat</legend>
           <label class="check"><input type="checkbox" data-layer-toggle="sekolah" checked /> <span class="mk mk-sekolah"></span> Sekolah <span class="count" data-count="sekolah"></span></label>
-          <label class="check"><input type="checkbox" data-layer-toggle="sekolah_survei" checked /> <span class="mk mk-survei"></span> Titik sekolah hasil survei <span class="count" data-count="sekolah_survei"></span></label>
-          <label class="check"><input type="checkbox" data-layer-toggle="halte" checked /> <span class="mk mk-halte"></span> Halte <span class="count" data-count="halte"></span></label>
+          <label class="check"><input type="checkbox" data-layer-toggle="sekolah_survei" checked /> <span class="mk mk-survei"></span> Sekolah yang kami survei <span class="count" data-count="sekolah_survei"></span></label>
+          <label class="check"><input type="checkbox" data-layer-toggle="halte" checked /> <span class="mk mk-halte"></span> Halte bus <span class="count" data-count="halte"></span></label>
           <label class="check"><input type="checkbox" data-layer-toggle="fasilitas" checked /> <span class="mk mk-fasilitas"></span> Fasilitas pendukung <span class="count" data-count="fasilitas"></span></label>
-          <label class="check"><input type="checkbox" data-layer-toggle="literasi" checked /> <span class="mk mk-literasi"></span> Literasi <span class="count" data-count="literasi"></span></label>
+          <label class="check"><input type="checkbox" data-layer-toggle="literasi" checked /> <span class="mk mk-literasi"></span> Perpustakaan dan taman baca <span class="count" data-count="literasi"></span></label>
         </fieldset>
         <fieldset>
           <legend>Jenjang sekolah</legend>
           <div data-jenjang-list></div>
-          <p class="hint">Warna mengikuti seragam: merah SD, biru dongker SMP, abu-abu SMA.</p>
+          <p class="hint">Warna SD, SMP, dan SMA mengikuti warna seragamnya.</p>
         </fieldset>
         <fieldset>
-          <legend>Sumber data</legend>
-          <label class="check"><input type="checkbox" data-sumber-toggle="survei" checked /> Survei lapangan dan input admin</label>
+          <legend>Asal data</legend>
+          <label class="check"><input type="checkbox" data-sumber-toggle="survei" checked /> Survei lapangan dan tambahan pengelola</label>
           <label class="check"><input type="checkbox" data-sumber-toggle="osm" checked /> OpenStreetMap</label>
         </fieldset>
         <fieldset>
-          <legend>Area dan jalur</legend>
-          <label class="check"><input type="checkbox" data-layer-toggle="area_osm" checked /> <span class="mk mk-area"></span> Area sekolah (OSM) <span class="count" data-count="area_osm"></span></label>
-          <label class="check"><input type="checkbox" data-layer-toggle="area_survei" checked /> <span class="mk mk-area-survei"></span> Area sekolah (survei) <span class="count" data-count="area_survei"></span></label>
-          <label class="check"><input type="checkbox" data-layer-toggle="rute" checked /> <span class="mk mk-rute"></span> Rute SMAN Olahraga</label>
-          <label class="check"><input type="checkbox" data-layer-toggle="jalur" checked /> <span class="mk mk-jalur"></span> Jalur survei</label>
-          <label class="check"><input type="checkbox" data-layer-toggle="jalan" /> <span class="mk mk-jalan"></span> Jalan menuju sekolah (OSM) <span class="count" data-count="jalan"></span></label>
+          <legend>Batas sekolah dan jalan</legend>
+          <label class="check"><input type="checkbox" data-layer-toggle="area_osm" checked /> <span class="mk mk-area"></span> Batas sekolah dari OpenStreetMap <span class="count" data-count="area_osm"></span></label>
+          <label class="check"><input type="checkbox" data-layer-toggle="area_survei" checked /> <span class="mk mk-area-survei"></span> Batas sekolah hasil survei <span class="count" data-count="area_survei"></span></label>
+          <label class="check"><input type="checkbox" data-layer-toggle="rute" checked /> <span class="mk mk-rute"></span> Rute ke SMAN Olahraga</label>
+          <label class="check"><input type="checkbox" data-layer-toggle="jalur" checked /> <span class="mk mk-jalur"></span> Jalur yang disurvei</label>
+          <label class="check"><input type="checkbox" data-layer-toggle="jalan" /> <span class="mk mk-jalan"></span> Jalan menuju sekolah <span class="count" data-count="jalan"></span></label>
         </fieldset>
         <fieldset>
-          <legend>Hasil analisis</legend>
-          <label class="check"><input type="checkbox" data-layer-toggle="buffer" checked /> <span class="mk mk-buffer"></span> Zona jangkauan halte</label>
+          <legend>Hasil perhitungan</legend>
+          <label class="check"><input type="checkbox" data-layer-toggle="buffer" checked /> <span class="mk mk-buffer"></span> Zona jalan kaki dari halte</label>
           <label class="check"><input type="checkbox" data-layer-toggle="rekomendasi" checked /> <span class="mk mk-kandidat"></span> Usulan halte baru</label>
-          <label class="check"><input type="checkbox" data-layer-toggle="heatmap" /> <span class="mk mk-heat"></span> Kepadatan sekolah (heatmap)</label>
+          <label class="check"><input type="checkbox" data-layer-toggle="heatmap" /> <span class="mk mk-heat"></span> Kepadatan sekolah</label>
         </fieldset>
         <fieldset>
-          <legend>Peta dasar</legend>
-          <label class="check"><input type="radio" name="basemap" value="osm" checked /> OpenStreetMap</label>
-          <label class="check" data-basemap-carto hidden><input type="radio" name="basemap" value="terang" /> Peta terang (CARTO)</label>
-          <label class="check"><input type="radio" name="basemap" value="citra" /> Citra satelit (Esri)</label>
+          <legend>Tampilan peta</legend>
+          <label class="check"><input type="radio" name="basemap" value="osm" checked /> Peta jalan</label>
+          <label class="check" data-basemap-carto hidden><input type="radio" name="basemap" value="terang" /> Peta polos</label>
+          <label class="check"><input type="radio" name="basemap" value="citra" /> Foto satelit</label>
         </fieldset>
       </section>
 
       <section id="tab-analisis" role="tabpanel" data-tabpanel="analisis" hidden>
-        <h2>Jangkauan halte</h2>
+        <h2>Zona jalan kaki</h2>
         <div class="field">
-          <label for="radius">Radius jalan kaki: <output data-radius-out>500 m</output></label>
+          <label for="radius">Jarak jalan kaki dari halte: <output data-radius-out>500 m</output></label>
           <input id="radius" type="range" min="100" max="1000" step="50" value="500" data-radius />
           <div class="presets"><button type="button" class="btn btn-small" data-preset="300">300 m</button><button type="button" class="btn btn-small" data-preset="500">500 m</button><button type="button" class="btn btn-small" data-preset="1000">1 km</button></div>
         </div>
-        <button type="button" class="btn btn-primary" data-run-analysis>Jalankan analisis</button>
+        <button type="button" class="btn btn-primary" data-run-analysis>Hitung ulang</button>
         <div class="result" data-ringkasan aria-live="polite"></div>
 
-        <h3>Sekolah terjauh dari halte</h3>
+        <h3>Sekolah paling jauh dari halte</h3>
+        <p class="hint">Ketuk nama sekolah untuk melihatnya di peta.</p>
         <div class="table-wrap"><table data-hasil-sekolah><thead><tr><th>Sekolah</th><th class="num">Jarak</th></tr></thead><tbody></tbody></table></div>
 
         <h3>Usulan halte baru</h3>
@@ -105,30 +112,31 @@
         <p class="hint" data-terisolasi></p>
 
         <h2>Cari halte terdekat</h2>
-        <label class="check"><input type="checkbox" data-click-mode /> Klik peta untuk mencari halte terdekat</label>
-        <div class="result" data-hasil-klik aria-live="polite"><p class="hint">Aktifkan pilihan di atas, lalu klik lokasi rumah atau titik mana pun di peta.</p></div>
+        <label class="check"><input type="checkbox" data-click-mode /> Ketuk peta untuk mencari halte terdekat</label>
+        <div class="result" data-hasil-klik aria-live="polite"><p class="hint">Nyalakan pilihan di atas, lalu ketuk lokasi rumah atau tempat mana pun di peta.</p></div>
 
-        <h2>Survei vs OpenStreetMap</h2>
-        <p class="hint">Bandingkan luas area sekolah hasil survei dengan poligon OSM (IoU = luas irisan dibagi luas gabungan).</p>
-        <button type="button" class="btn" data-run-overlay>Bandingkan area</button>
-        <div class="table-wrap"><table data-hasil-overlay><thead><tr><th>Area survei</th><th class="num">IoU</th></tr></thead><tbody></tbody></table></div>
+        <h2>Bandingkan hasil survei</h2>
+        <p class="hint">Seberapa cocok batas sekolah yang kami ukur di lapangan dengan batas sekolah di OpenStreetMap. Angka 100% berarti bentuknya sama persis.</p>
+        <button type="button" class="btn" data-run-overlay>Bandingkan batas sekolah</button>
+        <div class="table-wrap"><table data-hasil-overlay><thead><tr><th>Sekolah</th><th class="num">Kecocokan</th></tr></thead><tbody></tbody></table></div>
       </section>
+      </div>
     </aside>
 
     <div class="map-wrap">
       <div id="map" class="map" tabindex="0" aria-label="Peta interaktif"></div>
       <span class="badge map-badge" data-sumber-badge>Memuat data…</span>
       <details class="legend" open>
-        <summary>Legenda</summary>
+        <summary>Keterangan</summary>
         <ul>
-          <li><span class="mk mk-sekolah"></span> Sekolah, warna = jenjang</li>
-          <li><span class="mk mk-belum"></span> Belum terjangkau halte</li>
-          <li><span class="mk mk-survei"></span> Titik hasil survei</li>
-          <li><span class="mk mk-halte"></span> Halte</li>
+          <li><span class="mk mk-sekolah"></span> Sekolah, warnanya menurut jenjang</li>
+          <li><span class="mk mk-belum"></span> Sekolah yang belum terjangkau</li>
+          <li><span class="mk mk-survei"></span> Sekolah yang kami survei</li>
+          <li><span class="mk mk-halte"></span> Halte bus</li>
           <li><span class="mk mk-kandidat"></span> Usulan halte baru</li>
-          <li><span class="mk mk-buffer"></span> Zona jangkauan</li>
-          <li><span class="mk mk-area-survei"></span> Area survei</li>
-          <li><span class="mk mk-jalur"></span> Jalur survei</li>
+          <li><span class="mk mk-buffer"></span> Zona jalan kaki</li>
+          <li><span class="mk mk-area-survei"></span> Batas sekolah hasil survei</li>
+          <li><span class="mk mk-jalur"></span> Jalur yang disurvei</li>
         </ul>
       </details>
     </div>

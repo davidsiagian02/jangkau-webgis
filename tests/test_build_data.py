@@ -101,7 +101,7 @@ def test_dedup(out):
     ("Smkn 5", "SMK Negeri 5 Pekanbaru", True),
     ("SMA NEGERI 2 PEKANBARU", "SMA Negeri 2 Pekanbaru", True),
     ("SD Santa Maria Pekanbaru", "SMP Santa Maria Pekanbaru", False),
-    ("Sekolah (tanpa nama di OSM)", "SMP Kartika 1-5", True),
+    ("Sekolah tanpa nama", "SMP Kartika 1-5", True),
 ])
 def test_same_school(a, b, same):
     assert bd.same_school(a, b) is same

@@ -5,7 +5,7 @@ import Feature from 'ol/Feature.js';
 import { fromLonLat, toLonLat } from 'ol/proj.js';
 import { circle as turfCircle } from '@turf/turf';
 import { getAnalysis, getLayer, setForceFallback } from '../lib/api.js';
-import { JENJANG, RADIUS } from '../lib/config.js';
+import { JENJANG, JENJANG_LABEL, RADIUS } from '../lib/config.js';
 import { escapeHtml, fmtAngka, fmtMenit, fmtMeter } from '../lib/util.js';
 import {
   areaStyle, bufferStyle, createMap, jalanStyle, hasCartoKey, DEFAULT_BASEMAP, createPopup, fasilitasStyle, fmt, halteStyle, jalurStyle,
@@ -59,11 +59,60 @@ const map = createMap('map', { zoom: 12 });
 L.jalan.setVisible(false);
 for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'jalan', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
 const popup = createPopup(map);
+window.addEventListener('temachange', () => Object.values(L).forEach((l) => l.changed()));
 $('[data-basemap-carto]').hidden = !hasCartoKey;
 document.querySelector(`input[name='basemap'][value='${DEFAULT_BASEMAP}']`).checked = true;
-if (window.matchMedia('(max-width: 860px)').matches) document.querySelector('.legend').open = false;
+const hp = window.matchMedia('(max-width: 767px)');
+if (hp.matches) document.querySelector('.legend').open = false;
 
 window.__jangkau = { ready: false, layers: L, map, visibleJenjang: () => [...state.jenjang] };
+
+// ---------- lembar bawah (HP): intip → setengah → penuh, bisa diketuk atau ditarik
+const sheet = $('[data-sheet]');
+const handle = $('[data-sheet-handle]');
+const URUTAN = ['intip', 'setengah', 'penuh'];
+function setSheet(st) {
+  sheet.dataset.state = st;
+  handle.setAttribute('aria-expanded', String(st !== 'intip'));
+}
+handle.addEventListener('click', () => {
+  if (handle.dataset.baruDitarik) { delete handle.dataset.baruDitarik; return; }
+  setSheet(URUTAN[(URUTAN.indexOf(sheet.dataset.state) + 1) % URUTAN.length]);
+});
+(() => {
+  const kepala = $('.panel-kepala');
+  const geserY = () => { const t = getComputedStyle(sheet).transform; return t === 'none' ? 0 : new DOMMatrixReadOnly(t).m42; };
+  let y0 = null; let geser = 0; let tinggiAwal = 0;
+  kepala.addEventListener('pointerdown', (e) => {
+    if (!hp.matches || e.target.closest('[data-tab]')) return;
+    y0 = e.clientY; geser = 0;
+    tinggiAwal = sheet.offsetHeight - geserY();
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (y0 === null) return;
+    geser = e.clientY - y0;
+    if (Math.abs(geser) < 6) return;
+    sheet.classList.add('ditarik');
+    const terlihat = Math.max(80, Math.min(sheet.offsetHeight, tinggiAwal - geser));
+    sheet.style.transform = `translateY(${sheet.offsetHeight - terlihat}px)`;
+  });
+  const lepas = () => {
+    if (y0 === null) return;
+    y0 = null;
+    if (Math.abs(geser) < 6) return;
+    const terlihat = sheet.offsetHeight - geserY();
+    sheet.classList.remove('ditarik');
+    sheet.style.transform = '';
+    const target = { intip: 128, setengah: sheet.offsetHeight * 0.52, penuh: sheet.offsetHeight };
+    const terdekat = Object.entries(target).sort((a, b) => Math.abs(a[1] - terlihat) - Math.abs(b[1] - terlihat))[0][0];
+    handle.dataset.baruDitarik = '1';
+    setTimeout(() => delete handle.dataset.baruDitarik, 50);
+    setSheet(terdekat);
+  };
+  window.addEventListener('pointerup', lepas);
+  window.addEventListener('pointercancel', lepas);
+})();
+$('[data-click-mode]').addEventListener('change', (e) => { if (e.target.checked && hp.matches) setSheet('intip'); });
 
 function noteSumber(s) {
   state.sumberData.add(s);
@@ -96,7 +145,8 @@ async function loadLayers() {
   }
   renderJenjang();
   const ext = L.sekolah.getSource().getExtent();
-  if (Number.isFinite(ext[0])) map.getView().fit(ext, { padding: [40, 40, 40, 40], maxZoom: 15 });
+  // sisakan ruang untuk panel (kiri di desktop, bawah di HP) agar titik tidak tertutup
+  if (Number.isFinite(ext[0])) map.getView().fit(ext, { padding: hp.matches ? [64, 16, 150, 16] : [90, 70, 40, 420], maxZoom: 15 });
 }
 
 function renderJenjang() {
@@ -107,7 +157,7 @@ function renderJenjang() {
   }
   $('[data-jenjang-list]').innerHTML = Object.keys(JENJANG).map((j) => `
     <label class="check"><input type="checkbox" data-jenjang-toggle="${escapeHtml(j)}" ${state.jenjang.has(j) ? 'checked' : ''} />
-      <span class="swatch${j === 'Tidak diketahui' ? ' kosong' : ''}" style="background:${JENJANG[j]}"></span> ${escapeHtml(j)}
+      <span class="swatch${j === 'Tidak diketahui' ? ' kosong' : ''}" data-j="${escapeHtml(j)}" style="background:${JENJANG[j]}"></span> ${escapeHtml(JENJANG_LABEL[j] || j)}
       <span class="count">${fmtAngka(counts[j] || 0)}</span></label>`).join('');
 }
 
@@ -130,6 +180,7 @@ for (const b of document.querySelectorAll('[data-tab]')) {
   b.addEventListener('click', () => {
     for (const x of document.querySelectorAll('[data-tab]')) x.setAttribute('aria-selected', String(x === b));
     for (const p of document.querySelectorAll('[data-tabpanel]')) p.hidden = p.dataset.tabpanel !== b.dataset.tab;
+    if (sheet.dataset.state === 'intip') setSheet('setengah');
   });
 }
 
@@ -156,10 +207,10 @@ async function runAnalysis() {
     renderRingkasan(b);
     renderKandidat(k);
   } catch (e) {
-    $('[data-ringkasan]').innerHTML = `<p class="error">${escapeHtml(e.message)}</p>`;
+    $('[data-ringkasan]').innerHTML = '<p class="error">Perhitungan belum berhasil. Coba tekan Hitung ulang.</p>';
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Jalankan analisis';
+    btn.textContent = 'Hitung ulang';
   }
 }
 
@@ -167,18 +218,19 @@ function renderRingkasan(b) {
   const g = b.ringkasan;
   const rows = Object.entries(g.per_jenjang).sort((a, c) => c[1].total - a[1].total).map(([j, v]) => {
     const pct = v.total ? (v.terlayani / v.total) * 100 : 0;
-    return `<li><span class="swatch${j === 'Tidak diketahui' ? ' kosong' : ''}" style="background:${JENJANG[j] || '#fff'}"></span>
-      <span class="bar-label">${escapeHtml(j)}</span><span class="bar"><span style="width:${pct.toFixed(1)}%"></span></span>
+    return `<li><span class="swatch${j === 'Tidak diketahui' ? ' kosong' : ''}" data-j="${escapeHtml(j)}" style="background:${JENJANG[j] || '#fff'}"></span>
+      <span class="bar-label">${escapeHtml(JENJANG_LABEL[j] || j)}</span><span class="bar"><span style="width:${pct.toFixed(1)}%"></span></span>
       <span class="bar-num">${v.terlayani}/${v.total}</span></li>`;
   }).join('');
-  $('[data-ringkasan]').innerHTML = `<p class="big-line"><b>${fmtAngka(g.terlayani)}</b> dari ${fmtAngka(g.total)} sekolah (${fmtAngka(g.persen, 1)}%) berada dalam ${fmtMeter(b.radius)} dari halte.</p><ul class="bars">${rows}</ul>`;
+  $('[data-ringkasan]').innerHTML = `<p class="big-line"><b>${fmtAngka(g.terlayani)}</b> dari ${fmtAngka(g.total)} sekolah (${fmtAngka(g.persen, 1)}%) berjarak ${fmtMeter(b.radius)} atau kurang dari halte.</p><ul class="bars">${rows}</ul>`;
+  $('[data-ringkas]').innerHTML = `<b>${fmtAngka(g.terlayani)} dari ${fmtAngka(g.total)} sekolah</b> berjarak ${fmtMeter(b.radius)} atau kurang dari halte.`;
   const jauh = b.sekolah.features.map((f) => f.properties).filter((p) => !p.terlayani).sort((a, c) => (c.jarak_halte_m ?? 1e9) - (a.jarak_halte_m ?? 1e9)).slice(0, 15);
   const byUid = new Map(b.sekolah.features.map((f) => [f.properties.uid, f.geometry.coordinates]));
   $('[data-hasil-sekolah] tbody').innerHTML = jauh.length
-    ? jauh.map((p) => `<tr data-uid="${escapeHtml(p.uid)}" tabindex="0"><td><span class="swatch${p.jenjang === 'Tidak diketahui' ? ' kosong' : ''}" style="background:${JENJANG[p.jenjang] || '#fff'}"></span> ${escapeHtml(p.nama)}</td><td class="num">${fmtMeter(p.jarak_halte_m)}</td></tr>`).join('')
+    ? jauh.map((p) => `<tr data-uid="${escapeHtml(p.uid)}" tabindex="0"><td><span class="swatch${p.jenjang === 'Tidak diketahui' ? ' kosong' : ''}" data-j="${escapeHtml(p.jenjang || '')}" style="background:${JENJANG[p.jenjang] || '#fff'}"></span> ${escapeHtml(p.nama)}</td><td class="num">${fmtMeter(p.jarak_halte_m)}</td></tr>`).join('')
     : '<tr><td colspan="2">Semua sekolah sudah terjangkau pada radius ini.</td></tr>';
   for (const tr of document.querySelectorAll('[data-hasil-sekolah] tbody tr[data-uid]')) {
-    const go = () => zoomTo(fromLonLat(byUid.get(tr.dataset.uid)));
+    const go = () => { zoomTo(fromLonLat(byUid.get(tr.dataset.uid))); if (hp.matches) setSheet('intip'); };
     tr.addEventListener('click', go);
     tr.addEventListener('keydown', (e) => e.key === 'Enter' && go());
   }
@@ -190,12 +242,12 @@ function renderKandidat(k) {
     const p = f.properties;
     const nama = p.sekolah.slice(0, 3).map(escapeHtml).join(', ') + (p.sekolah.length > 3 ? `, dan ${p.sekolah.length - 3} lainnya` : '');
     return `<li><button type="button" class="kandidat-btn" data-lonlat="${f.geometry.coordinates.join(',')}">
-      <span class="kandidat-rank">${p.rank}</span><span><b>${p.jumlah_sekolah} sekolah</b> akan terjangkau, rata-rata ${fmtMeter(p.jarak_rata_m)}${p.snap ? ', ditempel ke jalan terdekat' : ''}<br><span class="hint">${nama}</span></span></button></li>`;
+      <span class="kandidat-rank">${p.rank}</span><span><b>${p.jumlah_sekolah} sekolah</b> akan terjangkau, rata-rata jaraknya ${fmtMeter(p.jarak_rata_m)}${p.snap ? '. Letaknya sudah digeser ke jalan terdekat' : ''}<br><span class="hint">${nama}</span></span></button></li>`;
   }).join('') : '<li class="hint">Tidak ada kelompok sekolah yang perlu halte baru pada radius ini.</li>';
   $('[data-terisolasi]').textContent = k.terisolasi
     ? `${fmtAngka(k.terisolasi)} sekolah belum terjangkau tetapi letaknya terpencar, jadi tidak masuk kelompok mana pun.` : '';
   for (const b of document.querySelectorAll('.kandidat-btn')) {
-    b.addEventListener('click', () => zoomTo(fromLonLat(b.dataset.lonlat.split(',').map(Number)), 15));
+    b.addEventListener('click', () => { zoomTo(fromLonLat(b.dataset.lonlat.split(',').map(Number)), 15); if (hp.matches) setSheet('intip'); });
   }
 }
 
@@ -205,7 +257,7 @@ $('[data-run-analysis]').addEventListener('click', runAnalysis);
 $('[data-run-overlay]').addEventListener('click', async () => {
   const { data, sumber } = await getAnalysis('overlay');
   noteSumber(sumber);
-  $('[data-hasil-overlay] tbody').innerHTML = data.banding.map((b) => `<tr><td>${escapeHtml(b.nama_survei)}<br><span class="hint">vs ${escapeHtml(b.nama_osm || 'tidak ada poligon OSM')}: ${fmtAngka(b.luas_survei_m2)} m² dan ${fmtAngka(b.luas_osm_m2 || 0)} m²</span></td><td class="num">${fmtAngka(b.iou * 100, 0)}%</td></tr>`).join('');
+  $('[data-hasil-overlay] tbody').innerHTML = data.banding.map((b) => `<tr><td>${escapeHtml(b.nama_survei)}<br><span class="hint">${b.nama_osm ? `Luas hasil survei ${fmtAngka(b.luas_survei_m2)} m², di OpenStreetMap ${fmtAngka(b.luas_osm_m2 || 0)} m²` : 'Belum ada batas sekolah ini di OpenStreetMap'}</span></td><td class="num">${fmtAngka(b.iou * 100, 0)}%</td></tr>`).join('');
 });
 
 // ---------- klik peta: popup atau cari halte terdekat
@@ -213,19 +265,20 @@ function popupHtml(f, layer) {
   const p = f.getProperties();
   const tipe = layer.get('tipe');
   const row = (k, v) => (v === null || v === undefined || v === '' ? '' : `<tr><th>${k}</th><td>${escapeHtml(v)}</td></tr>`);
+  const asal = (s) => ({ osm: 'OpenStreetMap', survei: 'Survei lapangan', admin: 'Ditambahkan pengelola' }[s] || s);
   if (tipe === 'sekolah' || (tipe === 'titik' && p.kategori === 'sekolah')) {
     const s = tipe === 'sekolah' ? state.status.get(p.uid) : statusOf(p);
     const st = s ? `<tr><th>Status</th><td><span class="status ${s.terlayani ? 'ok' : 'no'}">${s.terlayani ? 'Terjangkau' : 'Belum terjangkau'}</span></td></tr>${row('Halte terdekat', s.halte_terdekat)}${row('Jarak', fmtMeter(s.jarak_halte_m))}` : '';
-    return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenjang', p.jenjang)}${row('Sumber', p.sumber === 'osm' ? 'OpenStreetMap' : p.sumber)}${st}</table>`;
+    return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenjang', JENJANG_LABEL[p.jenjang] || p.jenjang)}${row('Asal data', asal(p.sumber))}${st}</table>`;
   }
-  if (tipe === 'halte') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenis', 'Halte')}${row('Sumber', p.sumber === 'osm' ? 'OpenStreetMap' : p.sumber)}${row('Keterangan', p.deskripsi)}</table>`;
+  if (tipe === 'halte') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenis', 'Halte bus')}${row('Asal data', asal(p.sumber))}${row('Keterangan', p.deskripsi)}</table>`;
   if (tipe === 'titik') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Kategori', p.kategori)}${row('Keterangan', p.deskripsi)}${row('Waktu survei', p.waktu_survei && new Date(p.waktu_survei).toLocaleString('id-ID'))}</table>`;
-  if (tipe === 'area') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenjang', p.jenjang)}${row('Luas', `${fmtAngka(p.luas_m2)} m²`)}${row('Sumber', p.sumber === 'osm' ? 'OpenStreetMap' : 'Survei lapangan')}</table>`;
+  if (tipe === 'area') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Jenjang', JENJANG_LABEL[p.jenjang] || p.jenjang)}${row('Luas', `${fmtAngka(p.luas_m2)} m²`)}${row('Asal data', asal(p.sumber))}</table>`;
   if (tipe === 'jalur') {
     const m = Number(p.panjang_m);
     return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Panjang', fmtMeter(m))}${row('Jalan kaki', fmtMenit(m / 83.33))}${row('Bersepeda', fmtMenit(m / 250))}</table>`;
   }
-  if (tipe === 'jalan') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Kelas jalan', p.kelas)}${row('Panjang ruas', fmtMeter(Number(p.panjang_m)))}${row('Sumber', 'OpenStreetMap')}</table>`;
+  if (tipe === 'jalan') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Kelas jalan', p.kelas)}${row('Panjang ruas', fmtMeter(Number(p.panjang_m)))}${row('Asal data', 'OpenStreetMap')}</table>`;
   if (tipe === 'kandidat') return `<h3>Usulan halte #${p.rank}</h3><p>${p.jumlah_sekolah} sekolah akan terjangkau dalam ${fmtMeter(state.radius)}.</p>`;
   return null;
 }
@@ -245,8 +298,9 @@ async function nearestAt(coord) {
     out.innerHTML = `<p><b>Halte terdekat:</b> ${h ? `${escapeHtml(h.nama)}, ${fmtMeter(h.jarak_m)} (${fmtMenit(h.waktu_menit)} jalan kaki)` : 'belum ada data halte'}</p>
       <p><b>${data.sekolah.length} sekolah</b> dalam radius ${fmtMeter(state.radius)}${data.sekolah.length ? ':' : '.'}</p>
       ${data.sekolah.length ? `<ul class="mini">${data.sekolah.slice(0, 8).map((s) => `<li>${escapeHtml(s.nama)} <span class="hint">${fmtMeter(s.jarak_m)}</span></li>`).join('')}</ul>` : ''}`;
+    if (hp.matches) setSheet('setengah');
   } catch (e) {
-    out.innerHTML = `<p class="error">${escapeHtml(e.message)}</p>`;
+    out.innerHTML = '<p class="error">Halte terdekat belum bisa dicari. Coba ketuk peta sekali lagi.</p>';
   }
 }
 
@@ -268,7 +322,7 @@ map.on('pointermove', (evt) => {
     await runAnalysis();
   } catch (e) {
     setBadge($('[data-sumber-badge]'), 'cadangan');
-    $('[data-sumber-badge]').textContent = `Gagal memuat data: ${e.message}`;
+    $('[data-sumber-badge]').textContent = 'Data belum bisa dimuat';
   }
   window.__jangkau.ready = true;
 })();

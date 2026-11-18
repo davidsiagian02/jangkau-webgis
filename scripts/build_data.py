@@ -22,7 +22,7 @@ UTM = lambda g: shapely.transform(g, lambda xy: np.column_stack(_TR.transform(xy
 
 KELAS = re.compile(r"^(VII|VIII|IX|X|XI|XII)\b|^R\. ?BK|^Lapangan\b|Bimbingan Konseling", re.I)
 BUKAN_SEKOLAH = re.compile(r"\bSTIE\b|Kursus", re.I)
-TANPA_NAMA = "Sekolah (tanpa nama di OSM)"
+TANPA_NAMA = "Sekolah tanpa nama"
 DEDUP_SURVEI_M = 75
 GABUNG_NAMA_M = 300
 GABUNG_HALTE_M = 30

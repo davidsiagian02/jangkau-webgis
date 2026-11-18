@@ -25,6 +25,12 @@ export const JENJANG = {
   'Tidak diketahui': '#ffffff',
 };
 
+// Nama jenjang yang tampil ke pengunjung.
+export const JENJANG_LABEL = {
+  'TK/PAUD': 'TK/PAUD', 'SD/MI': 'SD/MI', 'SMP/MTs': 'SMP/MTs', 'SMA/SMK/MA': 'SMA/SMK/MA',
+  Campuran: 'Gabungan jenjang', 'Pesantren/Diniyah': 'Pesantren', SLB: 'SLB', 'Tidak diketahui': 'Belum diketahui',
+};
+
 export const JENJANG_KET = {
   'SD/MI': 'merah, seperti seragam SD',
   'SMP/MTs': 'biru dongker, seperti seragam SMP',

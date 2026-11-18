@@ -2,7 +2,7 @@ import { initLayout } from '../lib/layout.js';
 import '../styles/home.css';
 import { mountDiorama } from '../lib/diorama.js';
 import { getAnalysis, getStats } from '../lib/api.js';
-import { JENJANG, RADIUS } from '../lib/config.js';
+import { JENJANG, JENJANG_LABEL, RADIUS } from '../lib/config.js';
 import { escapeHtml, fmtAngka } from '../lib/util.js';
 
 initLayout();
@@ -53,11 +53,10 @@ function drawStrip(el, sekolah, radius) {
   </svg>`;
 }
 
-const NAMA_JENJANG = { 'TK/PAUD': 'TK/PAUD', 'SD/MI': 'SD/MI', 'SMP/MTs': 'SMP/MTs', 'SMA/SMK/MA': 'SMA/SMK/MA', Campuran: 'Gabungan jenjang', 'Pesantren/Diniyah': 'Pesantren', SLB: 'SLB', 'Tidak diketahui': 'Belum diketahui' };
 function drawLegend(el, sekolah) {
   const ada = new Set(sekolah.map((f) => f.properties.jenjang || 'Tidak diketahui'));
   el.innerHTML = Object.entries(JENJANG).filter(([k]) => ada.has(k)).map(([k, c]) =>
-    `<span><i class="${c === '#ffffff' ? 'kosong' : ''}" data-j="${k}" style="background:${c}"></i>${NAMA_JENJANG[k] || k}</span>`).join('');
+    `<span><i class="${c === '#ffffff' ? 'kosong' : ''}" data-j="${k}" style="background:${c}"></i>${JENJANG_LABEL[k] || k}</span>`).join('');
 }
 
 async function main() {

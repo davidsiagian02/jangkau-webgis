@@ -122,7 +122,7 @@ def teks_publik(page):
     }""")
 
 
-@pytest.mark.parametrize("path", ["/"])
+@pytest.mark.parametrize("path", ["/", "/peta.html"])
 def test_bahasa_publik(page, path):
     page.goto(BASE + path)
     page.wait_for_timeout(1500)
@@ -253,6 +253,45 @@ def test_admin_crud(page):
     page.once("dialog", lambda d: d.accept())
     row.locator("[data-hapus]").click()
     expect(page.locator("[data-tabel-titik] tbody tr", has_text="Halte Uji UI")).to_have_count(0, timeout=15000)
+    assert page.errors == []
+
+
+def test_peta_bahasa_analisis(page):
+    page.goto(BASE + "/peta.html")
+    page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
+    page.locator("[data-tab='analisis']").click()
+    page.locator("[data-run-overlay]").click()
+    expect(page.locator("[data-hasil-overlay] tbody tr").first).to_be_visible(timeout=15000)
+    temuan = sorted(set(m.group(0) for m in TERLARANG.finditer(teks_publik(page))))
+    assert temuan == [], f"istilah teknis terlihat di tab Analisis: {temuan}"
+
+
+def test_peta_tema_gelap(page):
+    page.add_init_script("try{localStorage.setItem('jangkau-tema','dark')}catch(e){}")
+    page.goto(BASE + "/peta.html")
+    page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
+    f = page.evaluate("getComputedStyle(document.querySelector('.basemap')).filter")
+    assert f != "none"
+    # ganti ke tema terang lewat tombol: filter hilang
+    page.locator(".pill [data-theme-toggle]").click()
+    page.wait_for_timeout(400)
+    assert page.evaluate("getComputedStyle(document.querySelector('.basemap')).filter") == "none"
+    assert page.errors == []
+
+
+def test_peta_mobile_sheet(page):
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.goto(BASE + "/peta.html")
+    page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
+    sheet = page.locator("[data-sheet]")
+    expect(sheet).to_have_attribute("data-state", "intip")
+    page.locator("[data-sheet-handle]").click()
+    expect(sheet).to_have_attribute("data-state", "setengah")
+    # lembar tidak menutupi tab bar: wadah peta berhenti di atas tab bar dan memotong isinya
+    tab = page.locator(".tabbar").bounding_box()
+    wadah = page.locator(".peta").bounding_box()
+    assert wadah["y"] + wadah["height"] <= tab["y"] + 1
+    assert page.evaluate("getComputedStyle(document.querySelector('.peta')).overflow") in ("hidden", "clip")
     assert page.errors == []
 
 

@@ -23,21 +23,33 @@ const CARTO_KEY = (import.meta.env && import.meta.env.VITE_CARTO_KEY) || '';
 export const hasCartoKey = Boolean(CARTO_KEY);
 export const DEFAULT_BASEMAP = hasCartoKey ? 'terang' : 'osm';
 
+const cartoUrl = (gaya) => `https://basemaps.cartocdn.com/rastertiles/${gaya}/{z}/{x}/{y}.png?key=${encodeURIComponent(CARTO_KEY)}`;
+const temaSekarang = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+// source(tema): peta CARTO punya versi terang & gelap; OpenStreetMap digelapkan lewat filter CSS (lihat peta.css).
 export const BASEMAPS = {
-  terang: { nama: 'Peta terang (CARTO)', source: () => new XYZ({ url: `https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=${encodeURIComponent(CARTO_KEY)}`, attributions: `${ATTR_OSM} © CARTO`, crossOrigin: 'anonymous' }) },
+  terang: { nama: 'Peta CARTO', source: (tema) => new XYZ({ url: cartoUrl(tema === 'dark' ? 'dark_all' : 'light_all'), attributions: `${ATTR_OSM} © CARTO`, crossOrigin: 'anonymous' }) },
   osm: { nama: 'OpenStreetMap', source: () => new OSM({ attributions: ATTR_OSM }) },
-  citra: { nama: 'Citra satelit (Esri)', source: () => new XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attributions: 'Citra © Esri, Maxar, Earthstar Geographics', maxZoom: 19 }) },
+  citra: { nama: 'Foto satelit', source: () => new XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attributions: 'Citra © Esri, Maxar, Earthstar Geographics', maxZoom: 19 }) },
 };
 
 export function createMap(target, { zoom = 13, basemap = DEFAULT_BASEMAP } = {}) {
-  const base = new TileLayer({ source: BASEMAPS[basemap].source(), properties: { basemap } });
+  let tema = temaSekarang();
+  const base = new TileLayer({ className: 'basemap', source: BASEMAPS[basemap].source(tema), properties: { basemap } });
   const map = new Map({
     target,
     layers: [base],
     view: new View({ center: fromLonLat(PUSAT_PETA), zoom, minZoom: 10, maxZoom: 19 }),
-    controls: defaultControls({ attributionOptions: { collapsible: true } }).extend([new ScaleLine({ units: 'metric' })]),
+    controls: defaultControls({ rotate: false, attributionOptions: { collapsible: true } }).extend([new ScaleLine({ units: 'metric' })]),
   });
-  map.setBasemap = (key) => { base.setSource(BASEMAPS[key].source()); base.set('basemap', key); };
+  const el = map.getTargetElement();
+  el.dataset.basemap = basemap;
+  map.setBasemap = (key) => { base.setSource(BASEMAPS[key].source(tema)); base.set('basemap', key); el.dataset.basemap = key; };
+  map.setTheme = (t) => {
+    tema = t;
+    if (base.get('basemap') === 'terang') base.setSource(BASEMAPS.terang.source(t));
+  };
+  window.addEventListener('temachange', (e) => map.setTheme(e.detail));
   return map;
 }
 
@@ -50,19 +62,27 @@ const cache = {};
 const memo = (k, f) => (cache[k] ||= f());
 const white = new Stroke({ color: '#ffffff', width: 1.5 });
 
-export function jenjangFill(j) { return JENJANG[j] || JENJANG['Tidak diketahui']; }
+// Penanda ikut tema: garis biru dongker tidak terlihat di peta gelap, jadi diganti terang.
+let gelap = document.documentElement.dataset.theme === 'dark';
+window.addEventListener('temachange', (e) => { gelap = e.detail === 'dark'; });
+const tinta = () => (gelap ? '#E8EDF5' : '#13284b');
+
+export function jenjangFill(j) {
+  if (gelap && j === 'SMP/MTs') return '#5B82C9';
+  return JENJANG[j] || JENJANG['Tidak diketahui'];
+}
 
 export function sekolahStyle(p, { status } = {}) {
   const j = p.jenjang || 'Tidak diketahui';
   const kosong = j === 'Tidak diketahui';
   const belum = status === false;
   const survei = p.sumber === 'survei' || p.sumber === 'admin';
-  return memo(`s|${j}|${belum}|${survei}`, () => new Style({
+  return memo(`s|${j}|${belum}|${survei}|${gelap}`, () => new Style({
     image: new CircleStyle({
       radius: belum ? 7.5 : 5.5,
       fill: new Fill({ color: jenjangFill(j) }),
-      stroke: belum ? new Stroke({ color: '#13284b', width: 2, lineDash: [3, 2] })
-        : survei ? new Stroke({ color: '#13284b', width: 2 }) : kosong ? new Stroke({ color: '#5b6573', width: 1.5 }) : white,
+      stroke: belum ? new Stroke({ color: tinta(), width: 2, lineDash: [3, 2] })
+        : survei ? new Stroke({ color: tinta(), width: 2 }) : kosong ? new Stroke({ color: '#5b6573', width: 1.5 }) : white,
     }),
     zIndex: belum ? 3 : 2,
   }));
@@ -83,7 +103,7 @@ export const literasiStyle = () => memo('l', () => new Style({
 
 export function areaStyle(p) {
   if (p.sumber === 'survei') {
-    return memo('a|survei', () => new Style({ stroke: new Stroke({ color: '#13284b', width: 2.5, lineDash: [6, 4] }), fill: new Fill({ color: 'rgba(19,40,75,0.06)' }) }));
+    return memo(`a|survei|${gelap}`, () => new Style({ stroke: new Stroke({ color: tinta(), width: 2.5, lineDash: [6, 4] }), fill: new Fill({ color: gelap ? 'rgba(232,237,245,0.06)' : 'rgba(19,40,75,0.06)' }) }));
   }
   const c = jenjangFill(p.jenjang);
   const hex = c === '#ffffff' ? '#7a828c' : c;
@@ -92,7 +112,7 @@ export function areaStyle(p) {
 
 export function jalurStyle(p) {
   return p.jenis === 'rute'
-    ? memo('j|rute', () => new Style({ stroke: new Stroke({ color: '#39424e', width: 3.5 }) }))
+    ? memo(`j|rute|${gelap}`, () => new Style({ stroke: new Stroke({ color: gelap ? '#C9D3E2' : '#39424e', width: 3.5 }) }))
     : memo('j|jalur', () => [new Style({ stroke: new Stroke({ color: '#ffffff', width: 5 }) }), new Style({ stroke: new Stroke({ color: '#0b7285', width: 3, lineDash: [8, 5] }) })]);
 }
 
@@ -110,9 +130,9 @@ export const kandidatStyle = (rank) => memo(`k|${rank}`, () => new Style({
   zIndex: 10,
 }));
 
-export const klikStyle = () => memo('klik', () => new Style({
-  fill: new Fill({ color: 'rgba(19,40,75,0.08)' }), stroke: new Stroke({ color: '#13284b', width: 2 }),
-  image: new CircleStyle({ radius: 6, fill: new Fill({ color: '#13284b' }), stroke: new Stroke({ color: '#f5c400', width: 3 }) }),
+export const klikStyle = () => () => memo(`klik|${gelap}`, () => new Style({
+  fill: new Fill({ color: gelap ? 'rgba(232,237,245,0.08)' : 'rgba(19,40,75,0.08)' }), stroke: new Stroke({ color: tinta(), width: 2 }),
+  image: new CircleStyle({ radius: 6, fill: new Fill({ color: tinta() }), stroke: new Stroke({ color: '#f5c400', width: 3 }) }),
 }));
 
 // ---------- popup
