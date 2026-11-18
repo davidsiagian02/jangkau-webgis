@@ -218,7 +218,7 @@ def read_survei_titik(path):
         kategori, jenjang = classify_titik(title)
         desc = None if pd.isna(r.Description) else str(r.Description).strip()
         out.append({"nama": title, "kategori": kategori, "jenjang": jenjang, "deskripsi": desc,
-                    "waktu_survei": str(r[1]) if not pd.isna(r[1]) else None,
+                    "waktu_survei": f"{r[1]}+07:00" if not pd.isna(r[1]) else None,
                     "geom": Point(float(r.Longitude), float(r.Latitude))})
     return out
 

@@ -1,0 +1,27 @@
+{
+  "name": "jangkau-webgis",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WebGIS JANGKAU - akses halte transportasi umum ke sekolah di Kota Pekanbaru",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node scripts/api-dev.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "db:setup": "node scripts/setup-db.js",
+    "data:build": "python3 scripts/build_data.py data/source public/data db/seed.sql",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.4.0",
+    "ol": "^10.11.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "vite": "^6.4.6"
+  }
+}
