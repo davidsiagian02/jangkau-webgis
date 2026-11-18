@@ -14,10 +14,10 @@ CREATE TABLE kategori (
   ikon  text NOT NULL
 );
 INSERT INTO kategori (kode, nama, warna, ikon) VALUES
-  ('sekolah',   'Sekolah',             '#1f4e8c', 'sekolah'),
-  ('halte',     'Halte',               '#d9480f', 'halte'),
-  ('fasilitas', 'Fasilitas Pendukung', '#2b8a3e', 'fasilitas'),
-  ('literasi',  'Literasi',            '#7048e8', 'literasi');
+  ('sekolah',   'Sekolah',             '#13284b', 'lingkaran'),
+  ('halte',     'Halte',               '#f5c400', 'kotak'),
+  ('fasilitas', 'Fasilitas pendukung', '#495057', 'belah ketupat'),
+  ('literasi',  'Literasi',            '#7048e8', 'segitiga');
 
 -- Titik: hasil survei, sekolah titik OSM, halte (survei + OSM), dan input admin
 CREATE TABLE titik (

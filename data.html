@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data — Jangkau</title>
+  <meta name="description" content="WebGIS JANGKAU: jarak jalan kaki dari sekolah ke halte bus terdekat di Kota Pekanbaru, dengan analisis buffer dan rekomendasi halte baru." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="page-data">
+  <header class="nav">
+    <a class="brand" href="/"><span class="brand-sign" aria-hidden="true">H</span>Jangkau</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a class="link" href="/">Beranda</a></li>
+      <li><a class="link" href="/peta.html">Peta</a></li>
+      <li><a class="link" href="/data.html" aria-current="page">Data</a></li>
+      <li><a class="link" href="/admin.html">Admin</a></li>
+    </ul>
+  </header>
+  <main class="data">
+    <header class="data-head">
+      <h1>Tabel data dan hasil analisis</h1>
+      <p>Semua angka di halaman ini dihitung dari database. <span class="badge" data-sumber-badge>Memuat data…</span></p>
+    </header>
+
+    <section class="data-sec">
+      <h2>Ringkasan</h2>
+      <div class="table-wrap narrow"><table data-tabel-ringkasan><tbody></tbody></table></div>
+    </section>
+
+    <section class="data-sec">
+      <h2>Jarak sekolah ke halte terdekat</h2>
+      <p class="hint">Diurutkan dari yang paling jauh. Status dihitung dengan radius yang dipilih.</p>
+      <div class="filters">
+        <div class="field"><label for="cari">Cari sekolah</label><input id="cari" type="search" placeholder="Nama sekolah" data-cari /></div>
+        <div class="field"><label for="f-jenjang">Jenjang</label><select id="f-jenjang" data-f-jenjang><option value="">Semua jenjang</option></select></div>
+        <div class="field"><label for="f-status">Status</label><select id="f-status" data-f-status><option value="">Semua</option><option value="no">Belum terjangkau</option><option value="ok">Terjangkau</option></select></div>
+        <div class="field"><label for="f-radius">Radius</label><select id="f-radius" data-f-radius><option value="300">300 m</option><option value="500" selected>500 m</option><option value="1000">1 km</option></select></div>
+      </div>
+      <div class="table-wrap"><table data-tabel-keputusan>
+        <thead><tr><th class="num">No</th><th>Sekolah</th><th>Jenjang</th><th>Sumber</th><th>Halte terdekat</th><th class="num">Jarak</th><th class="num">Jalan kaki</th><th>Status</th></tr></thead>
+        <tbody></tbody></table></div>
+      <p class="hint" data-keputusan-info></p>
+    </section>
+
+    <section class="data-sec">
+      <h2>Usulan halte baru</h2>
+      <div class="table-wrap"><table data-tabel-rekomendasi>
+        <thead><tr><th class="num">Peringkat</th><th class="num">Sekolah terjangkau</th><th>Sekolah</th><th class="num">Jarak rata-rata</th><th>Koordinat</th></tr></thead>
+        <tbody></tbody></table></div>
+    </section>
+
+    <section class="data-sec">
+      <h2>Area survei dibandingkan dengan OpenStreetMap</h2>
+      <div class="table-wrap"><table data-tabel-overlay>
+        <thead><tr><th>Area survei</th><th>Poligon OSM</th><th class="num">Luas survei</th><th class="num">Luas OSM</th><th class="num">Luas irisan</th><th class="num">IoU</th></tr></thead>
+        <tbody></tbody></table></div>
+      <h3>Fasilitas dan titik literasi di dalam area sekolah</h3>
+      <div class="table-wrap"><table data-tabel-fasilitas>
+        <thead><tr><th>Area</th><th>Sumber</th><th class="num">Jumlah</th><th>Titik</th></tr></thead>
+        <tbody></tbody></table></div>
+    </section>
+
+    <section class="data-sec">
+      <h2>Panjang jalur survei</h2>
+      <div class="table-wrap"><table data-tabel-jalur>
+        <thead><tr><th>Jalur</th><th>Jenis</th><th class="num">Panjang</th><th class="num">Jalan kaki (5 km/jam)</th><th class="num">Sepeda (15 km/jam)</th></tr></thead>
+        <tbody></tbody></table></div>
+    </section>
+
+    <section class="data-sec">
+      <h2>Unduh data</h2>
+      <p>Salinan GeoJSON yang sama dengan isi database: <a href="/data/titik.geojson" download>titik</a>, <a href="/data/area.geojson" download>area sekolah</a>, <a href="/data/jalur.geojson" download>jalur</a>, <a href="/data/sekolah_analisis.geojson" download>unit analisis sekolah</a>.</p>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>Data peta © kontributor OpenStreetMap (lisensi ODbL). Data survei lapangan diambil 30 September 2026.</p>
+    <p>Project akhir Sistem Informasi Geografis, Politeknik Caltex Riau, 2026</p>
+  </footer>
+  <script type="module" src="/src/pages/data.js"></script>
+</body>
+</html>

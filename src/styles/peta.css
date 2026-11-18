@@ -1,0 +1,82 @@
+.page-peta { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+.peta { flex: 1; display: grid; grid-template-columns: 360px 1fr; min-height: 0; }
+
+.panel { border-right: 1px solid var(--line); overflow-y: auto; background: var(--white); padding: 0 var(--s-4) var(--s-6); }
+.tabs { position: sticky; top: 0; z-index: 2; display: flex; background: var(--white); border-bottom: 1px solid var(--line); margin: 0 calc(-1 * var(--s-4)) var(--s-4); padding: 0 var(--s-4); }
+.tabs button { flex: 1; font: 700 15px var(--f-sign); color: var(--muted); background: none; border: 0; padding: 14px 0 11px; border-bottom: 3px solid transparent; cursor: pointer; }
+.tabs button[aria-selected='true'] { color: var(--navy); border-bottom-color: var(--signal); }
+
+fieldset { border: 0; margin: 0 0 var(--s-4); padding: 0; }
+legend { font-weight: 800; color: var(--navy); font-size: 14px; padding: 0; margin-bottom: 6px; }
+.check { display: flex; align-items: center; gap: 8px; font-weight: 400; color: var(--ink); padding: 4px 0; cursor: pointer; }
+.check input { accent-color: var(--navy); width: 16px; height: 16px; margin: 0; flex: none; }
+.count { margin-left: auto; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.panel h2 { font-size: 19px; margin-top: var(--s-5); }
+.panel h2:first-of-type { margin-top: 0; }
+.panel h3 { font-size: 15px; margin: var(--s-5) 0 var(--s-2); }
+input[type='range'] { width: 100%; accent-color: var(--navy); }
+.presets { display: flex; gap: 6px; }
+output { font-weight: 800; }
+.result { margin-top: var(--s-3); }
+.big-line { font-size: 15px; }
+.big-line b { font-size: 22px; color: var(--navy); }
+.bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 13px; }
+.bars li { display: grid; grid-template-columns: 14px 110px 1fr 44px; align-items: center; gap: 6px; }
+.bar { height: 8px; background: var(--panel); border-radius: 1px; overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--ok); }
+.bar-num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+[data-hasil-sekolah] tr[data-uid] { cursor: pointer; }
+
+.kandidat { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.kandidat-btn { width: 100%; display: flex; gap: 10px; align-items: flex-start; text-align: left; font: 14px/1.4 var(--f-sign); color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: var(--r); padding: 8px; cursor: pointer; }
+.kandidat-btn:hover { border-color: var(--navy); }
+.kandidat-rank { flex: none; width: 26px; height: 26px; display: grid; place-items: center; padding-top: 3px; background: var(--signal); color: var(--navy); font-weight: 800; border: 2px solid var(--navy); border-radius: 2px; }
+.mini { margin: 0; padding-left: 1.1em; font-size: 14px; }
+
+/* ---------- peta */
+.map-wrap { position: relative; min-height: 0; }
+.map { position: absolute; inset: 0; background: #e9edf1; }
+.map-badge { position: absolute; top: var(--s-3); right: var(--s-3); z-index: 3; }
+.legend { position: absolute; left: var(--s-3); bottom: 34px; z-index: 3; background: rgba(255, 255, 255, .96); border: 1px solid var(--line); border-radius: var(--r); font-size: 13px; padding: 6px 10px; max-width: 240px; }
+.legend summary { font-weight: 800; color: var(--navy); cursor: pointer; }
+.legend ul { list-style: none; margin: 6px 0 2px; padding: 0; display: grid; gap: 4px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+
+/* penanda mini untuk legenda & daftar layer */
+.mk { flex: none; display: inline-block; width: 14px; height: 14px; }
+.mk-sekolah { border-radius: 50%; background: conic-gradient(#b3262d 0 33%, #1f3a68 0 66%, #7a828c 0); border: 1.5px solid #fff; box-shadow: 0 0 0 1px #9aa4b1; }
+.mk-survei { border-radius: 50%; background: #1f3a68; border: 2px solid var(--navy); box-shadow: inset 0 0 0 1.5px #fff; }
+.mk-belum { border-radius: 50%; border: 2px dashed var(--navy); background: #b3262d; }
+.mk-halte { background: var(--signal); border: 1.5px solid var(--navy); transform: scale(.85); }
+.mk-kandidat { background: var(--signal); border: 2.5px solid var(--navy); border-radius: 2px; }
+.mk-fasilitas { background: #495057; transform: rotate(45deg) scale(.7); }
+.mk-literasi { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 12px solid #7048e8; }
+.mk-area { background: rgba(31, 58, 104, .18); border: 1px solid #1f3a68; }
+.mk-area-survei { border: 2px dashed var(--navy); }
+.mk-rute { height: 4px; background: #39424e; }
+.mk-jalur { height: 0; border-top: 3px dashed #0b7285; }
+.mk-buffer { border-radius: 50%; background: rgba(245, 196, 0, .35); border: 1.5px dashed #9c7c00; }
+.mk-heat { border-radius: 50%; background: radial-gradient(#f5c400, #4fb3a5 55%, transparent 72%); }
+
+/* popup */
+.popup { background: var(--white); border: 1px solid var(--navy); border-radius: var(--r); padding: 10px 12px 8px; min-width: 220px; max-width: 300px; font-size: 13px; position: relative; box-shadow: 0 4px 14px rgba(19, 40, 75, .18); }
+.popup::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 12px; height: 12px; background: var(--white); border-right: 1px solid var(--navy); border-bottom: 1px solid var(--navy); transform: translateX(-50%) rotate(45deg); }
+.popup h3 { font-size: 15px; margin: 0 22px 6px 0; }
+.popup table { font-size: 13px; }
+.popup th, .popup td { padding: 3px 6px 2px 0; border: 0; white-space: normal; }
+.popup th { color: var(--muted); font-weight: 600; }
+.popup p { margin: 0; }
+.popup-close { position: absolute; top: 4px; right: 6px; border: 0; background: none; font-size: 20px; line-height: 1; color: var(--muted); cursor: pointer; }
+
+.ol-scale-line { background: rgba(19, 40, 75, .75); }
+.ol-attribution { font-size: 11px; }
+
+@media (max-width: 860px) {
+  .page-peta { height: auto; overflow: visible; }
+  .peta { display: flex; flex-direction: column-reverse; }
+  .map-wrap { height: 62vh; }
+  .panel { border-right: 0; border-top: 1px solid var(--line); overflow: visible; }
+  .legend { bottom: 30px; max-width: 200px; }
+  .legend:not([open]) ul { display: none; }
+}

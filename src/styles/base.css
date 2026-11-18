@@ -1,0 +1,130 @@
+/* JANGKAU — gaya dasar. Bahasa visual: rambu halte (kuning + huruf H), jalan aspal, warna seragam sekolah. */
+:root {
+  --navy: #13284b;        /* tinta utama, biru dongker */
+  --ink: #26303d;         /* teks isi */
+  --muted: #5b6573;
+  --line: #d6dbe2;
+  --panel: #eef1f5;
+  --white: #ffffff;
+  --signal: #f5c400;      /* kuning rambu / jangkauan halte */
+  --signal-deep: #9c7c00;
+  --aspal: #39424e;
+  --danger: #b3262d;
+  --ok: #2b8a3e;
+
+  --f-sign: 'Overpass', 'Segoe UI', system-ui, sans-serif;
+  --f-read: 'Source Serif 4', Georgia, serif;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 72px;
+  --r: 3px;
+  --nav-h: 56px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--f-sign);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--white);
+}
+img, svg { display: block; max-width: 100%; }
+a { color: var(--navy); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-sign); color: var(--navy); line-height: 1.15; margin: 0 0 var(--s-3); }
+h1 { font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 28px; font-weight: 800; }
+h3 { font-size: 18px; font-weight: 700; }
+p { margin: 0 0 var(--s-4); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- navigasi */
+.nav {
+  height: var(--nav-h);
+  display: flex; align-items: center; gap: var(--s-6);
+  padding: 0 var(--s-5);
+  background: var(--navy);
+  color: var(--white);
+  position: relative; z-index: 20;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--white); text-decoration: none; font-weight: 800; font-size: 19px; }
+.brand-sign {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  background: var(--signal); color: var(--navy); border-radius: 2px;
+  font-weight: 800; font-size: 18px; line-height: 1; padding-top: 3px;
+}
+.nav ul { list-style: none; display: flex; gap: var(--s-5); margin: 0; padding: 0; }
+.nav a.link { color: #d7deea; text-decoration: none; font-weight: 600; padding: 17px 0 14px; border-bottom: 3px solid transparent; }
+.nav a.link:hover { color: var(--white); }
+.nav a.link[aria-current='page'] { color: var(--white); border-bottom-color: var(--signal); }
+.nav-toggle { display: none; margin-left: auto; background: none; border: 1px solid #5d6f8f; color: var(--white); border-radius: var(--r); padding: 6px 10px; font: inherit; }
+
+@media (max-width: 720px) {
+  .nav { gap: var(--s-3); padding: 0 var(--s-4); }
+  .nav-toggle { display: block; }
+  .nav ul { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; flex-direction: column; gap: 0; background: var(--navy); padding: var(--s-2) var(--s-4) var(--s-4); }
+  .nav ul.open { display: flex; }
+  .nav a.link { display: block; padding: var(--s-3) 0; border-bottom: 0; }
+  .nav a.link[aria-current='page'] { box-shadow: inset 4px 0 0 var(--signal); padding-left: var(--s-3); }
+}
+
+/* ---------- tombol & form */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font: 700 15px/1 var(--f-sign); padding: 12px 18px 10px;
+  border-radius: var(--r); border: 2px solid var(--navy); cursor: pointer; text-decoration: none;
+  background: var(--white); color: var(--navy);
+}
+.btn:hover { background: var(--panel); text-decoration: none; }
+.btn-primary { background: var(--signal); border-color: var(--signal); color: var(--navy); }
+.btn-primary:hover { background: #ffd21f; }
+.btn-small { padding: 7px 10px 5px; font-size: 13px; border-width: 1px; }
+.btn-danger { border-color: var(--danger); color: var(--danger); }
+.btn:disabled { opacity: .5; cursor: wait; }
+
+label { font-weight: 600; color: var(--navy); }
+input[type='text'], input[type='password'], input[type='number'], input[type='search'], select, textarea {
+  font: 15px var(--f-sign); color: var(--ink);
+  width: 100%; padding: 8px 10px 6px; border: 1px solid #aab3bf; border-radius: var(--r); background: var(--white);
+}
+input:focus, select:focus, textarea:focus { border-color: var(--navy); }
+.field { display: grid; gap: 4px; margin-bottom: var(--s-3); }
+.hint { font-size: 13px; color: var(--muted); }
+.error { color: var(--danger); font-weight: 600; }
+
+/* ---------- tabel */
+.table-wrap { overflow-x: auto; border-top: 2px solid var(--navy); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 700; color: var(--navy); padding: 10px 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 8px 10px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr:hover { background: #f7f9fb; }
+
+/* ---------- status & penanda */
+.status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+.status::before { content: ''; width: 10px; height: 10px; border-radius: 50%; }
+.status.ok::before { background: var(--ok); }
+.status.no::before { background: transparent; border: 2px dashed var(--navy); width: 8px; height: 8px; }
+.swatch { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .25); vertical-align: -1px; }
+.swatch.kosong { background: var(--white); border-color: var(--muted); }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; padding: 5px 10px 3px; border-radius: 2px;
+  background: var(--white); color: var(--navy); border: 1px solid var(--navy);
+}
+.badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.badge.cadangan { border-color: var(--signal-deep); }
+.badge.cadangan::before { background: var(--signal); }
+
+/* ---------- footer */
+.footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding: var(--s-5); display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); justify-content: space-between; }
+.footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

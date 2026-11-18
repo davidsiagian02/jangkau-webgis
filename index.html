@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jangkau — Akses halte ke sekolah di Pekanbaru</title>
+  <meta name="description" content="WebGIS JANGKAU: jarak jalan kaki dari sekolah ke halte bus terdekat di Kota Pekanbaru, dengan analisis buffer dan rekomendasi halte baru." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="page-home">
+  <header class="nav">
+    <a class="brand" href="/"><span class="brand-sign" aria-hidden="true">H</span>Jangkau</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a class="link" href="/" aria-current="page">Beranda</a></li>
+      <li><a class="link" href="/peta.html">Peta</a></li>
+      <li><a class="link" href="/data.html">Data</a></li>
+      <li><a class="link" href="/admin.html">Admin</a></li>
+    </ul>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Seberapa dekat sekolah di Pekanbaru dengan halte bus?</h1>
+        <p class="lead">Jangkau menghitung jarak jalan kaki dari setiap sekolah ke halte terdekat, lalu menandai sekolah yang belum terjangkau dan mengusulkan lokasi halte baru.</p>
+        <p class="actions"><a class="btn btn-primary" href="/peta.html">Buka peta</a> <a class="btn btn-ghost" href="/data.html">Lihat tabel data</a></p>
+      </div>
+      <figure class="strip" data-strip>
+        <div class="strip-canvas" data-strip-canvas aria-hidden="true"></div>
+        <figcaption>
+          <span data-strip-summary>Menghitung jarak sekolah ke halte…</span>
+          Setiap titik adalah satu sekolah, diletakkan menurut jaraknya ke halte terdekat. Warnanya mengikuti seragam: merah untuk SD, biru dongker untuk SMP, abu-abu untuk SMA.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="block">
+      <h2>Tentang Jangkau</h2>
+      <div class="prose">
+        <p>Banyak siswa di Pekanbaru berangkat sekolah dengan angkutan umum. Kalau halte terlalu jauh, siswa harus berjalan lama di pinggir jalan atau akhirnya bergantung pada kendaraan pribadi. Web ini dibuat untuk melihat masalah itu secara spasial: sekolah mana yang sudah dekat halte, mana yang belum, dan di mana halte tambahan paling banyak membantu.</p>
+        <p>Hasilnya bisa jadi bahan pertimbangan awal untuk pengelola transportasi kota, pihak sekolah, atau siapa saja yang ingin meneliti akses pendidikan di Pekanbaru.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Wilayah dan data</h2>
+      <div class="prose">
+        <p>Cakupan analisis adalah seluruh Kota Pekanbaru, Riau. Survei detail dilakukan di dua kawasan: sekitar SMPN 6 dan SMKN 5 di Rumbai, serta sekitar SMAN 1 dan SMPN 5 di pusat kota.</p>
+        <dl class="sources" data-sources>
+          <dt>Survei lapangan</dt>
+          <dd>30 September 2026 dengan Avenza Maps: <b data-stat="titik_survei">31</b> titik (sekolah, halte, fasilitas, dan literasi), <b data-stat="area_survei">5</b> area sekolah, dan <b data-stat="jalur">6</b> jalur jalan kaki.</dd>
+          <dt>OpenStreetMap</dt>
+          <dd>Diunduh lewat Overpass Turbo pada 18 November 2026. Setelah poligon ruang kelas dan data ganda dibuang, tersisa <b data-stat="sekolah_osm">–</b> sekolah.</dd>
+          <dt>Halte</dt>
+          <dd><b data-stat="halte">–</b> halte dari survei dan OpenStreetMap. Kelengkapan data halte sangat menentukan hasil analisis.</dd>
+          <dt>Penyimpanan</dt>
+          <dd>Semua data disimpan di PostgreSQL dengan ekstensi PostGIS, dan analisisnya dijalankan langsung sebagai query spasial di database.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Cara analisis bekerja</h2>
+      <ol class="steps">
+        <li><h3>Buat zona jangkauan</h3><p>Setiap halte diberi buffer. Radius bawaannya 500 m, kira-kira 6 menit berjalan kaki, dan bisa diubah di peta.</p></li>
+        <li><h3>Ukur jarak sekolah</h3><p>Jarak setiap sekolah ke halte terdekat dihitung. Sekolah di luar zona ditandai belum terjangkau.</p></li>
+        <li><h3>Kelompokkan yang belum terjangkau</h3><p>Sekolah yang belum terjangkau dan saling berdekatan dikelompokkan dengan metode DBSCAN.</p></li>
+        <li><h3>Usulkan halte baru</h3><p>Titik tengah setiap kelompok menjadi usulan halte. Kalau ada jalur survei dalam 150 m, titiknya ditempelkan ke jalur itu.</p></li>
+      </ol>
+    </section>
+
+    <section class="block">
+      <h2>Yang bisa dilakukan</h2>
+      <ul class="features">
+        <li>Menyalakan dan mematikan layer per kategori, jenjang, dan sumber data.</li>
+        <li>Mengubah radius jangkauan dan langsung melihat sekolah mana yang berubah status.</li>
+        <li>Mengklik titik mana pun di peta untuk mencari halte terdekat dan sekolah di sekitarnya.</li>
+        <li>Melihat kepadatan sekolah lewat heatmap.</li>
+        <li>Membandingkan area sekolah hasil survei dengan poligon OpenStreetMap.</li>
+        <li>Menambah, mengubah, dan menghapus titik lewat halaman admin.</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Pembuat</h2>
+      <div class="prose">
+        <p>Dibuat oleh David Geraldo Joshua Siagian (3 TI A, NIM 2455301043) sebagai project akhir mata kuliah Sistem Informasi Geografis, Program Studi Teknik Informatika, Politeknik Caltex Riau.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>Data peta © kontributor OpenStreetMap (lisensi ODbL). Data survei lapangan diambil 30 September 2026.</p>
+    <p>Project akhir Sistem Informasi Geografis, Politeknik Caltex Riau, 2026</p>
+  </footer>
+  <script type="module" src="/src/pages/home.js"></script>
+</body>
+</html>

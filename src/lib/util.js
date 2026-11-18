@@ -12,6 +12,7 @@ export function fmtMeter(m) {
 
 export function fmtMenit(min) {
   if (min === null || min === undefined) return '–';
+  if (min < 1) return '< 1 menit';
   return `${nf(0).format(Math.round(min))} menit`;
 }
 

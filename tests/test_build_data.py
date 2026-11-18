@@ -107,6 +107,10 @@ def test_same_school(a, b, same):
     assert bd.same_school(a, b) is same
 
 
+def test_titik_osm_bukan_lapangan(out):
+    assert "Lapangan SMA YLPI" not in {p["nama"] for p in _props(out["titik"], sumber="osm")}
+
+
 def test_halte_optional(out):
     assert len(_props(out["titik"], kategori="halte")) == 4
 

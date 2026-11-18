@@ -1,0 +1,10 @@
+.data { max-width: 1180px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-8); }
+.data-head h1 { font-size: clamp(28px, 4vw, 40px); }
+.data-head p { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); color: var(--muted); }
+.data-sec { margin-top: var(--s-7); }
+.data-sec h2 { font-size: 22px; }
+.data-sec h3 { margin-top: var(--s-5); }
+.narrow { max-width: 560px; }
+[data-tabel-ringkasan] th { font-weight: 600; color: var(--ink); white-space: normal; }
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s-3); max-width: 900px; margin: var(--s-3) 0; }
+@media (max-width: 720px) { .filters { grid-template-columns: 1fr 1fr; } }

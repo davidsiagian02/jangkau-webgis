@@ -126,4 +126,5 @@ test('format angka gaya Indonesia', () => {
   assert.equal(fmtMeter(1250), '1,25 km');
   assert.equal(fmtMeter(null), '–');
   assert.equal(fmtMenit(9.04), '9 menit');
+  assert.equal(fmtMenit(0.4), '< 1 menit');
 });

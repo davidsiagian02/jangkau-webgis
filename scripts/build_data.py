@@ -20,7 +20,7 @@ NS = {"k": "http://www.opengis.net/kml/2.2", "gx": "http://www.google.com/kml/ex
 _TR = Transformer.from_crs(4326, 32647, always_xy=True)
 UTM = lambda g: shapely.transform(g, lambda xy: np.column_stack(_TR.transform(xy[:, 0], xy[:, 1])))
 
-KELAS = re.compile(r"^(VII|VIII|IX|X|XI|XII)\b|^R\. ?BK|Lapangan Upacara|Bimbingan Konseling", re.I)
+KELAS = re.compile(r"^(VII|VIII|IX|X|XI|XII)\b|^R\. ?BK|^Lapangan\b|Bimbingan Konseling", re.I)
 BUKAN_SEKOLAH = re.compile(r"\bSTIE\b|Kursus", re.I)
 TANPA_NAMA = "Sekolah (tanpa nama di OSM)"
 DEDUP_SURVEI_M = 75
