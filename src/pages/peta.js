@@ -57,6 +57,7 @@ L.heatmap = new Heatmap({ source: L.sekolah.getSource(), blur: 22, radius: 12, v
 const map = createMap('map', { zoom: 12 });
 for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
 const popup = createPopup(map);
+if (window.matchMedia('(max-width: 860px)').matches) document.querySelector('.legend').open = false;
 
 window.__jangkau = { ready: false, layers: L, map, visibleJenjang: () => [...state.jenjang] };
 
