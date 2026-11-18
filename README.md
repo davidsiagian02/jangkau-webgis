@@ -78,7 +78,9 @@ npm run dev          # terminal 2: web, /api diteruskan ke API lokal
 ## Menambah atau memperbarui data
 
 1. Simpan file baru di `data/source/`:
-   - halte OpenStreetMap → `halte_osm.kml` atau `halte_osm.geojson` (export Overpass Turbo)
+   - halte OpenStreetMap → `halte_osm.kml` atau `halte_osm.geojson` (export Overpass Turbo).
+     Stasiun bus khusus perusahaan, SPBU, dan agen travel otomatis dibuang; halte berjarak ≤ 30 m digabung.
+   - jalan OpenStreetMap → `jalan_osm.kml` (dipakai sebagai layer dan tempat menempelkan usulan halte)
    - sekolah OSM tambahan → `osm_sekolah_poligon_*.kml` atau `osm_sekolah_titik_*.kml`
 2. `pip install pandas xlrd lxml shapely pyproj numpy` (sekali saja), lalu `npm run data:build`
 3. `npm run db:setup`, lalu commit dan push agar data cadangan ikut terbaru.

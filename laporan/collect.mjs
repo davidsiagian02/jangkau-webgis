@@ -19,6 +19,18 @@ for (const r of [300, 500, 1000]) {
     terdekat: b.sekolah.features.map((f) => f.properties).filter((p) => p.terlayani).sort((a, c) => a.jarak_halte_m - c.jarak_halte_m) };
 }
 out.recommend = await call(analysis, '/api/analysis?type=recommend&radius=500');
+const all500 = await call(analysis, '/api/analysis?type=buffer&radius=500');
+out.sekolah500 = all500.sekolah.features.map((f) => f.properties);
+const { q } = await import('../api/_lib/db.js');
+out.kandidatJalan = [];
+for (const f of out.recommend.kandidat.features) {
+  const [lon, lat] = f.geometry.coordinates;
+  const [r] = await q(`SELECT nama, jenis, d FROM (
+      SELECT nama, kelas AS jenis, ST_Distance(geom::geography, ST_SetSRID(ST_MakePoint($1,$2),4326)::geography) d FROM jalan
+      UNION ALL SELECT nama, 'jalur survei', ST_Distance(geom::geography, ST_SetSRID(ST_MakePoint($1,$2),4326)::geography) FROM jalur) x
+    ORDER BY d LIMIT 1`, [lon, lat]);
+  out.kandidatJalan.push(r);
+}
 const halte = await call(layers, '/api/layers?layer=halte');
 out.halte = halte.features.map((f) => ({ ...f.properties, coord: f.geometry.coordinates }));
 writeFileSync(new URL('./hasil.json', import.meta.url), JSON.stringify(out, null, 1));

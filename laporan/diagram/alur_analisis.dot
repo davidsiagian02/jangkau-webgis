@@ -8,8 +8,8 @@ digraph G {
   e [label="Status: terjangkau"]; f [label="Status: belum terjangkau"];
   g [label="Kelompokkan sekolah belum terjangkau\nST_ClusterDBSCAN(UTM 47N, eps = r, minpoints = 2)"];
   h [label="Centroid tiap kelompok = kandidat halte"];
-  i [label="Ada jalur survei ≤ 150 m ?", shape=diamond];
-  j [label="Tempel ke jalur\nST_ClosestPoint"]; k [label="Pakai centroid"];
+  i [label="Ada jalan OSM / jalur survei\n≤ 150 m ?", shape=diamond];
+  j [label="Tempel ke jalan terdekat\nST_ClosestPoint"]; k [label="Pakai centroid"];
   l [label="Hitung sekolah yang terjangkau kandidat,\nurutkan, ambil 10 teratas"];
   z [label="Tampilkan di peta, panel analisis,\ndan halaman Data", shape=oval];
   m -> a -> b -> c -> d; d -> e [label="ya"]; d -> f [label="tidak"]; e -> z [style=dashed]; f -> g -> h -> i; i -> j [label="ya"]; i -> k [label="tidak"]; j -> l; k -> l; l -> z;

@@ -18,7 +18,7 @@ const { imageSize } = (() => { try { return require('image-size'); } catch { ret
 const FONT = 'Times New Roman';
 const CW = 11906 - 2268 - 1701; // lebar isi (DXA)
 const nf = (n, d = 0) => Number(n).toLocaleString('id-ID', { maximumFractionDigits: d, minimumFractionDigits: d });
-const meter = (m) => (m >= 1000 ? `${nf(m / 1000, 2)} km` : `${nf(m)} m`);
+const meter = (m) => (m >= 1000 ? `${Number(m / 1000).toLocaleString('id-ID', { maximumFractionDigits: 2 })} km` : `${nf(m)} m`);
 const menit = (m) => (m < 1 ? '< 1 menit' : `${nf(Math.round(m))} menit`);
 
 // ---------------------------------------------------------------- daftar isi / gambar / tabel
@@ -151,6 +151,12 @@ const pct = (a, b) => (b ? `${nf((a / b) * 100, 1)}%` : '–');
 const r500 = R['500'].ringkasan;
 const terdekat500 = R['500'].terdekat;
 const jalur = st.jalur;
+const S500 = Object.fromEntries(H.sekolah500.map((p) => [p.nama, p]));
+const nHalte = st.jumlah.halte;
+const nHalteOsm = H.halte.filter((x) => x.sumber === 'osm').length;
+const nHalteSvy = nHalte - nHalteOsm;
+const KJ = H.kandidatJalan;
+const rumbai = kand.find((k) => k.sekolah.includes('SMPN 6 Rumbai'));
 
 // ================================================================= ISI
 const body = [];
@@ -177,7 +183,7 @@ add(list([
   'Wilayah analisis adalah Kota Pekanbaru. Survei detail dilakukan di dua kawasan, yaitu sekitar SMPN 6 dan SMKN 5 di Rumbai serta sekitar SMAN 1 dan SMPN 5 di pusat kota.',
   'Data survei diambil pada 30 September 2026 dengan Avenza Maps. Data tambahan berasal dari OpenStreetMap yang diunduh lewat Overpass Turbo pada 18 November 2026.',
   'Jarak dihitung sebagai jarak garis lurus di permukaan bumi (geodesik), bukan jarak menyusuri jaringan jalan.',
-  'Halte yang dianalisis hanya halte yang ada di database. Saat laporan ini disusun, data halte yang tersedia adalah 4 halte hasil survei.',
+  `Halte yang dianalisis hanya halte yang ada di database, yaitu ${nHalteSvy} halte hasil survei dan ${nHalteOsm} halte serta terminal dari OSM. Halte yang belum dipetakan di OSM belum ikut dihitung.`,
   'Radius jangkauan dapat diatur dari 100 sampai 1000 m dengan nilai bawaan 500 m.',
   'Analisis tidak memperhitungkan jumlah siswa, rute dan jadwal bus, maupun kondisi trotoar.',
 ], 'angka'));
@@ -254,12 +260,15 @@ add(Tbl('Data hasil survei lapangan', ['File', 'Jenis geometri', 'Isi', 'Jumlah'
   ['Route_SMAN_Olahraga.kml', 'Garis (track)', 'Rute jalan kaki di sekitar SMKN Olahraga', '3'],
   ['Polyline_jalur.kml', 'Garis', 'Jalur jalan kaki di sekitar SMPN 6 dan SMPN 5', '3'],
 ], [3.6, 1.8, 4.2, 1.1], ['l', 'l', 'l', 'r']));
-add(P('File polyline.xml yang ikut dikumpulkan ternyata berisi tiga jalur yang sama dengan Polyline_jalur.kml, hanya formatnya berupa track, sehingga cukup diimpor satu kali. Untuk menjangkau seluruh kota, data survei dilengkapi dengan data sekolah dari OSM seperti pada Tabel 3.2.'));
+add(P('File polyline.xml yang ikut dikumpulkan ternyata berisi tiga jalur yang sama dengan Polyline_jalur.kml, hanya formatnya berupa track, sehingga cukup diimpor satu kali. Untuk menjangkau seluruh kota, data survei dilengkapi dengan data sekolah, halte, dan jalan dari OSM seperti pada Tabel 3.2.'));
 add(Tbl('Data tambahan dari OpenStreetMap', ['File', 'Query Overpass', 'Jenis', 'Jumlah'], [
   ['export.kml', 'amenity=school (way)', 'Poligon', '211'],
   ['poligon.kml', 'amenity=school bernama (way, relation)', 'Poligon', '96'],
   ['titik.kml', 'amenity=school (node)', 'Titik', '73'],
-], [2.2, 4, 1.5, 1.2], ['l', 'l', 'l', 'r']));
+  ['titiksekolah.kml', 'amenity=school bernama (out center)', 'Titik', '169'],
+  ['haltepku.kml', 'highway=bus_stop, public_transport=platform, amenity=bus_station', 'Titik', '64'],
+  ['jalankesekolah_1.kml', 'highway (jalan menuju sekolah)', 'Garis', '398'],
+], [2.6, 4.4, 1.3, 1.1], ['l', 'l', 'l', 'r']));
 add(H2('Pengolahan Data'));
 add(P('Data mentah tidak bisa langsung dipakai karena formatnya berbeda-beda, ada yang ganda, dan ada yang bukan sekolah. Oleh karena itu penulis membuat skrip Python build_data.py yang membaca semua file sumber dan menghasilkan dua keluaran yang isinya sama, yaitu file seed.sql untuk database dan file GeoJSON untuk mode cadangan. Alurnya ditunjukkan pada Gambar 3.1.'));
 add(Fig('alur_data.png', 'Alur pengolahan data', 14));
@@ -275,13 +284,16 @@ add(Tbl('Aturan penentuan jenjang sekolah', ['Jenjang', 'Kata kunci pada nama', 
   ['Tidak diketahui', 'Tidak ada kata kunci di atas', 'Witama National Plus'],
 ], [2, 4, 3.5]));
 add(P(`Langkah berikutnya adalah membersihkan data OSM. Dari ${B.poligon_raw_total} poligon pada dua file, terdapat ${B.poligon_unik} poligon unik karena ${B.poligon_raw_total - B.poligon_unik} poligon muncul di kedua file. Sebagian poligon ternyata bukan sekolah, melainkan ruang kelas, ruang BK, atau lapangan di dalam sekolah, bahkan ada kampus dan tempat kursus. Ringkasan proses pembersihan dapat dilihat pada Tabel 3.4.`));
-add(Tbl('Hasil pembersihan data sekolah OSM', ['Tahap', 'Keterangan', 'Hasil'], [
+add(Tbl('Hasil pembersihan data OSM', ['Tahap', 'Keterangan', 'Hasil'], [
   ['Gabung dua file poligon', 'Hapus poligon dengan ID OSM yang sama', `${B.poligon_unik} poligon`],
   ['Buang bukan sekolah', `Nama ruang kelas (VII 1, IX 3, …), R. BK, lapangan, STIE, kursus: ${B.buang_nama} poligon`, `${B.poligon_unik - B.buang_nama} poligon`],
   ['Buang bagian sekolah', `Poligon tanpa nama yang ≥ 80% berada di dalam sekolah lain: ${B.buang_dalam} poligon`, `${B.poligon_unik - B.buang_nama - B.buang_dalam} poligon`],
   ['Gabung nama sama', 'SMKN 2 Pekanbaru (8 bagian) dan Madrasah Diniyah Awaliyah (2 bagian) jadi MultiPolygon', `${B.hasil_bersih} poligon`],
   ['Titik sekolah OSM', `${B.titik_raw} titik, 2 dibuang (lapangan dan nama ganda); ${B.titik_osm_duplikat} titik sudah diwakili poligon`, `${B.titik_osm_akhir - B.titik_osm_duplikat} titik`],
+  ['Titik sekolah tambahan', 'titiksekolah.kml: 96 titik adalah titik tengah poligon yang sudah ada dan 73 titik sama dengan titik.kml (dicek dari ID OSM)', '0 titik baru'],
   ['Titik sekolah survei', '9 dari 12 sekolah survei sudah ada di OSM', `${B.unit.survei} titik`],
+  ['Halte OSM', `64 titik; 3 dibuang karena bukan halte umum (stasiun bus khusus Chevron, SPBU, agen travel); 3 digabung karena berjarak ≤ 30 m (Halte Bus UNRI dan Ramayana 2)`, `${nHalteOsm} halte`],
+  ['Jalan OSM', 'Semua ruas dipakai apa adanya', '398 ruas'],
 ], [2.3, 5.2, 1.6], ['l', 'l', 'r']));
 add(P(`Masalah terakhir adalah sekolah ganda antar sumber. Misalnya, titik survei "Smpn 14" dan poligon OSM "SMP Negeri 14 Pekanbaru" adalah sekolah yang sama. Sebaliknya, titik survei "Sd 149" letaknya hanya beberapa meter dari poligon "SMPN 6 Rumbai", tetapi jelas sekolah yang berbeda. Karena itu aturan yang dipakai adalah: titik dianggap ganda jika berjarak paling jauh 75 m dari sekolah OSM **dan** nama keduanya merujuk ke sekolah yang sama, yaitu jenjang dan nomornya sama, atau kata-kata namanya mirip. Setelah semua tahap ini, terdapat **${B.unit.total} unit sekolah** yang dianalisis, terdiri dari ${B.unit.osm_area} poligon OSM, ${B.unit.osm_titik} titik OSM, dan ${B.unit.survei} titik survei.`));
 add(H2('Arsitektur Sistem'));
@@ -289,7 +301,7 @@ add(P('Arsitektur sistem ditunjukkan pada Gambar 3.2. Halaman web dibangun denga
 add(Fig('arsitektur.png', 'Arsitektur sistem WebGIS Jangkau', 14.5));
 add(P('Kalau API gagal, misalnya karena database sedang bermasalah, halaman otomatis mengambil salinan data dari file GeoJSON di folder /data dan menjalankan analisis yang sama dengan Turf.js di browser. Mekanisme ini sengaja dibuat supaya web tetap bisa didemokan walaupun koneksi ke database terganggu.'));
 add(H2('Perancangan Basis Data'));
-add(P('Rancangan basis data ditunjukkan pada Gambar 3.3. Terdapat empat tabel dan dua view. Tabel titik menyimpan semua data berbentuk titik, baik hasil survei, sekolah titik OSM, halte, maupun data yang ditambahkan admin. Tabel area_sekolah menyimpan poligon survei dan poligon OSM; kolom pusat berisi titik wakil poligon yang dipakai saat menghitung jarak. Tabel jalur menyimpan rute dan jalur survei, sedangkan tabel kategori berisi daftar kategori titik beserta warnanya.'));
+add(P('Rancangan basis data ditunjukkan pada Gambar 3.3. Terdapat lima tabel dan dua view. Tabel titik menyimpan semua data berbentuk titik, baik hasil survei, sekolah titik OSM, halte, maupun data yang ditambahkan admin. Tabel area_sekolah menyimpan poligon survei dan poligon OSM; kolom pusat berisi titik wakil poligon yang dipakai saat menghitung jarak. Tabel jalur menyimpan rute dan jalur survei, tabel jalan menyimpan 398 ruas jalan dari OSM, sedangkan tabel kategori berisi daftar kategori titik beserta warnanya.'));
 add(Fig('erd.png', 'Rancangan basis data', 12.5));
 add(P('View v_halte berisi semua titik berkategori halte, sedangkan view v_sekolah_analisis menggabungkan poligon OSM (memakai titik wakilnya) dengan titik sekolah yang bukan duplikat. Dengan view ini, kalau admin menambah sekolah atau halte baru, sekolah atau halte itu otomatis ikut dihitung pada analisis berikutnya. Semua kolom geometri memakai SRID 4326 dan diberi indeks GiST.'));
 add(H2('Perancangan Analisis'));
@@ -301,13 +313,13 @@ add(Tbl('Parameter analisis', ['Parameter', 'Nilai', 'Alasan'], [
   ['Kecepatan sepeda', '15 km/jam', 'Pembanding waktu tempuh jalur'],
   ['eps DBSCAN', 'Sama dengan radius', 'Sekolah dalam satu kelompok bisa dilayani satu halte'],
   ['minPts DBSCAN', '2', 'Satu halte baru minimal melayani dua sekolah'],
-  ['Jarak tempel ke jalur', '150 m', 'Halte usulan sebaiknya berada di jalan yang disurvei'],
+  ['Jarak tempel ke jalan', '150 m', 'Halte usulan sebaiknya berada tepat di jalan (jalan OSM atau jalur survei)'],
   ['Jumlah usulan', '10 teratas', 'Diurutkan dari jumlah sekolah terbanyak'],
 ], [2.4, 3.6, 4], ['l', 'l', 'l']));
 add(H2('Perancangan API'));
 add(P('Komunikasi antara halaman web dan database dilakukan lewat lima endpoint yang dijelaskan pada Tabel 3.6. Semua pesan kesalahan dikembalikan dalam Bahasa Indonesia dengan format JSON.'));
 add(Tbl('Daftar endpoint API', ['Endpoint', 'Method', 'Fungsi'], [
-  ['/api/layers?layer=…', 'GET', 'Mengambil layer titik, area, jalur, sekolah, atau halte sebagai GeoJSON; bisa difilter kategori dan sumber'],
+  ['/api/layers?layer=…', 'GET', 'Mengambil layer titik, area, jalur, jalan, sekolah, atau halte sebagai GeoJSON; bisa difilter kategori dan sumber'],
   ['/api/analysis?type=buffer', 'GET', 'Buffer halte dan status keterjangkauan setiap sekolah'],
   ['/api/analysis?type=recommend', 'GET', 'Usulan halte baru hasil DBSCAN'],
   ['/api/analysis?type=nearest', 'GET', 'Halte terdekat dan sekolah dalam radius dari titik yang diklik'],
@@ -334,6 +346,7 @@ add(Tbl('Simbologi peta', ['Objek', 'Bentuk', 'Warna / gaya', 'Keterangan'], [
   ['Area sekolah OSM', 'Poligon', 'Isi transparan sesuai jenjang', ''],
   ['Area sekolah survei', 'Poligon', 'Garis putus-putus biru dongker', ''],
   ['Rute / jalur survei', 'Garis', 'Abu-abu tebal / hijau toska putus-putus', ''],
+  ['Jalan OSM', 'Garis', 'Oranye kecokelatan, lebih tebal untuk jalan utama', 'Tidak aktif saat peta dibuka'],
   ['Zona jangkauan', 'Poligon', 'Kuning transparan, tepi putus-putus', 'Hasil buffer'],
   ['Usulan halte baru', 'Kotak besar', 'Kuning dengan nomor peringkat', 'Hasil DBSCAN'],
 ], [2.3, 1.8, 3.6, 2.6]));
@@ -360,7 +373,8 @@ add(Tbl('Jumlah data di database', ['Data', 'Jumlah'], [
   ['Rute dan jalur survei', nf(st.jumlah.jalur)],
   ['Poligon sekolah OSM (setelah dibersihkan)', nf(B.hasil_bersih)],
   ['Titik sekolah OSM', nf(B.titik_osm_akhir)],
-  ['Halte', nf(st.jumlah.halte)],
+  ['Halte (survei dan OSM)', nf(st.jumlah.halte)],
+  ['Ruas jalan OSM', '398'],
   ['Unit sekolah yang dianalisis (v_sekolah_analisis)', nf(st.jumlah.sekolah_analisis)],
 ], [7, 2], ['l', 'r']));
 add(P('Contoh query yang paling penting adalah query jarak setiap sekolah ke halte terdekat. Query ini dipakai oleh analisis buffer dan rekomendasi. Jarak dihitung dengan tipe geography sehingga hasilnya langsung dalam meter.', {}));
@@ -372,7 +386,7 @@ add(code([
   '  FROM v_halte h ORDER BY 2 LIMIT 1',
   ') n ON TRUE;',
 ]));
-add(P('Untuk usulan halte baru, sekolah yang jaraknya lebih dari radius dikelompokkan dengan fungsi ST_ClusterDBSCAN setelah diproyeksikan ke UTM 47N. Titik tengah setiap kelompok dihitung dengan ST_Centroid, lalu ditempelkan ke jalur survei terdekat dengan ST_ClosestPoint jika jaraknya tidak lebih dari 150 m.'));
+add(P('Untuk usulan halte baru, sekolah yang jaraknya lebih dari radius dikelompokkan dengan fungsi ST_ClusterDBSCAN setelah diproyeksikan ke UTM 47N. Titik tengah setiap kelompok dihitung dengan ST_Centroid, lalu ditempelkan ke jalan OSM atau jalur survei terdekat dengan ST_ClosestPoint jika jaraknya tidak lebih dari 150 m.'));
 add(code([
   'ST_ClusterDBSCAN(ST_Transform(geom, 32647), eps := 500, minpoints := 2) OVER () AS cid',
 ]));
@@ -390,7 +404,7 @@ const f43 = Fig('filter.png', 'Filter jenjang: hanya sekolah SD/MI yang ditampil
 add(P(`Filter jenjang dicoba pada ${f43.label}. Semua jenjang kecuali SD/MI dimatikan, sehingga yang tampil hanya titik merah. Dari sini terlihat sebaran SD cukup merata, tetapi lebih rapat di bagian tengah kota. Filter ini bekerja langsung di browser tanpa memuat ulang data, sehingga perubahannya terasa cepat.`));
 add(f43);
 const f44 = Fig('popup.png', 'Popup informasi sekolah dan area sekolah hasil survei di sekitar SMPN 6', 14);
-add(P(`Saat sebuah fitur diklik, muncul popup berisi atributnya. Pada ${f44.label}, titik survei SD 149 diklik dan popup menampilkan jenjang, sumber, status keterjangkauan, halte terdekat, dan jaraknya (${meter(751)}). Gambar ini juga memperlihatkan poligon area sekolah hasil survei (garis putus-putus biru dongker) yang tumpang tindih dengan poligon OSM SMPN 6 Rumbai, titik-titik fasilitas berbentuk belah ketupat, serta jalur jalan kaki hasil survei berwarna hijau toska.`));
+add(P(`Saat sebuah fitur diklik, muncul popup berisi atributnya. Pada ${f44.label}, titik survei SD 149 diklik dan popup menampilkan jenjang, sumber, status keterjangkauan, halte terdekat (${S500['Sd 149'].halte_terdekat}), dan jaraknya (${meter(S500['Sd 149'].jarak_halte_m)}). Gambar ini juga memperlihatkan poligon area sekolah hasil survei (garis putus-putus biru dongker) yang tumpang tindih dengan poligon OSM SMPN 6 Rumbai, titik-titik fasilitas berbentuk belah ketupat, serta jalur jalan kaki hasil survei berwarna hijau toska.`));
 add(f44);
 add(H3('Analisis Buffer dan Usulan Halte Baru'));
 const f45 = Fig('buffer.png', 'Hasil analisis buffer 500 m dan usulan halte baru', 14);
@@ -410,7 +424,7 @@ add(P(`Hasil overlay ditampilkan pada ${f48.label}. Tombol "Bandingkan area" men
 add(f48);
 add(H3('Halaman Data'));
 const f49 = Fig('data.png', 'Halaman Data (bagian atas)', 13);
-add(P(`Halaman Data pada ${f49.label} berisi angka-angka yang sama dengan di peta, tetapi dalam bentuk tabel. Tabel keputusan "Jarak sekolah ke halte terdekat" bisa dicari berdasarkan nama dan difilter berdasarkan jenjang, status, dan radius. Pada gambar, kotak pencarian diisi "SMP Negeri 14" sehingga hanya satu baris yang tampil, yaitu SMP Negeri 14 Pekanbaru yang berjarak ${meter(34.9)} dari Halte Smpn 14. Halaman ini juga menyediakan tautan untuk mengunduh data GeoJSON.`));
+add(P(`Halaman Data pada ${f49.label} berisi angka-angka yang sama dengan di peta, tetapi dalam bentuk tabel. Tabel keputusan "Jarak sekolah ke halte terdekat" bisa dicari berdasarkan nama dan difilter berdasarkan jenjang, status, dan radius. Pada gambar, kotak pencarian diisi "SMP Negeri 14" sehingga hanya satu baris yang tampil, yaitu SMP Negeri 14 Pekanbaru yang berjarak ${meter(S500['SMP Negeri 14 Pekanbaru'].jarak_halte_m)} dari ${S500['SMP Negeri 14 Pekanbaru'].halte_terdekat}. Halaman ini juga menyediakan tautan untuk mengunduh data GeoJSON.`));
 add(f49);
 add(H3('Halaman Admin'));
 const f410 = Fig('admin.png', 'Halaman Admin untuk mengelola titik di database', 14);
@@ -426,21 +440,32 @@ add(f412);
 
 add(H2('Hasil Analisis dan Pembahasan'));
 add(H3('Keterjangkauan Sekolah terhadap Halte', true));
-add(P(`Hasil analisis buffer untuk tiga nilai radius dapat dilihat pada Tabel 4.3. Dengan radius 500 m, hanya ${nf(r500.terlayani)} dari ${nf(r500.total)} sekolah (${nf(r500.persen, 1)}%) yang terjangkau halte.`));
+add(P('Hasil analisis buffer untuk tiga nilai radius dapat dilihat pada Tabel 4.3, sedangkan rinciannya per jenjang untuk radius 500 m ada pada Tabel 4.4.'));
 add(Tbl('Keterjangkauan sekolah pada beberapa radius', ['Radius', 'Waktu jalan kaki', 'Sekolah terjangkau', 'Persentase'],
   ['300', '500', '1000'].map((r) => [meter(Number(r)), menit(Number(r) / 83.33), `${nf(R[r].ringkasan.terlayani)} dari ${nf(R[r].ringkasan.total)}`, `${nf(R[r].ringkasan.persen, 1)}%`]),
   [2, 2.5, 3, 2], ['l', 'l', 'r', 'r']));
 add(Tbl('Keterjangkauan per jenjang pada radius 500 m', ['Jenjang', 'Jumlah sekolah', 'Terjangkau', 'Persentase'],
   J.filter((j) => r500.per_jenjang[j]).map((j) => [j, nf(r500.per_jenjang[j].total), nf(r500.per_jenjang[j].terlayani), pct(r500.per_jenjang[j].terlayani, r500.per_jenjang[j].total)]),
   [3, 2, 2, 2], ['l', 'r', 'r', 'r']));
-add(P(`Persentase yang kecil ini perlu dibaca dengan hati-hati. Penyebab utamanya bukan karena sekolah di Pekanbaru jauh dari halte, tetapi karena data halte di database baru berisi ${st.jumlah.halte} halte hasil survei, sedangkan sekolah yang dianalisis mencakup seluruh kota. Semua sekolah yang terjangkau berada di dua kawasan survei. Di kawasan pusat kota, sekolah-sekolah seperti SMP Negeri 14, SMP Negeri 5, SMP Negeri 1, SMA Negeri 1, dan SD Negeri 51 berjarak kurang dari 100 m dari halte terdekat. Di kawasan Rumbai, SMKN 7 dan SMA Negeri Olahraga juga sangat dekat dengan Halte SMKN Olahraga.`));
-add(P(`Temuan yang lebih menarik justru ada di kawasan survei Rumbai. SMPN 6, SD 149, dan SD/MTsN Al-Ittihad berjarak sekitar 750–800 m dari halte terdekat, padahal ketiganya berdekatan dan masih satu kawasan dengan SMKN 5 dan SMAN 3 yang terlayani. Hal ini menunjukkan bahwa di dalam satu kawasan pun keterjangkauan halte bisa sangat berbeda.`));
+const r1000 = R['1000'].ringkasan;
+const pj = (j) => r500.per_jenjang[j] || { total: 0, terlayani: 0 };
+const jauh = R['500'].terjauh;
+add(P(`Dengan ${nf(nHalte)} halte di database, ${nf(r500.terlayani)} sekolah (${nf(r500.persen, 1)}%) berada dalam 500 m dari halte. Jika radius diperbesar menjadi 1 km, jumlahnya naik menjadi ${nf(r1000.terlayani)} sekolah (${nf(r1000.persen, 1)}%). Artinya ada ${nf(r1000.terlayani - r500.terlayani)} sekolah yang jaraknya ke halte antara 500 m dan 1 km, atau sekitar 6 sampai 12 menit berjalan kaki. Sekolah-sekolah ini sebenarnya tidak terlalu jauh, tetapi sudah melewati jarak jalan kaki yang nyaman menurut acuan pada BAB 2.`));
+add(P(`Dilihat per jenjang (Tabel 4.4), SMA/SMK/MA sedikit lebih baik (${pct(pj('SMA/SMK/MA').terlayani, pj('SMA/SMK/MA').total)}) dibanding SMP/MTs (${pct(pj('SMP/MTs').terlayani, pj('SMP/MTs').total)}) dan SD/MI (${pct(pj('SD/MI').terlayani, pj('SD/MI').total)}). Hal ini cukup masuk akal karena banyak SMA berada di jalan utama yang dilewati bus. Yang paling rendah adalah pesantren dan madrasah diniyah (${nf(pj('Pesantren/Diniyah').terlayani)} dari ${nf(pj('Pesantren/Diniyah').total)}) serta SLB (${nf(pj('SLB').terlayani)} dari ${nf(pj('SLB').total)}), yang umumnya berada di kawasan permukiman atau pinggiran kota.`));
+add(P(`Halte dari OSM sebagian besar berada di koridor utama seperti Jalan Jenderal Sudirman dan Jalan H.R. Soebrantas, sehingga sekolah di sepanjang koridor tersebut hampir semuanya terjangkau. Sebaliknya, sekolah terjauh berada di pinggiran kota bagian timur laut, misalnya ${jauh[0].nama} (${meter(jauh[0].jarak_halte_m)}), ${jauh[1].nama} (${meter(jauh[1].jarak_halte_m)}), dan ${jauh[2].nama} (${meter(jauh[2].jarak_halte_m)}).`));
+add(P(`Di kawasan survei Rumbai, SMKN 5 dan SMAN 3 sudah terjangkau karena dekat dengan Halte Stadion (${meter(S500['SMK Negeri 5 Pekanbaru'].jarak_halte_m)} dan ${meter(S500['SMA Negeri 3 Pekanbaru'].jarak_halte_m)}). Namun SMPN 6 Rumbai, SD 149, dan SD/MTsN Al-Ittihad yang letaknya tidak jauh dari situ masih berjarak ${meter(S500['Sd 149'].jarak_halte_m)} sampai ${meter(S500['SMPN 6 Rumbai'].jarak_halte_m)} dari halte terdekat. Ini menunjukkan bahwa di dalam satu kawasan pun keterjangkauan halte bisa sangat berbeda.`));
 add(H3('Usulan Halte Baru'));
-const kandRows = kand.map((k) => [String(k.rank), nf(k.jumlah_sekolah), k.sekolah.slice(0, 4).join(', ') + (k.sekolah.length > 4 ? `, dan ${k.sekolah.length - 4} lainnya` : ''), meter(k.jarak_rata_m), `${k.lat.toFixed(5)}, ${k.lon.toFixed(5)}`]);
+const lokasi = (k, i) => `${k.snap ? (KJ[i].nama === 'Jalan tanpa nama' ? 'Jalan tanpa nama (OSM)' : KJ[i].nama) : 'Belum di jalan (tidak ada jalan ≤ 150 m)'} (${nf(k.lat, 5)}; ${nf(k.lon, 5)})`;
+const kandRows = kand.map((k, i) => [String(k.rank), nf(k.jumlah_sekolah), k.sekolah.slice(0, 4).join(', ') + (k.sekolah.length > 4 ? `, dan ${k.sekolah.length - 4} lainnya` : ''), meter(k.jarak_rata_m), lokasi(k, i)]);
 add(P(`Hasil pengelompokan DBSCAN pada radius 500 m menghasilkan usulan halte seperti pada Tabel 4.5. Setiap baris adalah satu titik usulan, beserta jumlah sekolah yang akan terjangkau jika halte dibangun di titik tersebut.`));
-add(Tbl('Sepuluh usulan halte baru teratas (radius 500 m)', ['No', 'Jumlah sekolah', 'Nama sekolah', 'Jarak rata-rata', 'Koordinat (lat, lon)'], kandRows, [0.8, 1.6, 5.1, 1.6, 2.4], ['c', 'r', 'l', 'r', 'l']));
-add(P(`Usulan peringkat pertama dapat melayani ${kand[0].jumlah_sekolah} sekolah sekaligus dengan jarak rata-rata ${meter(kand[0].jarak_rata_m)}. Sebagian besar usulan berada di kawasan yang padat sekolah, sesuai dengan pola heatmap pada Gambar 4.7. Sebanyak ${nf(H.recommend.terisolasi)} sekolah belum terjangkau tetapi letaknya terpencar sehingga tidak masuk kelompok mana pun. Sekolah seperti ini lebih cocok dilayani dengan menambah rute atau halte satu per satu.`));
-add(P('Untuk kawasan survei Rumbai, query ke database menunjukkan satu kelompok berisi SD 149, SD dan MTsN Al-Ittihad, dan SMPN 6 Rumbai. Titik usulannya otomatis ditempelkan ke Jalur 1 hasil survei di depan SMPN 6. Kelompok ini berada di peringkat 11, tepat di luar sepuluh besar karena hanya berisi tiga sekolah, tetapi tetap layak dipertimbangkan karena posisinya sudah berada di jalan yang dilalui siswa.'));
+add(Tbl('Sepuluh usulan halte baru teratas (radius 500 m)', ['No', 'Jumlah sekolah', 'Nama sekolah', 'Jarak rata-rata', 'Lokasi (lat, lon)'], kandRows, [0.7, 1.4, 4.6, 1.5, 3.1], ['c', 'r', 'l', 'r', 'l']));
+const nSnap = kand.filter((k) => k.snap).length;
+add(P(`Usulan peringkat pertama dapat melayani ${kand[0].jumlah_sekolah} sekolah sekaligus dengan jarak rata-rata ${meter(kand[0].jarak_rata_m)}. Sebanyak ${nSnap} dari ${kand.length} usulan berhasil ditempelkan tepat di jalan, sehingga lokasinya realistis untuk dibangun halte. Usulan yang tidak ditempel berarti tidak ada jalan OSM atau jalur survei dalam 150 m dari titik tengah kelompoknya; untuk usulan seperti ini lokasi pastinya perlu dicek langsung di lapangan. Sebagian besar usulan berada di kawasan yang padat sekolah, sesuai dengan pola heatmap pada Gambar 4.7.`));
+add(P(`Sebanyak ${nf(H.recommend.terisolasi)} sekolah belum terjangkau tetapi letaknya terpencar sehingga tidak masuk kelompok mana pun. Sekolah seperti ini lebih cocok dilayani dengan menambah halte satu per satu di rute yang sudah ada.`));
+if (rumbai) {
+  const ri = kand.indexOf(rumbai);
+  add(P(`Untuk kawasan survei Rumbai, usulan peringkat ${rumbai.rank} melayani ${rumbai.sekolah.join(', ')} dengan jarak rata-rata hanya ${meter(rumbai.jarak_rata_m)}. Titiknya ditempelkan ke ${KJ[ri].nama} di depan SMPN 6 Rumbai. Usulan ini cocok dengan pengamatan saat survei, karena siswa ketiga sekolah tersebut memang harus berjalan cukup jauh ke Halte SMK Olahraga.`));
+}
 add(H3('Perbandingan Area Survei dan OSM'));
 add(Tbl('Perbandingan poligon area sekolah hasil survei dan OSM', ['Area survei', 'Poligon OSM', 'Luas survei', 'Luas OSM', 'Luas irisan', 'IoU'],
   ov.banding.map((b) => [b.nama_survei, b.nama_osm, `${nf(b.luas_survei_m2)} m²`, `${nf(b.luas_osm_m2)} m²`, `${nf(b.luas_irisan_m2)} m²`, nf(b.iou, 3)]),
@@ -460,15 +485,14 @@ add(Tbl('Panjang dan waktu tempuh jalur survei', ['Jalur', 'Jenis', 'Panjang', '
 add(P('Panjang jalur dihitung dengan ST_Length pada tipe geography. Ketiga rute di sekitar SMKN Olahraga panjangnya hampir sama, sekitar 1,1 km, karena rute tersebut direkam berulang pada lintasan yang mirip. Jalur 2 paling panjang, yaitu sekitar 2 km atau 24 menit berjalan kaki, karena perekaman dilakukan pergi-pulang dari SMPN 6 sampai ke jalan besar. Waktu tempuh ini memberi gambaran bahwa jalan kaki lebih dari 10 menit sudah cukup berat bagi siswa, terutama di siang hari.'));
 add(H3('Keterbatasan'));
 add(list([
-  `Data halte saat ini baru ${st.jumlah.halte} titik hasil survei, sehingga persentase keterjangkauan untuk seluruh kota jauh lebih rendah dari kondisi sebenarnya. Data halte Trans Metro Pekanbaru dari OSM atau Dinas Perhubungan perlu ditambahkan, lalu analisis dijalankan ulang.`,
+  `Data halte berasal dari survei (${nHalteSvy} halte) dan OSM (${nHalteOsm} halte). Halte OSM terkumpul di beberapa koridor utama, sehingga halte Trans Metro Pekanbaru di koridor lain yang belum dipetakan belum ikut dihitung. Dengan data halte resmi dari Dinas Perhubungan, persentase keterjangkauan kemungkinan lebih tinggi.`,
   'Jarak dihitung lurus, bukan menyusuri jalan, sehingga jarak sebenarnya bisa lebih panjang, terutama jika ada sungai atau jalan buntu.',
   'Data OSM dibuat oleh sukarelawan. Masih ada 25 poligon sekolah tanpa nama dan beberapa sekolah yang mungkin belum dipetakan.',
   'Usulan halte belum mempertimbangkan rute bus yang ada, lebar jalan, dan jumlah siswa di setiap sekolah.',
 ], 'bullet'));
-add(P('[[Catatan untuk penulis: jika file halte OSM sudah ditambahkan, jalankan ulang npm run data:build dan npm run db:setup, lalu perbarui angka pada subbab 4.4.1 dan 4.4.2.]]', { noIndent: true }));
 
 add(H2('Pengujian'));
-add(P('Pengujian dilakukan dengan dua cara, yaitu pengujian otomatis dan pengujian black-box. Pengujian otomatis terdiri dari 28 tes pipeline data (pytest), 56 tes API, database, dan analisis cadangan (node:test), serta 7 tes tampilan end-to-end dengan Playwright. Semua tes lulus. Salah satu tes penting adalah tes kesamaan hasil, yang memastikan status setiap sekolah dari database sama dengan hasil analisis cadangan di browser. Hasil pengujian black-box dapat dilihat pada Tabel 4.9.'));
+add(P('Pengujian dilakukan dengan dua cara, yaitu pengujian otomatis dan pengujian black-box. Pengujian otomatis terdiri dari 32 tes pipeline data (pytest), 59 tes API, database, dan analisis cadangan (node:test), serta 7 tes tampilan end-to-end dengan Playwright. Semua tes lulus. Salah satu tes penting adalah tes kesamaan hasil, yang memastikan status setiap sekolah dari database sama dengan hasil analisis cadangan di browser. Hasil pengujian black-box dapat dilihat pada Tabel 4.9.'));
 add(Tbl('Pengujian black-box', ['No', 'Skenario', 'Hasil yang diharapkan', 'Hasil'], [
   ['1', 'Membuka Beranda', 'Profil web tampil, tidak ada peta data', 'Sesuai'],
   ['2', 'Mematikan checkbox Halte', 'Layer halte hilang dari peta', 'Sesuai'],
@@ -490,7 +514,7 @@ add(Tbl('Pemenuhan ketentuan project', ['No', 'Ketentuan', 'Implementasi'], [
   ['2', 'Filter data dengan checkbox atau list box', 'Checkbox kategori, jenjang, sumber, area, jalur, dan hasil analisis; list box di halaman Data'],
   ['3', 'Halaman home berisi profil web', 'Beranda berisi profil, data, cara kerja, fitur, dan pembuat tanpa peta'],
   ['4', 'Visualisasi data', 'Warna jenjang, bentuk per kategori, ukuran titik sesuai status, garis putus-putus, heatmap'],
-  ['5', 'Minimal 3 layer data', 'Titik, area sekolah (survei dan OSM), rute dan jalur, ditambah layer hasil analisis'],
+  ['5', 'Minimal 3 layer data', 'Titik, area sekolah (survei dan OSM), rute dan jalur survei, jalan OSM, ditambah layer hasil analisis'],
   ['6', 'Analisis spasial untuk keputusan', 'Buffer, spatial query, overlay (IoU), density (heatmap), DBSCAN untuk usulan halte, dan panjang jalur'],
   ['7', 'Data spasial dikelola dengan database', 'PostgreSQL + PostGIS di Neon, view analisis, dan CRUD lewat halaman Admin'],
   ['8', 'Presentasi 9 dan 16 Desember 2026', 'Web online di Vercel dengan mode cadangan untuk demo'],

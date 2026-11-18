@@ -3,14 +3,14 @@
   "jumlah": {
    "titik_survei": 31,
    "sekolah_osm": 236,
-   "halte": 4,
+   "halte": 62,
    "jalur": 6,
    "area_survei": 5,
    "sekolah_analisis": 239
   },
   "per_kategori": {
    "fasilitas": 11,
-   "halte": 4,
+   "halte": 62,
    "literasi": 4,
    "sekolah": 83
   },
@@ -73,28 +73,28 @@
   "300": {
    "ringkasan": {
     "total": 239,
-    "terlayani": 15,
-    "persen": 6.3,
+    "terlayani": 35,
+    "persen": 14.6,
     "per_jenjang": {
      "Campuran": {
       "total": 10,
-      "terlayani": 0
+      "terlayani": 2
      },
      "SMA/SMK/MA": {
       "total": 54,
-      "terlayani": 6
+      "terlayani": 7
      },
      "SMP/MTs": {
       "total": 43,
-      "terlayani": 6
+      "terlayani": 8
      },
      "Tidak diketahui": {
       "total": 39,
-      "terlayani": 0
+      "terlayani": 3
      },
      "SD/MI": {
       "total": 70,
-      "terlayani": 2
+      "terlayani": 13
      },
      "SLB": {
       "total": 2,
@@ -106,63 +106,81 @@
      },
      "Pesantren/Diniyah": {
       "total": 14,
-      "terlayani": 0
+      "terlayani": 1
      }
     }
    },
    "terjauh": [
     {
-     "uid": "osm-a72",
-     "nama": "Al-Izhar School Pekanbaru",
-     "jenjang": "Campuran",
-     "sumber": "osm",
-     "jarak_halte_m": 13065.3,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t78",
-     "nama": "SMA Negeri 15 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11466.6,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-a148",
-     "nama": "SMK Negeri 6 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11435.2,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t45",
-     "nama": "SD 147",
+     "uid": "osm-t95",
+     "nama": "SD Negeri 178 Pekanbaru",
      "jenjang": "SD/MI",
      "sumber": "osm",
-     "jarak_halte_m": 11388,
+     "jarak_halte_m": 4713.1,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a123",
+     "nama": "Madrasah Ibtidayah Al-Farih",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 4331.3,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t96",
+     "nama": "SMP Negeri 38 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 4039.9,
      "halte_terdekat": "Halte Smpn5",
      "terlayani": false
     },
     {
-     "uid": "osm-a156",
-     "nama": "Pondok Pesantren Rabbani",
-     "jenjang": "Pesantren/Diniyah",
+     "uid": "osm-a174",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
      "sumber": "osm",
-     "jarak_halte_m": 11364.4,
+     "jarak_halte_m": 4031.8,
+     "halte_terdekat": "Halte Stadion",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t97",
+     "nama": "SD Negeri 140 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 3553.6,
      "halte_terdekat": "Halte Smpn 14",
      "terlayani": false
     },
     {
-     "uid": "osm-a101",
-     "nama": "SMP Muhammadiyah 4 Pekanbaru",
+     "uid": "osm-a153",
+     "nama": "SMA Darma Yudha",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3526.8,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a162",
+     "nama": "Sekolah Menengah Atas Negeri (SMAN) 10 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3394,
+     "halte_terdekat": "Halte Simpang Jengkol",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a161",
+     "nama": "Sekolah Menengah Pertama Negeri (SMPN) 9 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 11307.6,
-     "halte_terdekat": "Halte Smpn 14",
+     "jarak_halte_m": 3375.2,
+     "halte_terdekat": "Halte Simpang Jengkol",
      "terlayani": false
     },
     {
@@ -170,39 +188,30 @@
      "nama": "SMP Negeri 45 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 10981.2,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3343.4,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
      "terlayani": false
     },
     {
-     "uid": "osm-a70",
-     "nama": "Az-zuhra School",
-     "jenjang": "Tidak diketahui",
-     "sumber": "osm",
-     "jarak_halte_m": 10927,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t80",
-     "nama": "SMA Negeri 12 Pekanbaru",
+     "uid": "osm-t82",
+     "nama": "SMA Negeri 11 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
-     "jarak_halte_m": 10910.7,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t44",
-     "nama": "SMK Telkom Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 10850.5,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3325.2,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
      "terlayani": false
     }
    ],
    "terdekat": [
+    {
+     "uid": "osm-a99",
+     "nama": "SDN 66 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 26.6,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
     {
      "uid": "osm-a24",
      "nama": "SMP Negeri 14 Pekanbaru",
@@ -210,6 +219,15 @@
      "sumber": "osm",
      "jarak_halte_m": 34.9,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t39",
+     "nama": "SDN",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 35.9,
+     "halte_terdekat": "SD Pasir Putih 2",
      "terlayani": true
     },
     {
@@ -228,6 +246,15 @@
      "sumber": "osm",
      "jarak_halte_m": 59.8,
      "halte_terdekat": "Halte Smpn5",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a71",
+     "nama": "Pondok Pesantren Babussalam",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 62.7,
+     "halte_terdekat": "Babussalam 2",
      "terlayani": true
     },
     {
@@ -267,12 +294,57 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a109",
+     "nama": "MTsN 1 Kota Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 98.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a9",
+     "nama": "MAN 2 Kota Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 115.9,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a30",
      "nama": "SMA Handayani",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 116.6,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t73",
+     "nama": "sd momon dan fauzan",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 117.1,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a7",
+     "nama": "SDN 114",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 145.8,
+     "halte_terdekat": "Cempedak",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a125",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 153.4,
+     "halte_terdekat": "Bank Riau Kepri Syariah",
      "terlayani": true
     },
     {
@@ -285,12 +357,84 @@
      "terlayani": true
     },
     {
+     "uid": "osm-t74",
+     "nama": "sdn adek aku valiyul morteza haq",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 157.8,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a38",
+     "nama": "SD 110 Sidomulyo Barat",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 166.5,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a166",
+     "nama": "Yayasan Islam Nurul Madinah",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 169.9,
+     "halte_terdekat": "SD Pasir Putih 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a11",
+     "nama": "SDN 008",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 171.2,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a13",
      "nama": "SMK Negeri 5 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 194,
      "halte_terdekat": "Halte Stadion",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a152",
+     "nama": "Komplek Sekolah Dasar Negeri",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 200.5,
+     "halte_terdekat": "MPP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a77",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 204.8,
+     "halte_terdekat": "Babussalam 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a176",
+     "nama": "SD Negeri 125 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 211.8,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a133",
+     "nama": "MIN 1 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 218.3,
+     "halte_terdekat": "Kaca Mayang",
      "terlayani": true
     },
     {
@@ -321,12 +465,48 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a175",
+     "nama": "SD Negeri 056 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 265.9,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a10",
+     "nama": "TK, SMP, SMA Budhi Luhur",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 268.7,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a117",
      "nama": "SMP Kartika 1-5",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
      "jarak_halte_m": 276.8,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a15",
+     "nama": "SMPN 030",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 281,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a132",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 284.7,
+     "halte_terdekat": "Babussalam 1",
      "terlayani": true
     },
     {
@@ -343,28 +523,28 @@
   "500": {
    "ringkasan": {
     "total": 239,
-    "terlayani": 21,
-    "persen": 8.8,
+    "terlayani": 55,
+    "persen": 23,
     "per_jenjang": {
      "Campuran": {
       "total": 10,
-      "terlayani": 0
+      "terlayani": 3
      },
      "SMA/SMK/MA": {
       "total": 54,
-      "terlayani": 9
+      "terlayani": 16
      },
      "SMP/MTs": {
       "total": 43,
-      "terlayani": 7
+      "terlayani": 11
      },
      "Tidak diketahui": {
       "total": 39,
-      "terlayani": 1
+      "terlayani": 6
      },
      "SD/MI": {
       "total": 70,
-      "terlayani": 3
+      "terlayani": 17
      },
      "SLB": {
       "total": 2,
@@ -376,63 +556,81 @@
      },
      "Pesantren/Diniyah": {
       "total": 14,
-      "terlayani": 0
+      "terlayani": 1
      }
     }
    },
    "terjauh": [
     {
-     "uid": "osm-a72",
-     "nama": "Al-Izhar School Pekanbaru",
-     "jenjang": "Campuran",
-     "sumber": "osm",
-     "jarak_halte_m": 13065.3,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t78",
-     "nama": "SMA Negeri 15 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11466.6,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-a148",
-     "nama": "SMK Negeri 6 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11435.2,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t45",
-     "nama": "SD 147",
+     "uid": "osm-t95",
+     "nama": "SD Negeri 178 Pekanbaru",
      "jenjang": "SD/MI",
      "sumber": "osm",
-     "jarak_halte_m": 11388,
+     "jarak_halte_m": 4713.1,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a123",
+     "nama": "Madrasah Ibtidayah Al-Farih",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 4331.3,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t96",
+     "nama": "SMP Negeri 38 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 4039.9,
      "halte_terdekat": "Halte Smpn5",
      "terlayani": false
     },
     {
-     "uid": "osm-a156",
-     "nama": "Pondok Pesantren Rabbani",
-     "jenjang": "Pesantren/Diniyah",
+     "uid": "osm-a174",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
      "sumber": "osm",
-     "jarak_halte_m": 11364.4,
+     "jarak_halte_m": 4031.8,
+     "halte_terdekat": "Halte Stadion",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t97",
+     "nama": "SD Negeri 140 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 3553.6,
      "halte_terdekat": "Halte Smpn 14",
      "terlayani": false
     },
     {
-     "uid": "osm-a101",
-     "nama": "SMP Muhammadiyah 4 Pekanbaru",
+     "uid": "osm-a153",
+     "nama": "SMA Darma Yudha",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3526.8,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a162",
+     "nama": "Sekolah Menengah Atas Negeri (SMAN) 10 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3394,
+     "halte_terdekat": "Halte Simpang Jengkol",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a161",
+     "nama": "Sekolah Menengah Pertama Negeri (SMPN) 9 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 11307.6,
-     "halte_terdekat": "Halte Smpn 14",
+     "jarak_halte_m": 3375.2,
+     "halte_terdekat": "Halte Simpang Jengkol",
      "terlayani": false
     },
     {
@@ -440,39 +638,30 @@
      "nama": "SMP Negeri 45 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 10981.2,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3343.4,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
      "terlayani": false
     },
     {
-     "uid": "osm-a70",
-     "nama": "Az-zuhra School",
-     "jenjang": "Tidak diketahui",
-     "sumber": "osm",
-     "jarak_halte_m": 10927,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t80",
-     "nama": "SMA Negeri 12 Pekanbaru",
+     "uid": "osm-t82",
+     "nama": "SMA Negeri 11 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
-     "jarak_halte_m": 10910.7,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t44",
-     "nama": "SMK Telkom Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 10850.5,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3325.2,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
      "terlayani": false
     }
    ],
    "terdekat": [
+    {
+     "uid": "osm-a99",
+     "nama": "SDN 66 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 26.6,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
     {
      "uid": "osm-a24",
      "nama": "SMP Negeri 14 Pekanbaru",
@@ -480,6 +669,15 @@
      "sumber": "osm",
      "jarak_halte_m": 34.9,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t39",
+     "nama": "SDN",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 35.9,
+     "halte_terdekat": "SD Pasir Putih 2",
      "terlayani": true
     },
     {
@@ -498,6 +696,15 @@
      "sumber": "osm",
      "jarak_halte_m": 59.8,
      "halte_terdekat": "Halte Smpn5",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a71",
+     "nama": "Pondok Pesantren Babussalam",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 62.7,
+     "halte_terdekat": "Babussalam 2",
      "terlayani": true
     },
     {
@@ -537,12 +744,57 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a109",
+     "nama": "MTsN 1 Kota Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 98.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a9",
+     "nama": "MAN 2 Kota Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 115.9,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a30",
      "nama": "SMA Handayani",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 116.6,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t73",
+     "nama": "sd momon dan fauzan",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 117.1,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a7",
+     "nama": "SDN 114",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 145.8,
+     "halte_terdekat": "Cempedak",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a125",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 153.4,
+     "halte_terdekat": "Bank Riau Kepri Syariah",
      "terlayani": true
     },
     {
@@ -555,12 +807,84 @@
      "terlayani": true
     },
     {
+     "uid": "osm-t74",
+     "nama": "sdn adek aku valiyul morteza haq",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 157.8,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a38",
+     "nama": "SD 110 Sidomulyo Barat",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 166.5,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a166",
+     "nama": "Yayasan Islam Nurul Madinah",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 169.9,
+     "halte_terdekat": "SD Pasir Putih 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a11",
+     "nama": "SDN 008",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 171.2,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a13",
      "nama": "SMK Negeri 5 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 194,
      "halte_terdekat": "Halte Stadion",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a152",
+     "nama": "Komplek Sekolah Dasar Negeri",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 200.5,
+     "halte_terdekat": "MPP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a77",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 204.8,
+     "halte_terdekat": "Babussalam 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a176",
+     "nama": "SD Negeri 125 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 211.8,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a133",
+     "nama": "MIN 1 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 218.3,
+     "halte_terdekat": "Kaca Mayang",
      "terlayani": true
     },
     {
@@ -591,12 +915,48 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a175",
+     "nama": "SD Negeri 056 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 265.9,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a10",
+     "nama": "TK, SMP, SMA Budhi Luhur",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 268.7,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a117",
      "nama": "SMP Kartika 1-5",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
      "jarak_halte_m": 276.8,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a15",
+     "nama": "SMPN 030",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 281,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a132",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 284.7,
+     "halte_terdekat": "Babussalam 1",
      "terlayani": true
     },
     {
@@ -609,12 +969,66 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a66",
+     "nama": "SMP PGRI",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 304.5,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a84",
+     "nama": "SMA-YLPI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 317.3,
+     "halte_terdekat": "UIR 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a69",
+     "nama": "Sekolah dasar",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 323.4,
+     "halte_terdekat": "Purwodadi 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a14",
+     "nama": "SDN 021",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 338.8,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a19",
+     "nama": "SDN 055",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 349.5,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a112",
      "nama": "SD Negeri 36 Pekanbaru",
      "jenjang": "SD/MI",
      "sumber": "osm",
      "jarak_halte_m": 353.1,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a73",
+     "nama": "Yayasan Anur",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 357.3,
+     "halte_terdekat": "Ramayana STC",
      "terlayani": true
     },
     {
@@ -627,6 +1041,15 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a64",
+     "nama": "SMA PGRI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 366,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a31",
      "nama": "SMK 3 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
@@ -636,12 +1059,39 @@
      "terlayani": true
     },
     {
-     "uid": "osm-a73",
-     "nama": "Yayasan Anur",
-     "jenjang": "Tidak diketahui",
+     "uid": "osm-a60",
+     "nama": "SMKN 2 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
-     "jarak_halte_m": 409.7,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 370.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t92",
+     "nama": "SMK Taruna Satria Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 390.2,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a65",
+     "nama": "SMK PGRI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 403,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t49",
+     "nama": "SMK Kansai Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 424.3,
+     "halte_terdekat": "Purwodadi 2",
      "terlayani": true
     },
     {
@@ -654,12 +1104,48 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a39",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 450.9,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t91",
+     "nama": "SMP-SMA An Namiroh Pekanbaru",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 460.6,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
      "uid": "svy-25",
      "nama": "Smp Al Ittihad",
      "jenjang": "SMP/MTs",
      "sumber": "survei",
-     "jarak_halte_m": 498.4,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 464.8,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a8",
+     "nama": "MTS Hasanah",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 479.3,
+     "halte_terdekat": "Cempedak",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a178",
+     "nama": "Sekolah Metta Maitreya",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 496.7,
+     "halte_terdekat": "Halte Patung Kuda",
      "terlayani": true
     }
    ]
@@ -667,28 +1153,28 @@
   "1000": {
    "ringkasan": {
     "total": 239,
-    "terlayani": 34,
-    "persen": 14.2,
+    "terlayani": 119,
+    "persen": 49.8,
     "per_jenjang": {
      "Campuran": {
       "total": 10,
-      "terlayani": 0
+      "terlayani": 4
      },
      "SMA/SMK/MA": {
       "total": 54,
-      "terlayani": 10
+      "terlayani": 24
      },
      "SMP/MTs": {
       "total": 43,
-      "terlayani": 10
+      "terlayani": 22
      },
      "Tidak diketahui": {
       "total": 39,
-      "terlayani": 3
+      "terlayani": 19
      },
      "SD/MI": {
       "total": 70,
-      "terlayani": 7
+      "terlayani": 37
      },
      "SLB": {
       "total": 2,
@@ -696,67 +1182,85 @@
      },
      "TK/PAUD": {
       "total": 7,
-      "terlayani": 2
+      "terlayani": 5
      },
      "Pesantren/Diniyah": {
       "total": 14,
-      "terlayani": 0
+      "terlayani": 6
      }
     }
    },
    "terjauh": [
     {
-     "uid": "osm-a72",
-     "nama": "Al-Izhar School Pekanbaru",
-     "jenjang": "Campuran",
-     "sumber": "osm",
-     "jarak_halte_m": 13065.3,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t78",
-     "nama": "SMA Negeri 15 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11466.6,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-a148",
-     "nama": "SMK Negeri 6 Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 11435.2,
-     "halte_terdekat": "Halte Smpn 14",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t45",
-     "nama": "SD 147",
+     "uid": "osm-t95",
+     "nama": "SD Negeri 178 Pekanbaru",
      "jenjang": "SD/MI",
      "sumber": "osm",
-     "jarak_halte_m": 11388,
+     "jarak_halte_m": 4713.1,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a123",
+     "nama": "Madrasah Ibtidayah Al-Farih",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 4331.3,
+     "halte_terdekat": "Halte Smpn 14",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t96",
+     "nama": "SMP Negeri 38 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 4039.9,
      "halte_terdekat": "Halte Smpn5",
      "terlayani": false
     },
     {
-     "uid": "osm-a156",
-     "nama": "Pondok Pesantren Rabbani",
-     "jenjang": "Pesantren/Diniyah",
+     "uid": "osm-a174",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
      "sumber": "osm",
-     "jarak_halte_m": 11364.4,
+     "jarak_halte_m": 4031.8,
+     "halte_terdekat": "Halte Stadion",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-t97",
+     "nama": "SD Negeri 140 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 3553.6,
      "halte_terdekat": "Halte Smpn 14",
      "terlayani": false
     },
     {
-     "uid": "osm-a101",
-     "nama": "SMP Muhammadiyah 4 Pekanbaru",
+     "uid": "osm-a153",
+     "nama": "SMA Darma Yudha",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3526.8,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a162",
+     "nama": "Sekolah Menengah Atas Negeri (SMAN) 10 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 3394,
+     "halte_terdekat": "Halte Simpang Jengkol",
+     "terlayani": false
+    },
+    {
+     "uid": "osm-a161",
+     "nama": "Sekolah Menengah Pertama Negeri (SMPN) 9 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 11307.6,
-     "halte_terdekat": "Halte Smpn 14",
+     "jarak_halte_m": 3375.2,
+     "halte_terdekat": "Halte Simpang Jengkol",
      "terlayani": false
     },
     {
@@ -764,39 +1268,30 @@
      "nama": "SMP Negeri 45 Pekanbaru",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 10981.2,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3343.4,
+     "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
      "terlayani": false
     },
     {
-     "uid": "osm-a70",
-     "nama": "Az-zuhra School",
-     "jenjang": "Tidak diketahui",
-     "sumber": "osm",
-     "jarak_halte_m": 10927,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t80",
-     "nama": "SMA Negeri 12 Pekanbaru",
+     "uid": "osm-t82",
+     "nama": "SMA Negeri 11 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
-     "jarak_halte_m": 10910.7,
-     "halte_terdekat": "Halte Smpn5",
-     "terlayani": false
-    },
-    {
-     "uid": "osm-t44",
-     "nama": "SMK Telkom Pekanbaru",
-     "jenjang": "SMA/SMK/MA",
-     "sumber": "osm",
-     "jarak_halte_m": 10850.5,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 3325.2,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
      "terlayani": false
     }
    ],
    "terdekat": [
+    {
+     "uid": "osm-a99",
+     "nama": "SDN 66 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 26.6,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
     {
      "uid": "osm-a24",
      "nama": "SMP Negeri 14 Pekanbaru",
@@ -804,6 +1299,15 @@
      "sumber": "osm",
      "jarak_halte_m": 34.9,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t39",
+     "nama": "SDN",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 35.9,
+     "halte_terdekat": "SD Pasir Putih 2",
      "terlayani": true
     },
     {
@@ -822,6 +1326,15 @@
      "sumber": "osm",
      "jarak_halte_m": 59.8,
      "halte_terdekat": "Halte Smpn5",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a71",
+     "nama": "Pondok Pesantren Babussalam",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 62.7,
+     "halte_terdekat": "Babussalam 2",
      "terlayani": true
     },
     {
@@ -861,12 +1374,57 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a109",
+     "nama": "MTsN 1 Kota Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 98.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a9",
+     "nama": "MAN 2 Kota Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 115.9,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a30",
      "nama": "SMA Handayani",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 116.6,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t73",
+     "nama": "sd momon dan fauzan",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 117.1,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a7",
+     "nama": "SDN 114",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 145.8,
+     "halte_terdekat": "Cempedak",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a125",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 153.4,
+     "halte_terdekat": "Bank Riau Kepri Syariah",
      "terlayani": true
     },
     {
@@ -879,12 +1437,84 @@
      "terlayani": true
     },
     {
+     "uid": "osm-t74",
+     "nama": "sdn adek aku valiyul morteza haq",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 157.8,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a38",
+     "nama": "SD 110 Sidomulyo Barat",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 166.5,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a166",
+     "nama": "Yayasan Islam Nurul Madinah",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 169.9,
+     "halte_terdekat": "SD Pasir Putih 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a11",
+     "nama": "SDN 008",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 171.2,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a13",
      "nama": "SMK Negeri 5 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
      "jarak_halte_m": 194,
      "halte_terdekat": "Halte Stadion",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a152",
+     "nama": "Komplek Sekolah Dasar Negeri",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 200.5,
+     "halte_terdekat": "MPP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a77",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 204.8,
+     "halte_terdekat": "Babussalam 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a176",
+     "nama": "SD Negeri 125 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 211.8,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a133",
+     "nama": "MIN 1 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 218.3,
+     "halte_terdekat": "Kaca Mayang",
      "terlayani": true
     },
     {
@@ -915,12 +1545,48 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a175",
+     "nama": "SD Negeri 056 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 265.9,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a10",
+     "nama": "TK, SMP, SMA Budhi Luhur",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 268.7,
+     "halte_terdekat": "Halte Bundaran Chevron",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a117",
      "nama": "SMP Kartika 1-5",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
      "jarak_halte_m": 276.8,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a15",
+     "nama": "SMPN 030",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 281,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a132",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 284.7,
+     "halte_terdekat": "Babussalam 1",
      "terlayani": true
     },
     {
@@ -933,12 +1599,66 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a66",
+     "nama": "SMP PGRI",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 304.5,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a84",
+     "nama": "SMA-YLPI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 317.3,
+     "halte_terdekat": "UIR 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a69",
+     "nama": "Sekolah dasar",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 323.4,
+     "halte_terdekat": "Purwodadi 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a14",
+     "nama": "SDN 021",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 338.8,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a19",
+     "nama": "SDN 055",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 349.5,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a112",
      "nama": "SD Negeri 36 Pekanbaru",
      "jenjang": "SD/MI",
      "sumber": "osm",
      "jarak_halte_m": 353.1,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a73",
+     "nama": "Yayasan Anur",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 357.3,
+     "halte_terdekat": "Ramayana STC",
      "terlayani": true
     },
     {
@@ -951,6 +1671,15 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a64",
+     "nama": "SMA PGRI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 366,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a31",
      "nama": "SMK 3 Pekanbaru",
      "jenjang": "SMA/SMK/MA",
@@ -960,12 +1689,39 @@
      "terlayani": true
     },
     {
-     "uid": "osm-a73",
-     "nama": "Yayasan Anur",
-     "jenjang": "Tidak diketahui",
+     "uid": "osm-a60",
+     "nama": "SMKN 2 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
      "sumber": "osm",
-     "jarak_halte_m": 409.7,
-     "halte_terdekat": "Halte Smpn5",
+     "jarak_halte_m": 370.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t92",
+     "nama": "SMK Taruna Satria Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 390.2,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a65",
+     "nama": "SMK PGRI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 403,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t49",
+     "nama": "SMK Kansai Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 424.3,
+     "halte_terdekat": "Purwodadi 2",
      "terlayani": true
     },
     {
@@ -978,12 +1734,75 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a39",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 450.9,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t91",
+     "nama": "SMP-SMA An Namiroh Pekanbaru",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 460.6,
+     "halte_terdekat": "Delima 1",
+     "terlayani": true
+    },
+    {
      "uid": "svy-25",
      "nama": "Smp Al Ittihad",
      "jenjang": "SMP/MTs",
      "sumber": "survei",
-     "jarak_halte_m": 498.4,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 464.8,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a8",
+     "nama": "MTS Hasanah",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 479.3,
+     "halte_terdekat": "Cempedak",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a178",
+     "nama": "Sekolah Metta Maitreya",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 496.7,
+     "halte_terdekat": "Halte Patung Kuda",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a145",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 502.2,
+     "halte_terdekat": "Gelanggang Remaja",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a40",
+     "nama": "Singapore Education School",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 512.5,
+     "halte_terdekat": "Halte Patung Kuda",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a54",
+     "nama": "SD Raudhatul Rahmah",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 521.5,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
      "terlayani": true
     },
     {
@@ -996,12 +1815,174 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a127",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 536.5,
+     "halte_terdekat": "Ramayana STC",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t35",
+     "nama": "SDN 028",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 539.4,
+     "halte_terdekat": "Puskesmas Simpang Tiga 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t37",
+     "nama": "SDN 171",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 546.4,
+     "halte_terdekat": "Puskesmas Simpang Tiga 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t90",
+     "nama": "SD IT Al-Fikri",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 559.9,
+     "halte_terdekat": "Pasar Dupa",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a149",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 579.1,
+     "halte_terdekat": "Halte Bus RS Tabrani",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t36",
+     "nama": "SDN 141",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 583.2,
+     "halte_terdekat": "Puskesmas Simpang Tiga 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a82",
+     "nama": "SD Santa Maria Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 587.8,
+     "halte_terdekat": "Ramayana STC",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a107",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 595,
+     "halte_terdekat": "Babussalam 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a83",
+     "nama": "SMPN 13 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 603.8,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a171",
+     "nama": "SDN 112 & 161 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 609.8,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a80",
+     "nama": "SMP Negeri 2 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 615.3,
+     "halte_terdekat": "Sam Ratulangi",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a115",
      "nama": "Sekolah Luar Biasa Sri Mujinab",
      "jenjang": "SLB",
      "sumber": "osm",
      "jarak_halte_m": 617.4,
      "halte_terdekat": "Halte Smpn 14",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a172",
+     "nama": "TK Bhakti Ibu",
+     "jenjang": "TK/PAUD",
+     "sumber": "osm",
+     "jarak_halte_m": 645.2,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a79",
+     "nama": "SMP/SMA Setia Dharma",
+     "jenjang": "Campuran",
+     "sumber": "osm",
+     "jarak_halte_m": 651.4,
+     "halte_terdekat": "Sam Ratulangi",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a144",
+     "nama": "SDN 158 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 652.2,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a143",
+     "nama": "SDN 26 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 656.5,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a106",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 662.7,
+     "halte_terdekat": "Babussalam 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a105",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 666.8,
+     "halte_terdekat": "Ramayana 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a173",
+     "nama": "MDTA Al-Furqon",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 681.9,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
      "terlayani": true
     },
     {
@@ -1014,12 +1995,75 @@
      "terlayani": true
     },
     {
+     "uid": "osm-a181",
+     "nama": "SMA Serirama YLPI",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 683.6,
+     "halte_terdekat": "Sam Ratulangi",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a104",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 689,
+     "halte_terdekat": "Ramayana 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a81",
+     "nama": "Paud YLPI",
+     "jenjang": "TK/PAUD",
+     "sumber": "osm",
+     "jarak_halte_m": 691.5,
+     "halte_terdekat": "Sam Ratulangi",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a63",
+     "nama": "SMP Negeri 16 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 695.2,
+     "halte_terdekat": "Ramayana STC",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a52",
+     "nama": "MDTA/MDA Al-ManarBSA",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 700.9,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a142",
      "nama": "TK Cendana Pekanbaru",
      "jenjang": "TK/PAUD",
      "sumber": "osm",
-     "jarak_halte_m": 730.2,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 704.5,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a180",
+     "nama": "SMP Islam YLPI",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 707.4,
+     "halte_terdekat": "Sam Ratulangi",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a179",
+     "nama": "Sekolah Djuwita",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 710.8,
+     "halte_terdekat": "Halte Patung Kuda",
      "terlayani": true
     },
     {
@@ -1027,8 +2071,62 @@
      "nama": "Sd 149",
      "jenjang": "SD/MI",
      "sumber": "survei",
-     "jarak_halte_m": 751.3,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 719.8,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a41",
+     "nama": "Gedung Sekolah Lama",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 720.3,
+     "halte_terdekat": "Halte Patung Kuda",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t56",
+     "nama": "SMP Santa Maria Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 725,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-t57",
+     "nama": "SMA Santa Maria Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 727.1,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a150",
+     "nama": "SMA Negeri 8 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 743.6,
+     "halte_terdekat": "Halte MAN Model",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a16",
+     "nama": "SDN 007",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 755.1,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a92",
+     "nama": "Sekolah Menengah Kejuruan ITTR Plus",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 757.2,
+     "halte_terdekat": "Ramayana STC",
      "terlayani": true
     },
     {
@@ -1036,8 +2134,8 @@
      "nama": "SD dan MTSN Al-Ittihad",
      "jenjang": "SD/MI",
      "sumber": "survei",
-     "jarak_halte_m": 798.9,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 767.1,
+     "halte_terdekat": "Halte SMK Olahraga",
      "terlayani": true
     },
     {
@@ -1045,8 +2143,44 @@
      "nama": "SMPN 6 Rumbai",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
-     "jarak_halte_m": 807.7,
-     "halte_terdekat": "Halte smkn olahraga",
+     "jarak_halte_m": 778.6,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a93",
+     "nama": "Taman Pendidikan Al-Qur'an YLPi",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 778.6,
+     "halte_terdekat": "Telkom",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a108",
+     "nama": "Sekolah (tanpa nama di OSM)",
+     "jenjang": "Tidak diketahui",
+     "sumber": "osm",
+     "jarak_halte_m": 779.9,
+     "halte_terdekat": "Ramayana 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a17",
+     "nama": "SDN 006",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 780.1,
+     "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a159",
+     "nama": "Sekolah Menengah Pertama Negeri (SMPN) 26 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 801.6,
+     "halte_terdekat": "Halte Simpang Jengkol",
      "terlayani": true
     },
     {
@@ -1059,12 +2193,93 @@
      "terlayani": true
     },
     {
-     "uid": "osm-a125",
-     "nama": "Sekolah (tanpa nama di OSM)",
+     "uid": "osm-t76",
+     "nama": "SMKN 4 Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 819.1,
+     "halte_terdekat": "Purwodadi 1",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a48",
+     "nama": "TK Insa Amanah",
+     "jenjang": "TK/PAUD",
+     "sumber": "osm",
+     "jarak_halte_m": 820,
+     "halte_terdekat": "Purwodadi 2",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a33",
+     "nama": "SD Negeri 159 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 827.3,
+     "halte_terdekat": "Halte Busway Mall SKA Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a76",
+     "nama": "Future Islamic School",
      "jenjang": "Tidak diketahui",
      "sumber": "osm",
-     "jarak_halte_m": 922.4,
-     "halte_terdekat": "Halte Smpn 14",
+     "jarak_halte_m": 827.5,
+     "halte_terdekat": "Halte Busway Mall SKA Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a53",
+     "nama": "SD Negeri",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 849.1,
+     "halte_terdekat": "Halte Trans Metro Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a167",
+     "nama": "Sekolah Dasar Negeri 171 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 852.7,
+     "halte_terdekat": "BUSWAY TMP",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a56",
+     "nama": "SD Teladan",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 878.5,
+     "halte_terdekat": "Halte SDN 66 Pekanbaru",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a156",
+     "nama": "Pondok Pesantren Rabbani",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 880.5,
+     "halte_terdekat": "marpoyan-arengka",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a141",
+     "nama": "SLB Cendana Pekanbaru",
+     "jenjang": "SLB",
+     "sumber": "osm",
+     "jarak_halte_m": 895.5,
+     "halte_terdekat": "Halte SMK Olahraga",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a177",
+     "nama": "MTSN 3 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 900.6,
+     "halte_terdekat": "Gelanggang Remaja",
      "terlayani": true
     },
     {
@@ -1077,15 +2292,6 @@
      "terlayani": true
     },
     {
-     "uid": "osm-a141",
-     "nama": "SLB Cendana Pekanbaru",
-     "jenjang": "SLB",
-     "sumber": "osm",
-     "jarak_halte_m": 925,
-     "halte_terdekat": "Halte smkn olahraga",
-     "terlayani": true
-    },
-    {
      "uid": "osm-a67",
      "nama": "SMPN 029 Pekanbaru",
      "jenjang": "SMP/MTs",
@@ -1095,12 +2301,57 @@
      "terlayani": true
     },
     {
+     "uid": "osm-t86",
+     "nama": "SMK Pelayaran",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 931.6,
+     "halte_terdekat": "RRI",
+     "terlayani": true
+    },
+    {
      "uid": "osm-a68",
      "nama": "Mts Taufiq Walhidayah",
      "jenjang": "SMP/MTs",
      "sumber": "osm",
      "jarak_halte_m": 960.1,
      "halte_terdekat": "Halte Stadion",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a43",
+     "nama": "Ponpes Al-Uswah",
+     "jenjang": "Pesantren/Diniyah",
+     "sumber": "osm",
+     "jarak_halte_m": 964.8,
+     "halte_terdekat": "Halte Bus UNRI",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a155",
+     "nama": "SMK Pertanian Terpadu Pekanbaru",
+     "jenjang": "SMA/SMK/MA",
+     "sumber": "osm",
+     "jarak_halte_m": 971.9,
+     "halte_terdekat": "marpoyan-arengka",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a96",
+     "nama": "Sekolah Dasar Negeri 3 Pekanbaru",
+     "jenjang": "SD/MI",
+     "sumber": "osm",
+     "jarak_halte_m": 973.1,
+     "halte_terdekat": "Hotel Furaya",
+     "terlayani": true
+    },
+    {
+     "uid": "osm-a27",
+     "nama": "SMP Negeri 20 Pekanbaru",
+     "jenjang": "SMP/MTs",
+     "sumber": "osm",
+     "jarak_halte_m": 990.8,
+     "halte_terdekat": "Ramayana 1",
      "terlayani": true
     }
    ]
@@ -1217,7 +2468,7 @@
  },
  "recommend": {
   "radius": 500,
-  "terisolasi": 59,
+  "terisolasi": 58,
   "kandidat": {
    "type": "FeatureCollection",
    "features": [
@@ -1226,65 +2477,12 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.45537871961216,
-       0.5135404081192113
+       101.4357922,
+       0.5093214
       ]
      },
      "properties": {
       "rank": 1,
-      "jumlah_sekolah": 9,
-      "sekolah": [
-       "SMPN 13 Pekanbaru",
-       "Sekolah (tanpa nama di OSM)",
-       "SMA Santa Maria Pekanbaru",
-       "SMP Santa Maria Pekanbaru",
-       "MTsN 1 Kota Pekanbaru",
-       "SMKN 2 Pekanbaru",
-       "MAN 2 Kota Pekanbaru",
-       "SDN 158 Pekanbaru",
-       "SDN 26 Pekanbaru"
-      ],
-      "snap": false,
-      "jarak_rata_m": 354.8
-     }
-    },
-    {
-     "type": "Feature",
-     "geometry": {
-      "type": "Point",
-      "coordinates": [
-       101.4083552861251,
-       0.45962614890673353
-      ]
-     },
-     "properties": {
-      "rank": 2,
-      "jumlah_sekolah": 8,
-      "sekolah": [
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Sekolah (tanpa nama di OSM)",
-       "Pondok Pesantren Babussalam"
-      ],
-      "snap": false,
-      "jarak_rata_m": 239.2
-     }
-    },
-    {
-     "type": "Feature",
-     "geometry": {
-      "type": "Point",
-      "coordinates": [
-       101.43635615063155,
-       0.5097155373580528
-      ]
-     },
-     "properties": {
-      "rank": 3,
       "jumlah_sekolah": 7,
       "sekolah": [
        "Sekolah (tanpa nama di OSM)",
@@ -1293,10 +2491,10 @@
        "SMA, SMK, SMP MUHAMMADIYAH",
        "MTs Diniyah Puteri",
        "SD IT Diniyah",
-       "SMA Plus Bina Bangsa"
+       "SMPN 17"
       ],
-      "snap": false,
-      "jarak_rata_m": 256.9
+      "snap": true,
+      "jarak_rata_m": 262.7
      }
     },
     {
@@ -1304,24 +2502,23 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.43693432640367,
-       0.528739721467385
+       101.4364533,
+       0.5284679
       ]
      },
      "properties": {
-      "rank": 4,
-      "jumlah_sekolah": 7,
+      "rank": 2,
+      "jumlah_sekolah": 6,
       "sekolah": [
        "SD Negeri 27 Pekanbaru",
        "SD Negeri 9 Pekanbaru",
        "SD Negri 5 Pekanbaru",
        "SD Yayasan Perguruan Advent Pekanbaru",
        "TK dan PAUD Stanley",
-       "Sekolah Menengah Kejuruan ITTR Plus",
-       "SMP Negeri 16 Pekanbaru"
+       "Sekolah Menengah Kejuruan ITTR Plus"
       ],
-      "snap": false,
-      "jarak_rata_m": 315
+      "snap": true,
+      "jarak_rata_m": 255.6
      }
     },
     {
@@ -1329,23 +2526,23 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.386349540366,
-       0.46729265997354025
+       101.3873465,
+       0.4671605
       ]
      },
      "properties": {
-      "rank": 5,
+      "rank": 3,
       "jumlah_sekolah": 6,
       "sekolah": [
-       "Ponpes Darel Hikmah",
        "Sekolah (tanpa nama di OSM)",
+       "Ponpes Darel Hikmah",
        "Sekolah (tanpa nama di OSM)",
        "Ponpes Al-Uswah",
        "Sekolah (tanpa nama di OSM)",
        "Sekolah (tanpa nama di OSM)"
       ],
-      "snap": false,
-      "jarak_rata_m": 258.9
+      "snap": true,
+      "jarak_rata_m": 267.4
      }
     },
     {
@@ -1353,21 +2550,22 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.4579652494157,
-       0.50149372581049
+       101.40891097990848,
+       0.4579972199638864
       ]
      },
      "properties": {
-      "rank": 6,
-      "jumlah_sekolah": 4,
+      "rank": 4,
+      "jumlah_sekolah": 5,
       "sekolah": [
-       "SMP PGRI",
-       "SMA PGRI",
-       "SMK PGRI",
-       "SDN 66 Pekanbaru"
+       "Sekolah (tanpa nama di OSM)",
+       "Sekolah (tanpa nama di OSM)",
+       "Sekolah (tanpa nama di OSM)",
+       "Sekolah (tanpa nama di OSM)",
+       "Sekolah (tanpa nama di OSM)"
       ],
       "snap": false,
-      "jarak_rata_m": 146.1
+      "jarak_rata_m": 53.2
      }
     },
     {
@@ -1380,7 +2578,7 @@
       ]
      },
      "properties": {
-      "rank": 7,
+      "rank": 5,
       "jumlah_sekolah": 4,
       "sekolah": [
        "SD Santa Maria 2 Labuh Baru",
@@ -1397,21 +2595,62 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.44463917744253,
-       0.5616817990248252
+       101.4583722740793,
+       0.4618404927114478
+      ]
+     },
+     "properties": {
+      "rank": 6,
+      "jumlah_sekolah": 3,
+      "sekolah": [
+       "SDN 141",
+       "SDN 171",
+       "SDN 028"
+      ],
+      "snap": true,
+      "jarak_rata_m": 48
+     }
+    },
+    {
+     "type": "Feature",
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       101.43632723254005,
+       0.5730060385821009
+      ]
+     },
+     "properties": {
+      "rank": 7,
+      "jumlah_sekolah": 3,
+      "sekolah": [
+       "Sd 149",
+       "SD dan MTSN Al-Ittihad",
+       "SMPN 6 Rumbai"
+      ],
+      "snap": true,
+      "jarak_rata_m": 61.3
+     }
+    },
+    {
+     "type": "Feature",
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       101.42110261797535,
+       0.45526268425673333
       ]
      },
      "properties": {
       "rank": 8,
-      "jumlah_sekolah": 4,
+      "jumlah_sekolah": 3,
       "sekolah": [
-       "SDN 055",
-       "SMPN 030",
-       "SDN 021",
-       "SDN 007"
+       "TK Bhakti Ibu",
+       "SDN 112 & 161 Pekanbaru",
+       "MDTA Al-Furqon"
       ],
-      "snap": false,
-      "jarak_rata_m": 281.9
+      "snap": true,
+      "jarak_rata_m": 78.6
      }
     },
     {
@@ -1419,21 +2658,20 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.44424228476016,
-       0.5034339731601823
+       101.45686994281635,
+       0.5146943397165775
       ]
      },
      "properties": {
       "rank": 9,
-      "jumlah_sekolah": 4,
+      "jumlah_sekolah": 3,
       "sekolah": [
-       "SMA Negeri 5 Pekanbaru",
-       "Sekolah (tanpa nama di OSM)",
-       "MTS Hasanah",
-       "MAN 1"
+       "SMPN 13 Pekanbaru",
+       "SMA Santa Maria Pekanbaru",
+       "SMP Santa Maria Pekanbaru"
       ],
-      "snap": false,
-      "jarak_rata_m": 333.8
+      "snap": true,
+      "jarak_rata_m": 104.8
      }
     },
     {
@@ -1441,25 +2679,2230 @@
      "geometry": {
       "type": "Point",
       "coordinates": [
-       101.4580350333191,
-       0.46183279998743404
+       101.4371499,
+       0.5806287
       ]
      },
      "properties": {
       "rank": 10,
       "jumlah_sekolah": 3,
       "sekolah": [
-       "SDN 028",
-       "SDN 171",
-       "SDN 141"
+       "SLB Cendana Pekanbaru",
+       "SD Cendana Pekanbaru",
+       "TK Cendana Pekanbaru"
       ],
-      "snap": false,
-      "jarak_rata_m": 28.9
+      "snap": true,
+      "jarak_rata_m": 194.2
      }
     }
    ]
   }
  },
+ "sekolah500": [
+  {
+   "uid": "osm-a10",
+   "nama": "TK, SMP, SMA Budhi Luhur",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 268.7,
+   "halte_terdekat": "Halte Bundaran Chevron",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a100",
+   "nama": "SKMA Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1412.3,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a101",
+   "nama": "SMP Muhammadiyah 4 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 2278.5,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a102",
+   "nama": "SMP SMK STTP YAYASAN DWI SEJAHTERA",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1127.3,
+   "halte_terdekat": "Halte ICS",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a103",
+   "nama": "SMA Al Azhar Syifa Budi Pekanbaru II",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 817.5,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a104",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 689,
+   "halte_terdekat": "Ramayana 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a105",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 666.8,
+   "halte_terdekat": "Ramayana 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a106",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 662.7,
+   "halte_terdekat": "Babussalam 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a107",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 595,
+   "halte_terdekat": "Babussalam 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a108",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 779.9,
+   "halte_terdekat": "Ramayana 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a109",
+   "nama": "MTsN 1 Kota Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 98.6,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a11",
+   "nama": "SDN 008",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 171.2,
+   "halte_terdekat": "Halte Bundaran Chevron",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a110",
+   "nama": "SD Negeri 51 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 89.5,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a111",
+   "nama": "SMA Negeri 9 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 363.4,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a112",
+   "nama": "SD Negeri 36 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 353.1,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a113",
+   "nama": "SMK Negeri 1 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 441.3,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a114",
+   "nama": "SD Negeri 88 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 530.8,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a115",
+   "nama": "Sekolah Luar Biasa Sri Mujinab",
+   "jenjang": "SLB",
+   "sumber": "osm",
+   "jarak_halte_m": 617.4,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a116",
+   "nama": "TK Negeri Pembina I",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 236.3,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a117",
+   "nama": "SMP Kartika 1-5",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 276.8,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a118",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1008.2,
+   "halte_terdekat": "Delima 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a119",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1575.4,
+   "halte_terdekat": "Babussalam 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a12",
+   "nama": "SMA Negeri 3 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 295.9,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a120",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1371.3,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a121",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1167.3,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a122",
+   "nama": "SD Negeri 80 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 3096.5,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a123",
+   "nama": "Madrasah Ibtidayah Al-Farih",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 4331.3,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a124",
+   "nama": "SD Negeri 131 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 2126.2,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a125",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 153.4,
+   "halte_terdekat": "Bank Riau Kepri Syariah",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a126",
+   "nama": "MTsS Pondok Pesantren As-Sabiqunal Awwalun Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1853.9,
+   "halte_terdekat": "Simpang Kartama 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a127",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 536.5,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a128",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1055.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a129",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 922.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a13",
+   "nama": "SMK Negeri 5 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 194,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a130",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1530.8,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a131",
+   "nama": "Witama School Tanjung Datuk",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1827.3,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a132",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 284.7,
+   "halte_terdekat": "Babussalam 1",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a133",
+   "nama": "MIN 1 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 218.3,
+   "halte_terdekat": "Kaca Mayang",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a134",
+   "nama": "Sekolah Tahfidz Al-Qur'an MI Hamidum Majid",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1675.6,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a135",
+   "nama": "SDN 059 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1361.7,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a136",
+   "nama": "SMPN 37 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1173.6,
+   "halte_terdekat": "Kasah",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a137",
+   "nama": "SMA Cendana Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1251.3,
+   "halte_terdekat": "Halte smkn olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a138",
+   "nama": "SD Cendana Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1152.1,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a139",
+   "nama": "SMP Cendana Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 2014.3,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a14",
+   "nama": "SDN 021",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 338.8,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a140",
+   "nama": "Yayasan At-Thoiba",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1409.7,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a141",
+   "nama": "SLB Cendana Pekanbaru",
+   "jenjang": "SLB",
+   "sumber": "osm",
+   "jarak_halte_m": 895.5,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a142",
+   "nama": "TK Cendana Pekanbaru",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 704.5,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a143",
+   "nama": "SDN 26 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 656.5,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a144",
+   "nama": "SDN 158 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 652.2,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a145",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 502.2,
+   "halte_terdekat": "Gelanggang Remaja",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a146",
+   "nama": "Madrasah Aliyah Vokasi Al-Fajar",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1639.3,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a147",
+   "nama": "MI/MTs Al-Bukhari",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1332.4,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a148",
+   "nama": "SMK Negeri 6 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 3267.1,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a149",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 579.1,
+   "halte_terdekat": "Halte Bus RS Tabrani",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a15",
+   "nama": "SMPN 030",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 281,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a150",
+   "nama": "SMA Negeri 8 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 743.6,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a151",
+   "nama": "Pesantren Khodijah",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1299.2,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a152",
+   "nama": "Komplek Sekolah Dasar Negeri",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 200.5,
+   "halte_terdekat": "MPP",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a153",
+   "nama": "SMA Darma Yudha",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 3526.8,
+   "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a154",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1553.2,
+   "halte_terdekat": "Simpang Kartama 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a155",
+   "nama": "SMK Pertanian Terpadu Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 971.9,
+   "halte_terdekat": "marpoyan-arengka",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a156",
+   "nama": "Pondok Pesantren Rabbani",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 880.5,
+   "halte_terdekat": "marpoyan-arengka",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a157",
+   "nama": "Sekolah Dasar Negeri 169 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1328,
+   "halte_terdekat": "marpoyan-arengka",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a158",
+   "nama": "MDTA Nurul Ikhlas",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 3105.7,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a159",
+   "nama": "Sekolah Menengah Pertama Negeri (SMPN) 26 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 801.6,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a16",
+   "nama": "SDN 007",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 755.1,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a160",
+   "nama": "MDA Al-Mujahiddin",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1530.5,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a161",
+   "nama": "Sekolah Menengah Pertama Negeri (SMPN) 9 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 3375.2,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a162",
+   "nama": "Sekolah Menengah Atas Negeri (SMAN) 10 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 3394,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a163",
+   "nama": "SMPN 22 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 2338.1,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a164",
+   "nama": "SMA Amal Mulia Boarding School",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1241.9,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a165",
+   "nama": "SMP Az-Zuhra Islamic School Simpang Tiga",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1979.1,
+   "halte_terdekat": "Kelapa Sawit 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a166",
+   "nama": "Yayasan Islam Nurul Madinah",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 169.9,
+   "halte_terdekat": "SD Pasir Putih 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a167",
+   "nama": "Sekolah Dasar Negeri 171 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 852.7,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a168",
+   "nama": "SMK Teknologi Riau",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2642.3,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a169",
+   "nama": "Pondok Pesantren Al-Munawwarah",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 2769.9,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a17",
+   "nama": "SDN 006",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 780.1,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a170",
+   "nama": "Sekolah Kusuma",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 2472.5,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a171",
+   "nama": "SDN 112 & 161 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 609.8,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a172",
+   "nama": "TK Bhakti Ibu",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 645.2,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a173",
+   "nama": "MDTA Al-Furqon",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 681.9,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a174",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 4031.8,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a175",
+   "nama": "SD Negeri 056 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 265.9,
+   "halte_terdekat": "RRI",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a176",
+   "nama": "SD Negeri 125 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 211.8,
+   "halte_terdekat": "RRI",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a177",
+   "nama": "MTSN 3 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 900.6,
+   "halte_terdekat": "Gelanggang Remaja",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a178",
+   "nama": "Sekolah Metta Maitreya",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 496.7,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a179",
+   "nama": "Sekolah Djuwita",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 710.8,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a18",
+   "nama": "SDN 016",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1043.9,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a180",
+   "nama": "SMP Islam YLPI",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 707.4,
+   "halte_terdekat": "Sam Ratulangi",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a181",
+   "nama": "SMA Serirama YLPI",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 683.6,
+   "halte_terdekat": "Sam Ratulangi",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a19",
+   "nama": "SDN 055",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 349.5,
+   "halte_terdekat": "Terminal Angkot Pasar Rumbai",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a20",
+   "nama": "SD An Namiroh 3",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1826.8,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a21",
+   "nama": "SMA Negeri 1 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 80.1,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a22",
+   "nama": "SMP Negeri 1 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 65.1,
+   "halte_terdekat": "Halte Smpn5",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a23",
+   "nama": "SMP Negeri 5 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 59.8,
+   "halte_terdekat": "Halte Smpn5",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a24",
+   "nama": "SMP Negeri 14 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 34.9,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a25",
+   "nama": "SMP Negeri 4 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 155.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a26",
+   "nama": "SMP Negeri 10 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 228.5,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a27",
+   "nama": "SMP Negeri 20 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 990.8,
+   "halte_terdekat": "Ramayana 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a28",
+   "nama": "SD Kartika 1-9",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 220.8,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a29",
+   "nama": "Pesantren",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1403.4,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a30",
+   "nama": "SMA Handayani",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 116.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a31",
+   "nama": "SMK 3 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 368.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a32",
+   "nama": "sd 081",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1632.7,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a33",
+   "nama": "SD Negeri 159 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 827.3,
+   "halte_terdekat": "Halte Busway Mall SKA Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a34",
+   "nama": "SMK Masmur Peknabaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1136.3,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a35",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1434.3,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a36",
+   "nama": "MTs Diniyah Puteri",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1158,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a37",
+   "nama": "SMP 32 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1425.7,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a38",
+   "nama": "SD 110 Sidomulyo Barat",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 166.5,
+   "halte_terdekat": "Delima 1",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a39",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 450.9,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a40",
+   "nama": "Singapore Education School",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 512.5,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a41",
+   "nama": "Gedung Sekolah Lama",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 720.3,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a42",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1335.5,
+   "halte_terdekat": "Halte TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a43",
+   "nama": "Ponpes Al-Uswah",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 964.8,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a44",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1229.4,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a45",
+   "nama": "tri bakti",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1094.1,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a46",
+   "nama": "SMK Taruna Rajawali",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1148.9,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a47",
+   "nama": "Ponpes Darel Hikmah",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1243.2,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a48",
+   "nama": "TK Insa Amanah",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 820,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a49",
+   "nama": "MAN 1",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1260.7,
+   "halte_terdekat": "Cempedak",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a50",
+   "nama": "MDA AL-khairat",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1424.3,
+   "halte_terdekat": "Cempedak",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a51",
+   "nama": "SMPN 17",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1561.8,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a52",
+   "nama": "MDTA/MDA Al-ManarBSA",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 700.9,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a53",
+   "nama": "SD Negeri",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 849.1,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a54",
+   "nama": "SD Raudhatul Rahmah",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 521.5,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a55",
+   "nama": "Madrasah Diniyah Awaliyah",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 1310.2,
+   "halte_terdekat": "Halte",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a56",
+   "nama": "SD Teladan",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 878.5,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a57",
+   "nama": "SD Muhammadiyah",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1034.3,
+   "halte_terdekat": "Halte",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a58",
+   "nama": "Sekolah Kristen Kalam Kudus",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1580.5,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a59",
+   "nama": "Sekolah Dasar Muhammadiyah 3 Unggulan",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1763.2,
+   "halte_terdekat": "Halte ICS",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a6",
+   "nama": "SMPN 6 Rumbai",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 778.6,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a60",
+   "nama": "SMKN 2 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 370.6,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a61",
+   "nama": "SDN 031",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1642.4,
+   "halte_terdekat": "Halte",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a62",
+   "nama": "SMA, SMK, SMP MUHAMMADIYAH",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1143.6,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a63",
+   "nama": "SMP Negeri 16 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 695.2,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a64",
+   "nama": "SMA PGRI",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 366,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a65",
+   "nama": "SMK PGRI",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 403,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a66",
+   "nama": "SMP PGRI",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 304.5,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a67",
+   "nama": "SMPN 029 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 927.5,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a68",
+   "nama": "Mts Taufiq Walhidayah",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 960.1,
+   "halte_terdekat": "Halte Stadion",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a69",
+   "nama": "Sekolah dasar",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 323.4,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a7",
+   "nama": "SDN 114",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 145.8,
+   "halte_terdekat": "Cempedak",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a70",
+   "nama": "Az-zuhra School",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 2067.3,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a71",
+   "nama": "Pondok Pesantren Babussalam",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 62.7,
+   "halte_terdekat": "Babussalam 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a72",
+   "nama": "Al-Izhar School Pekanbaru",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1023.1,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a73",
+   "nama": "Yayasan Anur",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 357.3,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a74",
+   "nama": "C9 School",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1540.6,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a75",
+   "nama": "Witama National Plus",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1812.2,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a76",
+   "nama": "Future Islamic School",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 827.5,
+   "halte_terdekat": "Halte Busway Mall SKA Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a77",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 204.8,
+   "halte_terdekat": "Babussalam 1",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a78",
+   "nama": "SD Santa Maria 2 Labuh Baru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1962.1,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a79",
+   "nama": "SMP/SMA Setia Dharma",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 651.4,
+   "halte_terdekat": "Sam Ratulangi",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a8",
+   "nama": "MTS Hasanah",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 479.3,
+   "halte_terdekat": "Cempedak",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a80",
+   "nama": "SMP Negeri 2 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 615.3,
+   "halte_terdekat": "Sam Ratulangi",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a81",
+   "nama": "Paud YLPI",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 691.5,
+   "halte_terdekat": "Sam Ratulangi",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a82",
+   "nama": "SD Santa Maria Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 587.8,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a83",
+   "nama": "SMPN 13 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 603.8,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a84",
+   "nama": "SMA-YLPI",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 317.3,
+   "halte_terdekat": "UIR 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a85",
+   "nama": "SMAN 4 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1713.7,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a86",
+   "nama": "SMPN 8 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1819.4,
+   "halte_terdekat": "Halte ICS",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a87",
+   "nama": "Taman Kanak - Kanak",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 1064.8,
+   "halte_terdekat": "Halte TMP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a88",
+   "nama": "Darma Yudha Elementary School",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 2900.1,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a89",
+   "nama": "Sekolah (tanpa nama di OSM)",
+   "jenjang": "Tidak diketahui",
+   "sumber": "osm",
+   "jarak_halte_m": 1273.8,
+   "halte_terdekat": "Halte Bundaran Chevron",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a9",
+   "nama": "MAN 2 Kota Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 115.9,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-a90",
+   "nama": "TK dan PAUD Stanley",
+   "jenjang": "TK/PAUD",
+   "sumber": "osm",
+   "jarak_halte_m": 1486.3,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a91",
+   "nama": "SD Negeri 9 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1374.4,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a92",
+   "nama": "Sekolah Menengah Kejuruan ITTR Plus",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 757.2,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a93",
+   "nama": "Taman Pendidikan Al-Qur'an YLPi",
+   "jenjang": "Pesantren/Diniyah",
+   "sumber": "osm",
+   "jarak_halte_m": 778.6,
+   "halte_terdekat": "Telkom",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a94",
+   "nama": "Sekolah Dasar Negeri 4 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 682.4,
+   "halte_terdekat": "Halte Smpn5",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a95",
+   "nama": "SMP Nurul Falah",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1013.6,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a96",
+   "nama": "Sekolah Dasar Negeri 3 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 973.1,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a97",
+   "nama": "SD Negeri 27 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1342,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a98",
+   "nama": "SMPN 25 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1248.1,
+   "halte_terdekat": "Simpang Kartama 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-a99",
+   "nama": "SDN 66 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 26.6,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t100",
+   "nama": "SMP IT Badrul Islam",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1581.5,
+   "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t101",
+   "nama": "SMP Negeri 45 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 3343.4,
+   "halte_terdekat": "Terminal Bandar Raya Payung Sekaki",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t32",
+   "nama": "SMA Negeri 12 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1465.1,
+   "halte_terdekat": "Aur Kuning 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t35",
+   "nama": "SDN 028",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 539.4,
+   "halte_terdekat": "Puskesmas Simpang Tiga 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t36",
+   "nama": "SDN 141",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 583.2,
+   "halte_terdekat": "Puskesmas Simpang Tiga 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t37",
+   "nama": "SDN 171",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 546.4,
+   "halte_terdekat": "Puskesmas Simpang Tiga 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t38",
+   "nama": "SMA Negeri 5 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1021.6,
+   "halte_terdekat": "Cempedak",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t39",
+   "nama": "SDN",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 35.9,
+   "halte_terdekat": "SD Pasir Putih 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t40",
+   "nama": "SDN 110 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1664.7,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t41",
+   "nama": "SMP Negri 12 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 2152.4,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t42",
+   "nama": "SMKN 7 PEKANBARU",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 57.4,
+   "halte_terdekat": "Halte smkn olahraga",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t43",
+   "nama": "SDN 150 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1047.6,
+   "halte_terdekat": "Halte smkn olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t44",
+   "nama": "SMK Telkom Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1687.9,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t45",
+   "nama": "SD 147",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1417.5,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t47",
+   "nama": "SMAN 7 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2005.3,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t48",
+   "nama": "SD Negri 36 Senapelan, Kampung Baru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 2150,
+   "halte_terdekat": "Hotel Furaya",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t49",
+   "nama": "SMK Kansai Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 424.3,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t51",
+   "nama": "SMK KEHUTANAN",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1579,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t53",
+   "nama": "SMK Dharma Loka",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2361.9,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t54",
+   "nama": "SD Negeri 70 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 2586,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t55",
+   "nama": "SD Negri 100 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1596.4,
+   "halte_terdekat": "RRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t56",
+   "nama": "SMP Santa Maria Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 725,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t57",
+   "nama": "SMA Santa Maria Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 727.1,
+   "halte_terdekat": "Halte MAN Model",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t58",
+   "nama": "SD Negri 41 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1769.8,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t59",
+   "nama": "SMP Negri 3 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1720.2,
+   "halte_terdekat": "RRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t60",
+   "nama": "SMA Taruna Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1913.8,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t61",
+   "nama": "SMP Negri 18 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 2152.5,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t62",
+   "nama": "SD Negri 73 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1956.6,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t63",
+   "nama": "SD Negri 5 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1388.2,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t64",
+   "nama": "SD Negri 124 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1634,
+   "halte_terdekat": "Halte Patung Kuda",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t65",
+   "nama": "SD 138 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1775.1,
+   "halte_terdekat": "Halte Trans Metro Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t66",
+   "nama": "SMA NEGERI 2 PEKANBARU",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1573.8,
+   "halte_terdekat": "RRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t67",
+   "nama": "SMP Negeri 7 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1609.7,
+   "halte_terdekat": "Halte Smpn5",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t68",
+   "nama": "SMA Plus Bina Bangsa",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1405.4,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t69",
+   "nama": "SMP Islam Terpadu Al - Hafit",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 1965.7,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t70",
+   "nama": "SD Negri 195",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 2717,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t71",
+   "nama": "SMA Negri 16",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 3138.8,
+   "halte_terdekat": "Halte Bundaran Chevron",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t72",
+   "nama": "TK/SD HAFIDZ F3",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1323.9,
+   "halte_terdekat": "Halte Simpang Jengkol",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t73",
+   "nama": "sd momon dan fauzan",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 117.1,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t74",
+   "nama": "sdn adek aku valiyul morteza haq",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 157.8,
+   "halte_terdekat": "BUSWAY TMP",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t76",
+   "nama": "SMKN 4 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 819.1,
+   "halte_terdekat": "Purwodadi 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t78",
+   "nama": "SMA Negeri 15 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2546.7,
+   "halte_terdekat": "Purwodadi 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t80",
+   "nama": "SMA Negeri 12 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2356.4,
+   "halte_terdekat": "Halte Bus UNRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t81",
+   "nama": "SMA Negeri Olahraga",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 94.7,
+   "halte_terdekat": "Halte smkn olahraga",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t82",
+   "nama": "SMA Negeri 11 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 3325.2,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t83",
+   "nama": "SMA Negeri 14 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1781.2,
+   "halte_terdekat": "Kelapa Sawit 2",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t84",
+   "nama": "SMA Negeri 6 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 2562.9,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t85",
+   "nama": "SD IT Diniyah",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1147.6,
+   "halte_terdekat": "MPP",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t86",
+   "nama": "SMK Pelayaran",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 931.6,
+   "halte_terdekat": "RRI",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t87",
+   "nama": "SD Yayasan Perguruan Advent Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 1132,
+   "halte_terdekat": "Ramayana STC",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t88",
+   "nama": "SMK Bina Profesi Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1568,
+   "halte_terdekat": "Halte ICS",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t89",
+   "nama": "PG,TK, SD, Kuttab Islam dan Leadership Bintang Cendekia",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 1787,
+   "halte_terdekat": "Ramayana 1",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t90",
+   "nama": "SD IT Al-Fikri",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 559.9,
+   "halte_terdekat": "Pasar Dupa",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t91",
+   "nama": "SMP-SMA An Namiroh Pekanbaru",
+   "jenjang": "Campuran",
+   "sumber": "osm",
+   "jarak_halte_m": 460.6,
+   "halte_terdekat": "Delima 1",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t92",
+   "nama": "SMK Taruna Satria Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 390.2,
+   "halte_terdekat": "Delima 1",
+   "terlayani": true
+  },
+  {
+   "uid": "osm-t95",
+   "nama": "SD Negeri 178 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 4713.1,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t96",
+   "nama": "SMP Negeri 38 Pekanbaru",
+   "jenjang": "SMP/MTs",
+   "sumber": "osm",
+   "jarak_halte_m": 4039.9,
+   "halte_terdekat": "Halte Smpn5",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t97",
+   "nama": "SD Negeri 140 Pekanbaru",
+   "jenjang": "SD/MI",
+   "sumber": "osm",
+   "jarak_halte_m": 3553.6,
+   "halte_terdekat": "Halte Smpn 14",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t98",
+   "nama": "SMAN 18 Pekanbaru",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1270.5,
+   "halte_terdekat": "Halte (OSM)",
+   "terlayani": false
+  },
+  {
+   "uid": "osm-t99",
+   "nama": "SMAS Widya Graha",
+   "jenjang": "SMA/SMK/MA",
+   "sumber": "osm",
+   "jarak_halte_m": 1814.4,
+   "halte_terdekat": "Halte SDN 66 Pekanbaru",
+   "terlayani": false
+  },
+  {
+   "uid": "svy-17",
+   "nama": "Sd 149",
+   "jenjang": "SD/MI",
+   "sumber": "survei",
+   "jarak_halte_m": 719.8,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "svy-18",
+   "nama": "SD dan MTSN Al-Ittihad",
+   "jenjang": "SD/MI",
+   "sumber": "survei",
+   "jarak_halte_m": 767.1,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": false
+  },
+  {
+   "uid": "svy-25",
+   "nama": "Smp Al Ittihad",
+   "jenjang": "SMP/MTs",
+   "sumber": "survei",
+   "jarak_halte_m": 464.8,
+   "halte_terdekat": "Halte SMK Olahraga",
+   "terlayani": true
+  }
+ ],
+ "kandidatJalan": [
+  {
+   "nama": "Jalan tanpa nama",
+   "jenis": "tertiary",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Cempaka",
+   "jenis": "tertiary",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Perumahan Al Bayyinat Residence",
+   "jenis": "residential",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Damai Perum",
+   "jenis": "residential",
+   "d": 643.53705779
+  },
+  {
+   "nama": "Jalan Durian",
+   "jenis": "secondary",
+   "d": 173.40865401
+  },
+  {
+   "nama": "Jalan tanpa nama",
+   "jenis": "residential",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Paus Rumbai",
+   "jenis": "tertiary",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Beringin",
+   "jenis": "residential",
+   "d": 0
+  },
+  {
+   "nama": "Jalan Wr. Supratman Ujung",
+   "jenis": "residential",
+   "d": 0
+  },
+  {
+   "nama": "Enau Chevron",
+   "jenis": "residential",
+   "d": 0
+  }
+ ],
  "halte": [
   {
    "id": 1,
@@ -1499,6 +4942,586 @@
    "coord": [
     101.4290761,
     0.5736546
+   ]
+  },
+  {
+   "id": 103,
+   "nama": "Terminal Angkot Pasar Rumbai",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4418851,
+    0.5600953
+   ]
+  },
+  {
+   "id": 104,
+   "nama": "Halte Bus UNRI",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3783029,
+    0.4749581
+   ]
+  },
+  {
+   "id": 105,
+   "nama": "Terminal Bandar Raya Payung Sekaki",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3890209,
+    0.5017825
+   ]
+  },
+  {
+   "id": 106,
+   "nama": "Halte (OSM)",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4543881,
+    0.4817757
+   ]
+  },
+  {
+   "id": 107,
+   "nama": "Halte Stadion Rumbai",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4290097,
+    0.5742683
+   ]
+  },
+  {
+   "id": 108,
+   "nama": "Halte MAN Model",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4522372,
+    0.5112581
+   ]
+  },
+  {
+   "id": 109,
+   "nama": "marpoyan-arengka",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4378863,
+    0.4244412
+   ]
+  },
+  {
+   "id": 110,
+   "nama": "Halte ICS",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4318115,
+    0.4782876
+   ]
+  },
+  {
+   "id": 111,
+   "nama": "Halte Simpang Pasir Putih",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4497522,
+    0.4410764
+   ]
+  },
+  {
+   "id": 112,
+   "nama": "Halte SMK Olahraga",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4301264,
+    0.5753029
+   ]
+  },
+  {
+   "id": 113,
+   "nama": "Halte Trans Metro Pekanbaru",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4183844,
+    0.4600517
+   ]
+  },
+  {
+   "id": 114,
+   "nama": "Halte Bundaran Chevron",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4469042,
+    0.5707122
+   ]
+  },
+  {
+   "id": 115,
+   "nama": "MPP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4473116,
+    0.5141301
+   ]
+  },
+  {
+   "id": 116,
+   "nama": "Halte Syariah",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3542057,
+    0.4675941
+   ]
+  },
+  {
+   "id": 117,
+   "nama": "Halte TMP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3730218,
+    0.4641388
+   ]
+  },
+  {
+   "id": 118,
+   "nama": "Halte TMP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3741545,
+    0.464375
+   ]
+  },
+  {
+   "id": 119,
+   "nama": "Halte",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3945433,
+    0.4905998
+   ]
+  },
+  {
+   "id": 120,
+   "nama": "Halte Trans Metro Pekanbaru",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3574798,
+    0.4665156
+   ]
+  },
+  {
+   "id": 121,
+   "nama": "Halte bus TMP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3687009,
+    0.4644862
+   ]
+  },
+  {
+   "id": 122,
+   "nama": "Halte TMP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.3683811,
+    0.4641939
+   ]
+  },
+  {
+   "id": 123,
+   "nama": "Halte BNI",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4515854,
+    0.5055828
+   ]
+  },
+  {
+   "id": 124,
+   "nama": "Purwodadi 1",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4020522,
+    0.4640069
+   ]
+  },
+  {
+   "id": 125,
+   "nama": "Halte Patung Kuda",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4202396,
+    0.5010246
+   ]
+  },
+  {
+   "id": 126,
+   "nama": "Halte Bus RS Tabrani",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.449912,
+    0.5085644
+   ]
+  },
+  {
+   "id": 127,
+   "nama": "BUSWAY TMP",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.5158368,
+    0.4756852
+   ]
+  },
+  {
+   "id": 128,
+   "nama": "Halte SDN 66 Pekanbaru",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4567195,
+    0.4994902
+   ]
+  },
+  {
+   "id": 129,
+   "nama": "Kantor Pos",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4476175,
+    0.5216611
+   ]
+  },
+  {
+   "id": 130,
+   "nama": "Halte Transit RS Awal Bros",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4555213,
+    0.4962015
+   ]
+  },
+  {
+   "id": 131,
+   "nama": "Halte Busway Mall SKA Pekanbaru",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4185641,
+    0.5003736
+   ]
+  },
+  {
+   "id": 132,
+   "nama": "Ramayana 1",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4107404,
+    0.4639015
+   ]
+  },
+  {
+   "id": 133,
+   "nama": "Babussalam 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4076433,
+    0.464041
+   ]
+  },
+  {
+   "id": 134,
+   "nama": "Babussalam 1",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4070712,
+    0.4639405
+   ]
+  },
+  {
+   "id": 135,
+   "nama": "Delima 1",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4033782,
+    0.4639897
+   ]
+  },
+  {
+   "id": 136,
+   "nama": "Purwodadi 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4006838,
+    0.4641539
+   ]
+  },
+  {
+   "id": 137,
+   "nama": "Halte Bus Taman Makam Pahlawan",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4501715,
+    0.5086669
+   ]
+  },
+  {
+   "id": 138,
+   "nama": "Ramayana STC",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4473373,
+    0.5290927
+   ]
+  },
+  {
+   "id": 139,
+   "nama": "Sam Ratulangi",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4474104,
+    0.532828
+   ]
+  },
+  {
+   "id": 140,
+   "nama": "Hotel Furaya",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.447417,
+    0.5352944
+   ]
+  },
+  {
+   "id": 141,
+   "nama": "Mal Pekanbaru",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4477314,
+    0.5319797
+   ]
+  },
+  {
+   "id": 142,
+   "nama": "Kaca Mayang",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4476485,
+    0.5141879
+   ]
+  },
+  {
+   "id": 143,
+   "nama": "Halte Simpang Jengkol",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.5171425,
+    0.4898678
+   ]
+  },
+  {
+   "id": 144,
+   "nama": "SD Pasir Putih 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.450041,
+    0.4406772
+   ]
+  },
+  {
+   "id": 145,
+   "nama": "Simpang Kartama 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4488603,
+    0.4423394
+   ]
+  },
+  {
+   "id": 146,
+   "nama": "UIR 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4514865,
+    0.4486271
+   ]
+  },
+  {
+   "id": 147,
+   "nama": "Kelapa Sawit 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4527449,
+    0.4537301
+   ]
+  },
+  {
+   "id": 148,
+   "nama": "Aur Kuning 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4525813,
+    0.4561579
+   ]
+  },
+  {
+   "id": 149,
+   "nama": "Puskesmas Simpang Tiga 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4532729,
+    0.4633438
+   ]
+  },
+  {
+   "id": 150,
+   "nama": "Gelanggang Remaja",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4538727,
+    0.4749368
+   ]
+  },
+  {
+   "id": 151,
+   "nama": "Hotel Ratu Mayang Garden 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4540669,
+    0.4824052
+   ]
+  },
+  {
+   "id": 152,
+   "nama": "Kasah",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4543673,
+    0.4881142
+   ]
+  },
+  {
+   "id": 153,
+   "nama": "Pasar Dupa",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4552514,
+    0.4962273
+   ]
+  },
+  {
+   "id": 154,
+   "nama": "Simpang Harapan Raya 2",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4543093,
+    0.499215
+   ]
+  },
+  {
+   "id": 155,
+   "nama": "Bulog",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4530214,
+    0.5039321
+   ]
+  },
+  {
+   "id": 156,
+   "nama": "Cempedak",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4510134,
+    0.5062621
+   ]
+  },
+  {
+   "id": 157,
+   "nama": "Patimura",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4486398,
+    0.5114029
+   ]
+  },
+  {
+   "id": 158,
+   "nama": "Bank Riau Kepri Syariah",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4472908,
+    0.5194202
+   ]
+  },
+  {
+   "id": 159,
+   "nama": "RRI",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4473072,
+    0.5223325
+   ]
+  },
+  {
+   "id": 160,
+   "nama": "Telkom",
+   "sumber": "osm",
+   "kategori": "halte",
+   "coord": [
+    101.4476483,
+    0.5242619
    ]
   }
  ]

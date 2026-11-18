@@ -4,6 +4,7 @@ digraph G {
   titik [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#e6e6e6"><b>titik</b></td></tr><tr><td align="left">id (PK) serial</td></tr><tr><td align="left">nama text</td></tr><tr><td align="left">kategori (FK) text</td></tr><tr><td align="left">jenjang text</td></tr><tr><td align="left">deskripsi text</td></tr><tr><td align="left">sumber text</td></tr><tr><td align="left">osm_id text</td></tr><tr><td align="left">waktu_survei timestamptz</td></tr><tr><td align="left">duplikat_osm text</td></tr><tr><td align="left">geom geometry(Point,4326)</td></tr><tr><td align="left">created_at, updated_at</td></tr></table>>];
   area [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#e6e6e6"><b>area_sekolah</b></td></tr><tr><td align="left">id (PK) serial</td></tr><tr><td align="left">nama text</td></tr><tr><td align="left">sumber text</td></tr><tr><td align="left">osm_id text</td></tr><tr><td align="left">jenjang text</td></tr><tr><td align="left">tags jsonb</td></tr><tr><td align="left">pusat geometry(Point,4326)</td></tr><tr><td align="left">geom geometry(MultiPolygon,4326)</td></tr></table>>];
   jalur [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#e6e6e6"><b>jalur</b></td></tr><tr><td align="left">id (PK) serial</td></tr><tr><td align="left">nama text</td></tr><tr><td align="left">jenis text</td></tr><tr><td align="left">waktu_mulai timestamptz</td></tr><tr><td align="left">waktu_selesai timestamptz</td></tr><tr><td align="left">geom geometry(LineString,4326)</td></tr></table>>];
+  jalan [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#e6e6e6"><b>jalan</b></td></tr><tr><td align="left">id (PK) serial</td></tr><tr><td align="left">nama text</td></tr><tr><td align="left">kelas text</td></tr><tr><td align="left">osm_id text</td></tr><tr><td align="left">geom geometry(LineString,4326)</td></tr></table>>];
   vh [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4" style="dashed"><tr><td bgcolor="#f3f3f3"><i>view</i> <b>v_halte</b></td></tr><tr><td align="left">id, nama, sumber, geom</td></tr></table>>];
   vs [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#f3f3f3"><i>view</i> <b>v_sekolah_analisis</b></td></tr><tr><td align="left">uid, nama, jenjang, sumber, geom</td></tr></table>>];
   kategori -> titik [label="1 : n"];
@@ -11,4 +12,5 @@ digraph G {
   titik -> vs [style=dashed, arrowhead=normal, label="sekolah bukan duplikat"];
   area -> vs [style=dashed, arrowhead=normal, label="poligon OSM (pusat)"];
   jalur -> vs [style=invis];
+  jalan -> vs [style=invis];
 }
