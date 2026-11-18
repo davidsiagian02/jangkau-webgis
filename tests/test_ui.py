@@ -58,6 +58,49 @@ def page(servers):
         b.close()
 
 
+def test_nav_desktop_pil(page):
+    page.goto(BASE + "/")
+    pill = page.locator("nav.pill")
+    expect(pill).to_be_visible()
+    for teks in ("Beranda", "Peta", "Data"):
+        expect(pill.get_by_role("link", name=teks, exact=True)).to_be_visible()
+    assert page.locator("nav a[href*='admin']").count() == 0
+    expect(page.locator("nav.tabbar")).to_be_hidden()
+
+
+def test_nav_mobile_tabbar(page):
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.goto(BASE + "/data.html")
+    tab = page.locator("nav.tabbar")
+    expect(tab).to_be_visible()
+    expect(page.locator("nav.pill")).to_be_hidden()
+    assert tab.locator("a, button").count() == 4
+    expect(tab.locator("a[aria-current='page']")).to_have_text(re.compile("Data"))
+
+
+def test_admin_di_footer(page):
+    page.goto(BASE + "/")
+    expect(page.locator("footer a.masuk-pengelola")).to_have_attribute("href", "/admin.html")
+
+
+def test_tema_tersimpan(page):
+    page.goto(BASE + "/")
+    awal = page.evaluate("document.documentElement.dataset.theme")
+    page.locator("nav.pill [data-theme-toggle]").click()
+    baru = page.evaluate("document.documentElement.dataset.theme")
+    assert {awal, baru} == {"light", "dark"}
+    page.reload()
+    assert page.evaluate("document.documentElement.dataset.theme") == baru
+
+
+def test_tema_tanpa_localstorage(page):
+    page.add_init_script("Object.defineProperty(window, 'localStorage', { get() { throw new Error('diblokir'); } });")
+    page.goto(BASE + "/")
+    assert page.evaluate("document.documentElement.dataset.theme") in ("light", "dark")
+    page.locator("nav.pill [data-theme-toggle]").click()
+    assert page.errors == []
+
+
 def test_beranda_tanpa_peta(page):
     page.goto(BASE + "/")
     expect(page.locator("h1")).to_be_visible()
@@ -83,7 +126,7 @@ def test_peta_layer_dan_filter(page):
     page.goto(BASE + "/peta.html")
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
     assert page.locator("[data-layer-toggle]").count() >= 5
-    expect(page.locator("[data-sumber-badge]")).to_have_text(re.compile("Database PostGIS"))
+    expect(page.locator("[data-sumber-badge]")).to_have_text(re.compile("Data terkini"))
     page.screenshot(path=str(SHOTS / "02-peta.png"))
     page.locator("[data-layer-toggle='halte']").uncheck()
     assert page.evaluate("window.__jangkau.layers.halte.getVisible()") is False
@@ -125,7 +168,7 @@ def test_peta_mode_cadangan(page):
     page.route("**/api/**", lambda r: r.abort())
     page.goto(BASE + "/peta.html")
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
-    expect(page.locator("[data-sumber-badge]")).to_have_text(re.compile("Data cadangan"))
+    expect(page.locator("[data-sumber-badge]")).to_have_text(re.compile("Data salinan"))
     assert page.evaluate("window.__jangkau.layers.sekolah.getSource().getFeatures().length") > 100
     page.locator("[data-tab='analisis']").click()
     page.locator("[data-run-analysis]").click()

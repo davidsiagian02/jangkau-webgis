@@ -1,6 +1,6 @@
 import '@fontsource/source-serif-4/400.css';
 import '@fontsource/source-serif-4/600.css';
-import { initNav } from '../lib/layout.js';
+import { initLayout as initNav } from '../lib/layout.js';
 import '../styles/home.css';
 import { getAnalysis, getStats } from '../lib/api.js';
 import { JENJANG, RADIUS } from '../lib/config.js';

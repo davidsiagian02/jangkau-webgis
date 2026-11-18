@@ -1,4 +1,4 @@
-import { initNav, setBadge } from '../lib/layout.js';
+import { initLayout as initNav, setBadge } from '../lib/layout.js';
 import '../styles/data.css';
 import { getAnalysis, getStats } from '../lib/api.js';
 import { JENJANG } from '../lib/config.js';

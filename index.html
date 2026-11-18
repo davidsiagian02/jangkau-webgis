@@ -6,19 +6,40 @@
   <title>Jangkau — Akses halte ke sekolah di Pekanbaru</title>
   <meta name="description" content="WebGIS JANGKAU: jarak jalan kaki dari sekolah ke halte bus terdekat di Kota Pekanbaru, dengan analisis buffer dan rekomendasi halte baru." />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0D1626" media="(prefers-color-scheme: dark)" />
+  <script>try{var t=localStorage.getItem('jangkau-tema')}catch(e){}document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')</script>
+
 </head>
-<body class="page-home">
-  <header class="nav">
-    <a class="brand" href="/"><span class="brand-sign" aria-hidden="true">H</span>Jangkau</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <ul id="menu">
-      <li><a class="link" href="/" aria-current="page">Beranda</a></li>
-      <li><a class="link" href="/peta.html">Peta</a></li>
-      <li><a class="link" href="/data.html">Data</a></li>
-      <li><a class="link" href="/admin.html">Admin</a></li>
-    </ul>
-  </header>
-  <main>
+<body class="page-home" data-page="index">
+  <a class="lewati" href="#isi">Lewati ke konten</a>
+  <nav class="pill" aria-label="Navigasi utama">
+    <a class="merek" href="/" aria-label="Jangkau, ke beranda"><svg class="logo" aria-hidden="true" focusable="false" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="12" fill="#F2BE1A"/>
+  <circle cx="13.5" cy="34.5" r="6.8" fill="none" stroke="#13233F" stroke-width="1.9" opacity=".55"/>
+  <circle cx="13.5" cy="34.5" r="2.6" fill="#13233F"/>
+  <path d="M31 9v17.5a7 7 0 0 1-12.4 4.5" fill="none" stroke="#13233F" stroke-width="5.4" stroke-linecap="round"/>
+</svg><span>Jangkau</span></a>
+    <span class="pill-tautan">
+      <a href="/" aria-current="page">Beranda</a>
+      <a href="/peta.html">Peta</a>
+      <a href="/data.html">Data</a>
+    </span>
+    <button class="tombol-tema" type="button" data-theme-toggle aria-label="Ganti ke tema gelap"><svg viewBox="0 0 24 24" aria-hidden="true" class="ikon-tema"><circle cx="12" cy="12" r="4.2" class="matahari"/><path class="sinar" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/><path class="bulan" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+  </nav>
+  <a class="merek-hp" href="/" aria-label="Jangkau, ke beranda"><svg class="logo" aria-hidden="true" focusable="false" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="12" fill="#F2BE1A"/>
+  <circle cx="13.5" cy="34.5" r="6.8" fill="none" stroke="#13233F" stroke-width="1.9" opacity=".55"/>
+  <circle cx="13.5" cy="34.5" r="2.6" fill="#13233F"/>
+  <path d="M31 9v17.5a7 7 0 0 1-12.4 4.5" fill="none" stroke="#13233F" stroke-width="5.4" stroke-linecap="round"/>
+</svg><span>Jangkau</span></a>
+  <nav class="tabbar" aria-label="Navigasi utama">
+    <a href="/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg><span>Beranda</span></a>
+    <a href="/peta.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></svg><span>Peta</span></a>
+    <a href="/data.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.5h16M4 14.5h16M10 9.5V20"/></svg><span>Data</span></a>
+    <button type="button" data-theme-toggle aria-label="Ganti ke tema gelap"><svg viewBox="0 0 24 24" aria-hidden="true" class="ikon-tema"><circle cx="12" cy="12" r="4.2" class="matahari"/><path class="sinar" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/><path class="bulan" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Tema</span></button>
+  </nav>
+  <main id="isi">
     <section class="hero">
       <div class="hero-text">
         <h1>Seberapa dekat sekolah di Pekanbaru dengan halte bus?</h1>
@@ -90,9 +111,15 @@
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <p>Data peta © kontributor OpenStreetMap (lisensi ODbL). Data survei lapangan diambil 30 September 2026.</p>
-    <p>Project akhir Sistem Informasi Geografis, Politeknik Caltex Riau, 2026</p>
+  <footer class="kaki">
+    <div class="kaki-merek"><svg class="logo" aria-hidden="true" focusable="false" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="12" fill="#F2BE1A"/>
+  <circle cx="13.5" cy="34.5" r="6.8" fill="none" stroke="#13233F" stroke-width="1.9" opacity=".55"/>
+  <circle cx="13.5" cy="34.5" r="2.6" fill="#13233F"/>
+  <path d="M31 9v17.5a7 7 0 0 1-12.4 4.5" fill="none" stroke="#13233F" stroke-width="5.4" stroke-linecap="round"/>
+</svg><p><b>Jangkau</b><br />Jarak jalan kaki sekolah ke halte di Kota Pekanbaru.</p></div>
+    <p class="kaki-kecil">Data peta © kontributor <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Survei lapangan 30 September 2026.<br />Project akhir Sistem Informasi Geografis, Politeknik Caltex Riau, 2026.</p>
+    <a class="masuk-pengelola" href="/admin.html">Masuk pengelola</a>
   </footer>
   <script type="module" src="/src/pages/home.js"></script>
 </body>

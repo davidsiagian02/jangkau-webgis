@@ -1,4 +1,4 @@
-import { initNav } from '../lib/layout.js';
+import { initLayout as initNav } from '../lib/layout.js';
 import '../styles/admin.css';
 import Feature from 'ol/Feature.js';
 import Point from 'ol/geom/Point.js';

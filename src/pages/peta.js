@@ -1,4 +1,4 @@
-import { initNav, setBadge } from '../lib/layout.js';
+import { initLayout as initNav, setBadge } from '../lib/layout.js';
 import '../styles/peta.css';
 import Heatmap from 'ol/layer/Heatmap.js';
 import Feature from 'ol/Feature.js';
