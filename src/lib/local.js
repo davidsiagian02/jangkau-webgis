@@ -61,12 +61,15 @@ export function recommend(sekolahFC, halteFC, jalurFC, radius) {
   const kandidat = [];
   for (const members of groups.values()) {
     let p = turf.centroid(fc(members));
-    let snap = false;
+    let best = null;
     for (const line of jalurFC.features) {
       const n = turf.nearestPointOnLine(line, p, { units: 'kilometers' });
-      if (meter(p, n) <= SNAP_M) { p = turf.point(n.geometry.coordinates); snap = true; break; }
+      const d = meter(p, n);
+      if (d <= SNAP_M && (!best || d < best.d)) best = { d, n };
     }
-    const dilayani = tak.map((s) => ({ s, d: meter(p, s) })).filter((x) => x.d <= radius);
+    const snap = Boolean(best);
+    if (best) p = turf.point(best.n.geometry.coordinates);
+    const dilayani = tak.map((s) => ({ s, d: meter(p, s) })).filter((x) => x.d <= radius).sort((a, b) => a.d - b.d);
     if (!dilayani.length) continue;
     kandidat.push({ type: 'Feature', geometry: p.geometry, properties: {
       jumlah_sekolah: dilayani.length, sekolah: dilayani.map((x) => x.s.properties.nama), snap,
