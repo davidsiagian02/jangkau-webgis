@@ -1,0 +1,16 @@
+digraph G {
+  graph [fontname="Arial", dpi=200, nodesep=0.3, ranksep=0.32]; node [fontname="Arial", fontsize=10, shape=box, style=rounded, color="#333333"]; edge [color="#555555", fontname="Arial", fontsize=9];
+  m [label="Mulai: pengguna memilih radius r", shape=oval];
+  a [label="Ambil semua halte (v_halte)\ndan unit sekolah (v_sekolah_analisis)"];
+  b [label="Buffer: ST_Buffer(halte::geography, r)\nlalu ST_Union"];
+  c [label="Untuk setiap sekolah: jarak ke halte terdekat\nST_Distance(geography) ORDER BY LIMIT 1"];
+  d [label="jarak ≤ r ?", shape=diamond];
+  e [label="Status: terjangkau"]; f [label="Status: belum terjangkau"];
+  g [label="Kelompokkan sekolah belum terjangkau\nST_ClusterDBSCAN(UTM 47N, eps = r, minpoints = 2)"];
+  h [label="Centroid tiap kelompok = kandidat halte"];
+  i [label="Ada jalur survei ≤ 150 m ?", shape=diamond];
+  j [label="Tempel ke jalur\nST_ClosestPoint"]; k [label="Pakai centroid"];
+  l [label="Hitung sekolah yang terjangkau kandidat,\nurutkan, ambil 10 teratas"];
+  z [label="Tampilkan di peta, panel analisis,\ndan halaman Data", shape=oval];
+  m -> a -> b -> c -> d; d -> e [label="ya"]; d -> f [label="tidak"]; e -> z [style=dashed]; f -> g -> h -> i; i -> j [label="ya"]; i -> k [label="tidak"]; j -> l; k -> l; l -> z;
+}

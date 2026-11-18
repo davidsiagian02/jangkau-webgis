@@ -1,0 +1,8 @@
+digraph G {
+  rankdir=LR; graph [fontname="Arial", dpi=200, nodesep=0.25, ranksep=0.45]; node [fontname="Arial", fontsize=10, shape=box, style=rounded, color="#333333"]; edge [color="#555555", fontname="Arial", fontsize=9];
+  s1 [label="Survei Avenza\n(xls, kml)", shape=note]; s2 [label="Export Overpass\n(OSM kml)", shape=note];
+  p [label="build_data.py\nklasifikasi, pembersihan,\ndedup, hitung luas/panjang"];
+  o1 [label="db/seed.sql", shape=note]; o2 [label="public/data/*.geojson", shape=note];
+  db [label="PostGIS\n(npm run db:setup)", shape=cylinder]; w [label="Web (mode\ncadangan)"];
+  s1 -> p; s2 -> p; p -> o1 -> db; p -> o2 -> w;
+}

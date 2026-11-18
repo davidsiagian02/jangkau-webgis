@@ -1,0 +1,18 @@
+digraph G {
+  rankdir=LR; graph [fontname="Arial", fontsize=11, nodesep=0.35, ranksep=0.6, dpi=200];
+  node [shape=box, style="rounded", fontname="Arial", fontsize=11, color="#333333"];
+  edge [fontname="Arial", fontsize=9, color="#555555"];
+  user [label="Pengguna\n(browser)", shape=box];
+  subgraph cluster_v { label="Vercel"; fontname="Arial"; color="#888888"; style="dashed";
+    static [label="Halaman statis (Vite)\nBeranda, Peta, Data, Admin\nOpenLayers + Turf.js"];
+    api [label="Vercel Functions /api\nlayers, analysis, stats,\ntitik (CRUD), health"];
+    geo [label="GeoJSON cadangan\n/data/*.geojson"];
+  }
+  db [label="Neon PostgreSQL\n+ PostGIS", shape=cylinder];
+  tiles [label="Server tile basemap\nCARTO, OSM, Esri", shape=box];
+  user -> static [label="HTTP"];
+  static -> api [label="fetch JSON"];
+  api -> db [label="SQL spasial"];
+  static -> geo [label="jika API gagal", style=dashed];
+  static -> tiles [label="tile XYZ"];
+}

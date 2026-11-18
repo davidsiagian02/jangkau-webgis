@@ -25,7 +25,7 @@ const JARAK = `SELECT s.uid, s.nama, s.jenjang, s.sumber, s.geom, n.nama AS halt
   LEFT JOIN LATERAL (SELECT h.nama, ST_Distance(s.geom::geography, h.geom::geography) AS jarak
                      FROM v_halte h ORDER BY 2 LIMIT 1) n ON TRUE`;
 
-export const BUFFER_SEKOLAH = `${JARAK} ORDER BY s.uid`;
+export const BUFFER_SEKOLAH = `SELECT j.*, ST_AsGeoJSON(j.geom, 7)::json AS gj FROM (${JARAK}) j ORDER BY j.uid`;
 export const BUFFER_UNION = `SELECT ST_AsGeoJSON(ST_Union(ST_Buffer(geom::geography, $1, 16)::geometry), 7)::json AS geom FROM v_halte`;
 
 export const RECOMMEND = `

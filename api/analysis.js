@@ -19,7 +19,7 @@ async function buffer(r) {
     per[j].total += 1;
     if (ok) { per[j].terlayani += 1; terlayani += 1; }
     return { type: 'Feature', properties: { uid: s.uid, nama: s.nama, jenjang: s.jenjang, sumber: s.sumber,
-      jarak_halte_m: r1(s.jarak), halte_terdekat: s.halte_terdekat, terlayani: ok }, geometry: s.geom };
+      jarak_halte_m: r1(s.jarak), halte_terdekat: s.halte_terdekat, terlayani: ok }, geometry: s.gj };
   });
   const total = features.length;
   return { radius: r, buffer: u && u.geom ? fc([{ type: 'Feature', properties: { radius: r }, geometry: u.geom }]) : fc(),

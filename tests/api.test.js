@@ -69,6 +69,10 @@ test('analysis buffer: hasil sama dengan analisis cadangan (parity)', async () =
     assert.ok(Math.abs(p.jarak_halte_m - q.jarak_halte_m) <= Math.max(3, q.jarak_halte_m * 0.007), `${p.nama}: ${p.jarak_halte_m} vs ${q.jarak_halte_m}`);
     if (Math.abs(q.jarak_halte_m - 500) > 4) assert.equal(p.terlayani, q.terlayani, p.nama);
   }
+  for (const f of r.body.sekolah.features) {
+    assert.equal(f.geometry.type, 'Point');
+    assert.equal(f.geometry.coordinates.length, 2);
+  }
   assert.equal(r.body.buffer.features.length, 1);
   assert.ok(['Polygon', 'MultiPolygon'].includes(r.body.buffer.features[0].geometry.type));
   assert.deepEqual(Object.keys(r.body.ringkasan).sort(), ['per_jenjang', 'persen', 'terlayani', 'total']);

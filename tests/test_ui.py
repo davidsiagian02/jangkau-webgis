@@ -93,6 +93,8 @@ def test_peta_analisis_buffer_dan_rekomendasi(page):
     expect(page.locator("[data-hasil-sekolah] tbody tr").first).to_be_visible(timeout=20000)
     expect(page.locator("[data-rekomendasi] li").first).to_be_visible(timeout=20000)
     assert page.evaluate("window.__jangkau.layers.buffer.getSource().getFeatures().length") == 1
+    page.locator("[data-hasil-sekolah] tbody tr").first.click()  # zoom ke sekolah terjauh
+    page.wait_for_timeout(600)
     page.screenshot(path=str(SHOTS / "03-analisis-buffer.png"))
     # spatial query klik
     page.locator("[data-click-mode]").check()

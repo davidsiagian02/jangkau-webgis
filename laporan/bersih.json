@@ -1,0 +1,92 @@
+{
+ "poligon_raw_total": 307,
+ "poligon_unik": 213,
+ "buang_nama": 28,
+ "contoh_buang": [
+  "IX 3",
+  "IX 2",
+  "VIII 1",
+  "VIII 2",
+  "VIII 3",
+  "VIII 4",
+  "IX 1",
+  "R. BK",
+  "IX 6",
+  "IX 7",
+  "IX 8",
+  "VII 7"
+ ],
+ "hasil_bersih": 176,
+ "grup_gabung": 2,
+ "contoh_gabung": [
+  [
+   "Madrasah Diniyah Awaliyah",
+   2
+  ],
+  [
+   "SMKN 2 Pekanbaru",
+   8
+  ]
+ ],
+ "tanpa_nama": 25,
+ "titik_raw": 73,
+ "buang_dalam": 1,
+ "titik_osm_akhir": 71,
+ "titik_osm_duplikat": 11,
+ "survei_duplikat": [
+  [
+   "Sd 149",
+   null
+  ],
+  [
+   "SD dan MTSN Al-Ittihad",
+   null
+  ],
+  [
+   "Sdn 51",
+   "osm-a110"
+  ],
+  [
+   "Sekolah Sman 1",
+   "osm-a21"
+  ],
+  [
+   "Sekolah Smpn 1",
+   "osm-a22"
+  ],
+  [
+   "Sman 3 Pekanbaru",
+   "osm-a12"
+  ],
+  [
+   "Smkn 5",
+   "osm-a13"
+  ],
+  [
+   "SMP 6",
+   "osm-a6"
+  ],
+  [
+   "Smp Al Ittihad",
+   null
+  ],
+  [
+   "Smpn 4",
+   "osm-a25"
+  ],
+  [
+   "Smpn 10",
+   "osm-a26"
+  ],
+  [
+   "Smpn 14",
+   "osm-a24"
+  ]
+ ],
+ "unit": {
+  "total": 239,
+  "osm_area": 176,
+  "osm_titik": 60,
+  "survei": 3
+ }
+}
