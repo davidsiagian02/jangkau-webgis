@@ -345,7 +345,7 @@ def build(src_dir, out_dir, seed_path):
     halte_raw = [h for h in halte_raw if halte_umum(h["tags"], h["nama"])]
     halte_osm = dedup_points(halte_raw, GABUNG_HALTE_M, key=lambda p, q: True, existing=survei_halte)
     for h in halte_osm:
-        titik.append({"nama": h["nama"] or "Halte (OSM)", "kategori": "halte", "jenjang": None,
+        titik.append({"nama": h["nama"] or "Halte tanpa nama", "kategori": "halte", "jenjang": None,
                       "deskripsi": h["tags"].get("route_ref") or h["tags"].get("network"), "sumber": "osm",
                       "osm_id": h["osm_id"], "waktu_survei": None, "geom": h["geom"]})
     for i, t in enumerate(titik, 1):

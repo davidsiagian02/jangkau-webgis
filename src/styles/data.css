@@ -1,10 +1,44 @@
-.data { max-width: 1180px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-8); }
-.data-head h1 { font-size: clamp(28px, 4vw, 40px); }
-.data-head p { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); color: var(--muted); }
-.data-sec { margin-top: var(--s-7); }
-.data-sec h2 { font-size: 22px; }
-.data-sec h3 { margin-top: var(--s-5); }
-.narrow { max-width: 560px; }
-[data-tabel-ringkasan] th { font-weight: 600; color: var(--ink); white-space: normal; }
-.filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s-3); max-width: 900px; margin: var(--s-3) 0; }
-@media (max-width: 720px) { .filters { grid-template-columns: 1fr 1fr; } }
+/* Halaman Data: tabel rapi di desktop, kartu bertumpuk di HP. */
+.data { max-width: var(--maks); margin: 0 auto; padding: 120px var(--s-5) var(--s-7); }
+.data-head { max-width: 760px; }
+.data-head h1 { font-size: clamp(30px, 4vw, 44px); margin-bottom: var(--s-3); }
+.data-head .lead { font-size: var(--t-18); color: var(--muted); margin: 0 0 var(--s-4); max-width: 60ch; }
+
+.data-sec { margin-top: var(--s-8); }
+.data-sec h2 { font-size: clamp(21px, 2.4vw, 26px); margin-bottom: var(--s-2); }
+.data-sec h3 { font-size: var(--t-18); margin: var(--s-6) 0 var(--s-3); }
+.data-sec > .hint { margin: 0 0 var(--s-4); max-width: 70ch; }
+.ringkasan { margin-top: var(--s-7); }
+.narrow { max-width: 640px; }
+[data-tabel-ringkasan] th { font-weight: 600; color: var(--text); background: none; white-space: normal; }
+[data-tabel-ringkasan] td { font-weight: 800; color: var(--ink); font-size: var(--t-16); }
+
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+.sec-head h2 { margin-bottom: var(--s-1); }
+.sec-head .hint { margin: 0; }
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s-3); margin: var(--s-5) 0 var(--s-4); }
+.filters .field { margin: 0; }
+[data-tabel-keputusan] td:nth-child(2) { font-weight: 600; color: var(--ink); }
+[data-tabel-rekomendasi] td.nama { max-width: 520px; }
+.unduhan { margin: var(--s-3) 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.unduhan a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 7px; border: 1px solid var(--line); border-radius: var(--r-pill);
+  background: var(--surface); color: var(--ink); font-weight: 600; text-decoration: none; transition: border-color var(--dur) var(--ease);
+}
+.unduhan a::before { content: ''; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); }
+.unduhan a:hover { border-color: var(--accent); }
+
+@media (max-width: 860px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .filters .field:first-child { grid-column: 1 / -1; }
+}
+
+/* HP (aturan kartu ada di base.css) */
+@media (max-width: 767px) {
+  .data { padding: 72px var(--s-4) var(--s-7); }
+  .data-head .lead { font-size: var(--t-16); }
+  .data-sec { margin-top: var(--s-7); }
+  .sec-head .btn { width: 100%; justify-content: center; }
+
+  .tumpuk td.no { display: none; }
+}

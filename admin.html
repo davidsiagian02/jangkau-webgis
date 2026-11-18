@@ -41,28 +41,36 @@
   </nav>
   <main class="admin" id="isi">
     <section class="login" data-login-box>
-      <h1>Kelola data titik</h1>
-      <p>Halaman ini untuk menambah, mengubah, dan menghapus titik di database. Masukkan password admin yang diatur di Vercel (environment variable <code>ADMIN_PASSWORD</code>).</p>
-      <form data-login-form>
-        <div class="field"><label for="pw">Password admin</label><input id="pw" type="password" autocomplete="current-password" data-password required /></div>
-        <button class="btn btn-primary" type="submit" data-login>Masuk</button>
-        <p class="error" data-login-error aria-live="polite"></p>
-      </form>
+      <div class="login-kartu">
+        <img src="/logo.svg" alt="" width="48" height="48" />
+        <h1>Masuk pengelola</h1>
+        <p>Halaman ini khusus untuk pengelola data Jangkau: menambah, mengubah, dan menghapus titik di peta.</p>
+        <form data-login-form>
+          <div class="field"><label for="pw">Kata sandi pengelola</label><input id="pw" type="password" autocomplete="current-password" data-password required /></div>
+          <button class="btn btn-primary" type="submit" data-login>Masuk</button>
+          <p class="error" data-login-error aria-live="polite"></p>
+        </form>
+        <a class="kembali" href="/">Kembali ke beranda</a>
+      </div>
     </section>
 
     <section class="admin-app" data-admin-app hidden>
+      <header class="admin-head">
+        <h1>Kelola titik</h1>
+        <button class="btn btn-small" type="button" data-logout>Keluar</button>
+      </header>
       <div class="admin-grid">
-        <div class="admin-map"><div id="map" class="map"></div><p class="hint map-hint">Klik peta untuk mengisi koordinat.</p></div>
+        <div class="admin-map"><div id="map" class="map"></div><p class="map-hint">Ketuk peta untuk mengisi lokasi titik.</p></div>
         <form class="admin-form" data-form novalidate>
           <h2 data-form-title>Tambah titik baru</h2>
           <div class="field"><label for="f-nama">Nama</label><input id="f-nama" name="nama" type="text" maxlength="120" required /></div>
-          <div class="field"><label for="f-kat">Kategori</label>
-            <select id="f-kat" name="kategori"><option value="sekolah">Sekolah</option><option value="halte">Halte</option><option value="fasilitas">Fasilitas pendukung</option><option value="literasi">Literasi</option></select></div>
+          <div class="field"><label for="f-kat">Jenis titik</label>
+            <select id="f-kat" name="kategori"><option value="sekolah">Sekolah</option><option value="halte">Halte bus</option><option value="fasilitas">Fasilitas pendukung</option><option value="literasi">Perpustakaan atau taman baca</option></select></div>
           <div class="field" data-jenjang-field><label for="f-jen">Jenjang</label><select id="f-jen" name="jenjang"></select></div>
           <div class="field"><label for="f-desk">Keterangan</label><textarea id="f-desk" name="deskripsi" rows="2" maxlength="500"></textarea></div>
           <div class="two">
-            <div class="field"><label for="f-lon">Bujur (lon)</label><input id="f-lon" name="lon" type="text" inputmode="decimal" required /></div>
-            <div class="field"><label for="f-lat">Lintang (lat)</label><input id="f-lat" name="lat" type="text" inputmode="decimal" required /></div>
+            <div class="field"><label for="f-lon">Bujur</label><input id="f-lon" name="lon" type="text" inputmode="decimal" placeholder="101.45" required /></div>
+            <div class="field"><label for="f-lat">Lintang</label><input id="f-lat" name="lat" type="text" inputmode="decimal" placeholder="0.51" required /></div>
           </div>
           <div class="form-actions"><button class="btn btn-primary" type="submit" data-simpan>Simpan titik</button><button class="btn" type="button" data-batal hidden>Batal ubah</button></div>
           <p data-form-msg aria-live="polite"></p>
@@ -70,11 +78,12 @@
       </div>
       <div class="admin-list">
         <div class="list-head"><h2>Daftar titik</h2>
-          <div class="field"><label for="f-filter" class="visually-hidden">Filter</label><select id="f-filter" data-filter><option value="">Semua titik</option><option value="admin">Input admin</option><option value="survei">Survei</option><option value="osm">OpenStreetMap</option><option value="halte">Halte saja</option></select></div>
-          <button class="btn btn-small" type="button" data-logout>Keluar</button></div>
-        <div class="table-wrap"><table data-tabel-titik>
-          <thead><tr><th class="num">ID</th><th>Nama</th><th>Kategori</th><th>Sumber</th><th>Koordinat</th><th>Aksi</th></tr></thead>
+          <div class="field"><label for="f-filter" class="sr-only">Tampilkan</label><select id="f-filter" data-filter><option value="">Semua titik</option><option value="admin">Tambahan pengelola</option><option value="survei">Survei lapangan</option><option value="osm">OpenStreetMap</option><option value="halte">Halte saja</option></select></div>
+        </div>
+        <div class="table-wrap tumpuk"><table data-tabel-titik>
+          <thead><tr><th class="num">No. titik</th><th>Nama</th><th>Jenis</th><th>Asal data</th><th>Lokasi</th><th>Aksi</th></tr></thead>
           <tbody></tbody></table></div>
+        <div class="lanjut"><p class="hint" data-titik-info></p><button type="button" class="btn" data-lebih-titik hidden>Tampilkan lebih banyak</button></div>
       </div>
     </section>
   </main>

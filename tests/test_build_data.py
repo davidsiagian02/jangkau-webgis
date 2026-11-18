@@ -129,7 +129,7 @@ def test_halte_osm_bukan_halte_umum_dibuang(full):
     for bukan in ("Travel Bintang Tasya", "Pertamina Retail UNRI", "Chevron Rumbai Bus Station"):
         assert bukan not in names
     assert names.count("Halte Bus UNRI") == 1  # 3 bangunan berdempetan digabung
-    assert "Kantor Pos" in names and "Halte (OSM)" in names
+    assert "Kantor Pos" in names and "Halte tanpa nama" in names
     assert 50 <= len(names) <= 61
 
 
@@ -178,4 +178,4 @@ def test_halte_osm_merge(tmp_path):
     titik = json.loads((tmp_path / "geo" / "titik.geojson").read_text())
     osm_halte = _props(titik, kategori="halte", sumber="osm")
     assert len(osm_halte) == 2
-    assert {"Halte A", "Halte (OSM)"} == {p["nama"] for p in osm_halte}
+    assert {"Halte A", "Halte tanpa nama"} == {p["nama"] for p in osm_halte}

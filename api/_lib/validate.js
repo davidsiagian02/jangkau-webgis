@@ -16,7 +16,7 @@ export function radius(v) {
 export function lonLat(lon, lat) {
   const x = Number(lon), y = Number(lat);
   if (lon === null || lat === null || lon === '' || lat === '' || !Number.isFinite(x) || !Number.isFinite(y)) {
-    throw new HttpError(400, 'Koordinat lon dan lat wajib diisi dengan angka');
+    throw new HttpError(400, 'Bujur dan lintang wajib diisi dengan angka');
   }
   if (y < BBOX.minLat || y > BBOX.maxLat || x < BBOX.minLon || x > BBOX.maxLon) {
     throw new HttpError(400, 'Koordinat berada di luar wilayah Kota Pekanbaru');

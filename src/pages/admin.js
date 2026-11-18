@@ -4,7 +4,7 @@ import Feature from 'ol/Feature.js';
 import Point from 'ol/geom/Point.js';
 import { fromLonLat, toLonLat } from 'ol/proj.js';
 import { adminLogin, createTitik, deleteTitik, listTitik, updateTitik } from '../lib/api.js';
-import { JENJANG, KATEGORI } from '../lib/config.js';
+import { JENJANG, JENJANG_LABEL, KATEGORI } from '../lib/config.js';
 import { escapeHtml } from '../lib/util.js';
 import { createMap, fasilitasStyle, halteStyle, klikStyle, literasiStyle, readFC, sekolahStyle, vectorLayer } from '../lib/map.js';
 
@@ -16,9 +16,12 @@ let key = null;
 let map = null;
 let rows = [];
 let editId = null;
+const PER_HALAMAN = 25;
+let batas = PER_HALAMAN;
 const form = $('[data-form]');
+const asal = (s) => ({ osm: 'OpenStreetMap', survei: 'Survei lapangan', admin: 'Tambahan pengelola' })[s] || s;
 
-form.jenjang.innerHTML = Object.keys(JENJANG).map((j) => `<option>${escapeHtml(j)}</option>`).join('');
+form.jenjang.innerHTML = Object.keys(JENJANG).map((j) => `<option value="${escapeHtml(j)}">${escapeHtml(JENJANG_LABEL[j] || j)}</option>`).join('');
 form.jenjang.value = 'Tidak diketahui';
 const syncJenjang = () => { $('[data-jenjang-field]').hidden = form.kategori.value !== 'sekolah'; };
 form.kategori.addEventListener('change', syncJenjang);
@@ -59,13 +62,18 @@ function renderTable() {
   const f = $('[data-filter]').value;
   const list = rows.filter((r) => !f || (f === 'halte' ? r.properties.kategori === 'halte' : r.properties.sumber === f))
     .sort((a, b) => b.properties.id - a.properties.id);
-  $('[data-tabel-titik] tbody').innerHTML = list.map((r) => {
+  $('[data-tabel-titik] tbody').innerHTML = list.slice(0, batas).map((r) => {
     const p = r.properties;
     const [lon, lat] = r.geometry.coordinates;
-    return `<tr data-id="${p.id}"><td class="num">${p.id}</td><td>${escapeHtml(p.nama)}</td><td>${escapeHtml(KATEGORI[p.kategori]?.nama || p.kategori)}</td>
-      <td>${escapeHtml(p.sumber)}</td><td>${lat.toFixed(5)}, ${lon.toFixed(5)}</td>
-      <td class="aksi"><button type="button" class="btn btn-small" data-edit>Ubah</button> <button type="button" class="btn btn-small btn-danger" data-hapus>Hapus</button></td></tr>`;
-  }).join('') || '<tr><td colspan="6">Belum ada titik.</td></tr>';
+    return `<tr data-id="${p.id}"><td class="num no" data-label="No. titik">${p.id}</td><td class="nama" data-label="Nama">${escapeHtml(p.nama)}</td><td data-label="Jenis">${escapeHtml(KATEGORI[p.kategori]?.nama || p.kategori)}</td>
+      <td data-label="Asal data">${escapeHtml(asal(p.sumber))}</td><td data-label="Lokasi">${lat.toFixed(5)}, ${lon.toFixed(5)}</td>
+      <td class="aksi" data-label="Aksi"><button type="button" class="btn btn-small" data-edit>Ubah</button> <button type="button" class="btn btn-small btn-danger" data-hapus>Hapus</button></td></tr>`;
+  }).join('') || '<tr class="kosong"><td colspan="6">Belum ada titik.</td></tr>';
+  const n = Math.min(batas, list.length);
+  $('[data-titik-info]').textContent = `Menampilkan ${n} dari ${list.length} titik.`;
+  const lebih = $('[data-lebih-titik]');
+  lebih.hidden = n >= list.length;
+  lebih.textContent = `Tampilkan ${Math.min(PER_HALAMAN, list.length - n)} titik lagi`;
 }
 
 function msg(text, isError) {
@@ -93,7 +101,7 @@ form.addEventListener('submit', async (e) => {
   btn.disabled = true;
   try {
     if (editId) await updateTitik(key, editId, body); else await createTitik(key, body);
-    msg(editId ? 'Perubahan titik tersimpan di database.' : 'Titik baru tersimpan di database.');
+    msg(editId ? 'Perubahan tersimpan.' : 'Titik baru tersimpan dan sudah tampil di peta.');
     resetForm();
     await refresh();
   } catch (err) {
@@ -103,7 +111,8 @@ form.addEventListener('submit', async (e) => {
   }
 });
 $('[data-batal]').addEventListener('click', () => { resetForm(); msg(''); });
-$('[data-filter]').addEventListener('change', renderTable);
+$('[data-filter]').addEventListener('change', () => { batas = PER_HALAMAN; renderTable(); });
+$('[data-lebih-titik]').addEventListener('click', () => { batas += PER_HALAMAN; renderTable(); });
 
 $('[data-tabel-titik]').addEventListener('click', async (e) => {
   const tr = e.target.closest('tr[data-id]');
@@ -119,7 +128,7 @@ $('[data-tabel-titik]').addEventListener('click', async (e) => {
     form.deskripsi.value = p.deskripsi || '';
     [form.lon.value, form.lat.value] = r.geometry.coordinates.map((c) => c.toFixed(6));
     syncJenjang();
-    $('[data-form-title]').textContent = `Ubah titik #${p.id}`;
+    $('[data-form-title]').textContent = `Ubah titik: ${p.nama}`;
     $('[data-simpan]').textContent = 'Simpan perubahan';
     $('[data-batal]').hidden = false;
     const c = fromLonLat(r.geometry.coordinates);
@@ -128,7 +137,7 @@ $('[data-tabel-titik]').addEventListener('click', async (e) => {
     form.nama.focus();
   }
   if (e.target.closest('[data-hapus]')) {
-    if (!window.confirm(`Hapus titik "${p.nama}" dari database?`)) return;
+    if (!window.confirm(`Hapus titik "${p.nama}"? Titik ini akan hilang dari peta.`)) return;
     try {
       await deleteTitik(key, p.id);
       msg(`Titik "${p.nama}" dihapus.`);

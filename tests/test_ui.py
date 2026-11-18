@@ -122,7 +122,7 @@ def teks_publik(page):
     }""")
 
 
-@pytest.mark.parametrize("path", ["/", "/peta.html"])
+@pytest.mark.parametrize("path", ["/", "/peta.html", "/data.html"])
 def test_bahasa_publik(page, path):
     page.goto(BASE + path)
     page.wait_for_timeout(1500)
@@ -236,7 +236,7 @@ def test_admin_crud(page):
     page.goto(BASE + "/admin.html")
     page.locator("[data-password]").fill("salah")
     page.locator("[data-login]").click()
-    expect(page.locator("[data-login-error]")).to_contain_text("Password admin salah")
+    expect(page.locator("[data-login-error]")).to_contain_text("Kata sandi salah")
     page.locator("[data-password]").fill(KEY)
     page.locator("[data-login]").click()
     expect(page.locator("[data-admin-app]")).to_be_visible(timeout=15000)
@@ -253,6 +253,39 @@ def test_admin_crud(page):
     page.once("dialog", lambda d: d.accept())
     row.locator("[data-hapus]").click()
     expect(page.locator("[data-tabel-titik] tbody tr", has_text="Halte Uji UI")).to_have_count(0, timeout=15000)
+    assert page.errors == []
+
+
+def test_data_tampilkan_lebih(page):
+    page.goto(BASE + "/data.html")
+    rows = page.locator("[data-tabel-keputusan] tbody tr")
+    expect(rows).to_have_count(25, timeout=20000)
+    page.locator("[data-lebih]").click()
+    expect(rows).to_have_count(50)
+    page.locator("[data-f-status]").select_option("ok")
+    expect(page.locator("[data-keputusan-info]")).to_contain_text("dari 55 sekolah")
+    assert page.errors == []
+
+
+def test_data_mobile(page):
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.goto(BASE + "/data.html")
+    row = page.locator("[data-tabel-keputusan] tbody tr").first
+    expect(row).to_be_visible(timeout=20000)
+    # baris tabel menjadi kartu bertumpuk: kepala tabel disembunyikan, sel diberi label sendiri
+    expect(page.locator("[data-tabel-keputusan] thead")).to_be_hidden()
+    assert page.evaluate("getComputedStyle(document.querySelector('[data-tabel-keputusan] tbody tr')).display") != "table-row"
+    assert row.locator("td[data-label]").count() >= 5
+    assert page.evaluate("document.documentElement.scrollWidth") <= 390
+    assert page.errors == []
+
+
+def test_admin_tanpa_istilah(page):
+    page.goto(BASE + "/admin.html")
+    expect(page.locator("[data-password]")).to_be_visible()
+    temuan = sorted(set(m.group(0) for m in TERLARANG.finditer(teks_publik(page))))
+    assert temuan == [], f"istilah teknis terlihat di halaman pengelola: {temuan}"
+    expect(page.locator("label[for='pw']")).to_have_text("Kata sandi pengelola")
     assert page.errors == []
 
 

@@ -24,7 +24,7 @@ export async function q(sql, values = []) {
       throw new HttpError(503, 'Tabel database belum dibuat. Jalankan "npm run db:setup" (lihat README).');
     }
     if (code.startsWith('08') || code === '57P01' || code === '3D000' || code === '28P01' || CONN_ERR.test(e.message)) {
-      throw new HttpError(503, 'Database tidak dapat dihubungi, coba beberapa saat lagi');
+      throw new HttpError(503, 'Server data tidak dapat dihubungi, coba beberapa saat lagi');
     }
     throw e;
   }

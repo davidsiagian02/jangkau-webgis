@@ -37,7 +37,7 @@ export function isAdmin(req) {
 }
 
 export function requireAdmin(req) {
-  if (!isAdmin(req)) throw new HttpError(401, 'Password admin salah atau belum diisi');
+  if (!isAdmin(req)) throw new HttpError(401, 'Kata sandi pengelola salah atau belum diisi');
 }
 
 export function allow(req, methods) {

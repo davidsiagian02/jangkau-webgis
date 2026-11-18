@@ -41,58 +41,72 @@
   </nav>
   <main class="data" id="isi">
     <header class="data-head">
-      <h1>Tabel data dan hasil analisis</h1>
-      <p>Semua angka di halaman ini dihitung dari database. <span class="badge" data-sumber-badge>Memuat data…</span></p>
+      <h1>Tabel jarak sekolah ke halte</h1>
+      <p class="lead">Angka di sini sama dengan yang tampil di peta. Anda bisa mencari sekolah, menyaringnya, lalu mengunduh tabelnya.</p>
+      <span class="badge" data-sumber-badge>Memuat data…</span>
     </header>
 
-    <section class="data-sec">
+    <section class="data-sec ringkasan">
       <h2>Ringkasan</h2>
       <div class="table-wrap narrow"><table data-tabel-ringkasan><tbody></tbody></table></div>
     </section>
 
     <section class="data-sec">
-      <h2>Jarak sekolah ke halte terdekat</h2>
-      <p class="hint">Diurutkan dari yang paling jauh. Status dihitung dengan radius yang dipilih.</p>
+      <div class="sec-head">
+        <div>
+          <h2>Jarak setiap sekolah ke halte terdekat</h2>
+          <p class="hint">Diurutkan dari yang paling jauh. Status mengikuti jarak jalan kaki yang Anda pilih.</p>
+        </div>
+        <button type="button" class="btn btn-small" data-unduh-csv>Unduh tabel (bisa dibuka di Excel)</button>
+      </div>
       <div class="filters">
-        <div class="field"><label for="cari">Cari sekolah</label><input id="cari" type="search" placeholder="Nama sekolah" data-cari /></div>
+        <div class="field"><label for="cari">Cari sekolah</label><input id="cari" type="search" placeholder="Contoh: SMP Negeri 14" data-cari /></div>
         <div class="field"><label for="f-jenjang">Jenjang</label><select id="f-jenjang" data-f-jenjang><option value="">Semua jenjang</option></select></div>
         <div class="field"><label for="f-status">Status</label><select id="f-status" data-f-status><option value="">Semua</option><option value="no">Belum terjangkau</option><option value="ok">Terjangkau</option></select></div>
-        <div class="field"><label for="f-radius">Radius</label><select id="f-radius" data-f-radius><option value="300">300 m</option><option value="500" selected>500 m</option><option value="1000">1 km</option></select></div>
+        <div class="field"><label for="f-radius">Jarak jalan kaki</label><select id="f-radius" data-f-radius><option value="300">300 m</option><option value="500" selected>500 m</option><option value="1000">1 km</option></select></div>
       </div>
-      <div class="table-wrap"><table data-tabel-keputusan>
-        <thead><tr><th class="num">No</th><th>Sekolah</th><th>Jenjang</th><th>Sumber</th><th>Halte terdekat</th><th class="num">Jarak</th><th class="num">Jalan kaki</th><th>Status</th></tr></thead>
+      <div class="table-wrap tumpuk"><table data-tabel-keputusan>
+        <thead><tr><th class="num">No</th><th>Sekolah</th><th>Jenjang</th><th>Asal data</th><th>Halte terdekat</th><th class="num">Jarak</th><th class="num">Jalan kaki</th><th>Status</th></tr></thead>
         <tbody></tbody></table></div>
-      <p class="hint" data-keputusan-info></p>
+      <div class="lanjut"><p class="hint" data-keputusan-info></p><button type="button" class="btn" data-lebih hidden>Tampilkan lebih banyak</button></div>
     </section>
 
     <section class="data-sec">
       <h2>Usulan halte baru</h2>
-      <div class="table-wrap"><table data-tabel-rekomendasi>
-        <thead><tr><th class="num">Peringkat</th><th class="num">Sekolah terjangkau</th><th>Sekolah</th><th class="num">Jarak rata-rata</th><th>Koordinat</th></tr></thead>
+      <p class="hint">Setiap usulan berada di tengah sekelompok sekolah yang belum terjangkau, lalu digeser ke jalan terdekat.</p>
+      <div class="table-wrap tumpuk"><table data-tabel-rekomendasi>
+        <thead><tr><th class="num">Urutan</th><th class="num">Sekolah terjangkau</th><th>Sekolah</th><th class="num">Jarak rata-rata</th><th>Lokasi</th></tr></thead>
         <tbody></tbody></table></div>
     </section>
 
     <section class="data-sec">
-      <h2>Area survei dibandingkan dengan OpenStreetMap</h2>
-      <div class="table-wrap"><table data-tabel-overlay>
-        <thead><tr><th>Area survei</th><th>Poligon OSM</th><th class="num">Luas survei</th><th class="num">Luas OSM</th><th class="num">Luas irisan</th><th class="num">IoU</th></tr></thead>
+      <h2>Batas sekolah hasil survei dibandingkan dengan OpenStreetMap</h2>
+      <p class="hint">Kecocokan 100% berarti batas yang kami ukur sama persis dengan batas di OpenStreetMap.</p>
+      <div class="table-wrap tumpuk"><table data-tabel-overlay>
+        <thead><tr><th>Hasil survei</th><th>Di OpenStreetMap</th><th class="num">Luas survei</th><th class="num">Luas di OpenStreetMap</th><th class="num">Luas yang bertumpuk</th><th class="num">Kecocokan</th></tr></thead>
         <tbody></tbody></table></div>
-      <h3>Fasilitas dan titik literasi di dalam area sekolah</h3>
-      <div class="table-wrap"><table data-tabel-fasilitas>
-        <thead><tr><th>Area</th><th>Sumber</th><th class="num">Jumlah</th><th>Titik</th></tr></thead>
+      <h3>Fasilitas dan tempat baca di dalam batas sekolah</h3>
+      <div class="table-wrap tumpuk"><table data-tabel-fasilitas>
+        <thead><tr><th>Sekolah</th><th>Asal data</th><th class="num">Jumlah</th><th>Isinya</th></tr></thead>
         <tbody></tbody></table></div>
     </section>
 
     <section class="data-sec">
-      <h2>Panjang jalur survei</h2>
-      <div class="table-wrap"><table data-tabel-jalur>
+      <h2>Panjang jalur yang disurvei</h2>
+      <div class="table-wrap tumpuk"><table data-tabel-jalur>
         <thead><tr><th>Jalur</th><th>Jenis</th><th class="num">Panjang</th><th class="num">Jalan kaki (5 km/jam)</th><th class="num">Sepeda (15 km/jam)</th></tr></thead>
         <tbody></tbody></table></div>
     </section>
 
     <section class="data-sec">
-      <h2>Unduh data</h2>
-      <p>Salinan GeoJSON yang sama dengan isi database: <a href="/data/titik.geojson" download>titik</a>, <a href="/data/area.geojson" download>area sekolah</a>, <a href="/data/jalur.geojson" download>jalur</a>, <a href="/data/sekolah_analisis.geojson" download>unit analisis sekolah</a>.</p>
+      <h2>Unduh berkas peta</h2>
+      <p>Data yang sama dalam bentuk berkas peta, bisa dibuka di aplikasi peta seperti QGIS:</p>
+      <ul class="unduhan">
+        <li><a href="/data/titik.geojson" download>Titik hasil survei dan halte</a></li>
+        <li><a href="/data/area.geojson" download>Batas sekolah</a></li>
+        <li><a href="/data/jalur.geojson" download>Jalur yang disurvei</a></li>
+        <li><a href="/data/sekolah_analisis.geojson" download>Sekolah beserta jaraknya ke halte</a></li>
+      </ul>
     </section>
   </main>
   <footer class="kaki">

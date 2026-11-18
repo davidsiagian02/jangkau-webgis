@@ -91,8 +91,8 @@ export async function getStats() {
 const adminHeaders = (key) => ({ 'Content-Type': 'application/json', 'x-admin-key': key });
 export async function adminLogin(key) {
   const r = await getJson('/api/health', { headers: { 'x-admin-key': key } });
-  if (!r.db) throw new Error('Database belum terhubung, halaman admin belum bisa dipakai.');
-  if (!r.admin) throw new Error('Password admin salah');
+  if (!r.db) throw new Error('Server data belum tersambung, jadi titik belum bisa diubah. Coba lagi nanti.');
+  if (!r.admin) throw new Error('Kata sandi salah. Coba lagi.');
   return true;
 }
 export const listTitik = () => getJson('/api/titik');

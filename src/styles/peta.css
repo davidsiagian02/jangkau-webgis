@@ -4,9 +4,6 @@
 .map-wrap, .map { position: absolute; inset: 0; }
 .map { background: var(--surface-2); outline: none; }
 
-/* peta dasar ikut gelap: OpenStreetMap dibalik warnanya, CARTO memakai versi gelapnya sendiri */
-[data-theme='dark'] [data-basemap='osm'] .basemap { filter: invert(.92) hue-rotate(180deg) saturate(.5) brightness(.95) contrast(.9); }
-[data-theme='dark'] [data-basemap='citra'] .basemap { filter: brightness(.85); }
 
 /* ---------- panel */
 .panel {

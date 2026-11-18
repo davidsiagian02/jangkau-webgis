@@ -205,6 +205,33 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); 
 @media (max-width: 767px) { .kaki { grid-template-columns: 1fr; padding-bottom: var(--s-6); } .masuk-pengelola { justify-self: start; } }
 
 /* ---------- transisi halaman & aksesibilitas gerak */
+/* baris "Menampilkan X dari Y" + tombol tampilkan lebih banyak di bawah tabel */
+.lanjut { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-3); }
+.lanjut .hint { margin: 0; }
+@media (max-width: 767px) { .lanjut .btn { width: 100%; justify-content: center; } }
+
+/* tabel yang ditumpuk menjadi kartu di HP (Data & Pengelola); tiap sel memakai data-label sebagai judulnya */
+@media (max-width: 767px) {
+  .tumpuk { border: 0; background: none; overflow: visible; border-radius: 0; }
+  .tumpuk thead { display: none; }
+  .tumpuk table, .tumpuk tbody, .tumpuk td { display: block; }
+  .tumpuk tbody { display: grid; gap: 10px; }
+  .tumpuk tr { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-2); padding: 12px 14px 8px; }
+  .tumpuk tbody tr:hover { background: var(--surface); }
+  .tumpuk td { display: flex; justify-content: space-between; gap: var(--s-4); padding: 5px 0 3px; border: 0; text-align: right; }
+  .tumpuk td::before { content: attr(data-label); color: var(--muted); font-weight: 400; text-align: left; flex: none; max-width: 45%; }
+  .tumpuk td.num { white-space: normal; }
+  .tumpuk td.nama { order: -1; display: block; text-align: left; font-size: var(--t-16); font-weight: 700; color: var(--ink); padding-bottom: 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+  .tumpuk td.nama::before, .tumpuk td.aksi::before { display: none; }
+  .tumpuk td.aksi { justify-content: flex-start; gap: var(--s-2); padding-top: 10px; }
+  .tumpuk tr.kosong td { display: block; text-align: left; }
+  .tumpuk tr.kosong td::before { content: none; }
+}
+
+/* peta dasar ikut gelap (Peta & Pengelola): OpenStreetMap dibalik warnanya, CARTO memakai versi gelapnya sendiri */
+[data-theme='dark'] [data-basemap='osm'] .basemap { filter: invert(.92) hue-rotate(180deg) saturate(.5) brightness(.95) contrast(.9); }
+[data-theme='dark'] [data-basemap='citra'] .basemap { filter: brightness(.85); }
+
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 220ms; animation-timing-function: var(--ease); }
 @media (prefers-reduced-motion: reduce) {
