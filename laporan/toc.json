@@ -1,0 +1,462 @@
+[
+ {
+  "level": 1,
+  "text": "KATA PENGANTAR",
+  "key": "KATA PENGANTAR"
+ },
+ {
+  "level": 1,
+  "text": "DAFTAR ISI",
+  "key": "DAFTAR ISI"
+ },
+ {
+  "level": 1,
+  "text": "DAFTAR GAMBAR",
+  "key": "DAFTAR GAMBAR"
+ },
+ {
+  "level": 1,
+  "text": "DAFTAR TABEL",
+  "key": "DAFTAR TABEL"
+ },
+ {
+  "level": 1,
+  "text": "BAB 1 PENDAHULUAN",
+  "key": "BAB 1"
+ },
+ {
+  "level": 2,
+  "text": "1.1 Latar Belakang",
+  "key": "1.1 Latar Belakang"
+ },
+ {
+  "level": 2,
+  "text": "1.2 Rumusan Masalah",
+  "key": "1.2 Rumusan Masalah"
+ },
+ {
+  "level": 2,
+  "text": "1.3 Batasan Masalah",
+  "key": "1.3 Batasan Masalah"
+ },
+ {
+  "level": 2,
+  "text": "1.4 Tujuan",
+  "key": "1.4 Tujuan"
+ },
+ {
+  "level": 2,
+  "text": "1.5 Manfaat",
+  "key": "1.5 Manfaat"
+ },
+ {
+  "level": 1,
+  "text": "BAB 2 LANDASAN TEORI",
+  "key": "BAB 2"
+ },
+ {
+  "level": 2,
+  "text": "2.1 Sistem Informasi Geografis",
+  "key": "2.1 Sistem Informasi Geografis"
+ },
+ {
+  "level": 2,
+  "text": "2.2 WebGIS",
+  "key": "2.2 WebGIS"
+ },
+ {
+  "level": 2,
+  "text": "2.3 OpenLayers",
+  "key": "2.3 OpenLayers"
+ },
+ {
+  "level": 2,
+  "text": "2.4 PostgreSQL dan PostGIS",
+  "key": "2.4 PostgreSQL dan PostGIS"
+ },
+ {
+  "level": 2,
+  "text": "2.5 Format Data dan Sistem Koordinat",
+  "key": "2.5 Format Data dan Sistem Koordinat"
+ },
+ {
+  "level": 2,
+  "text": "2.6 OpenStreetMap dan Overpass",
+  "key": "2.6 OpenStreetMap dan Overpass"
+ },
+ {
+  "level": 2,
+  "text": "2.7 Analisis Spasial",
+  "key": "2.7 Analisis Spasial"
+ },
+ {
+  "level": 3,
+  "text": "2.7.1 Analisis Buffer",
+  "key": "2.7.1 Analisis Buffer"
+ },
+ {
+  "level": 3,
+  "text": "2.7.2 Spatial Query dan Analisis Jarak",
+  "key": "2.7.2 Spatial Query dan Analisis Jarak"
+ },
+ {
+  "level": 3,
+  "text": "2.7.3 Analisis Overlay",
+  "key": "2.7.3 Analisis Overlay"
+ },
+ {
+  "level": 3,
+  "text": "2.7.4 Analisis Kepadatan (Heatmap)",
+  "key": "2.7.4 Analisis Kepadatan (Heatmap)"
+ },
+ {
+  "level": 3,
+  "text": "2.7.5 Pengelompokan DBSCAN",
+  "key": "2.7.5 Pengelompokan DBSCAN"
+ },
+ {
+  "level": 2,
+  "text": "2.8 Standar Jarak Jalan Kaki ke Halte",
+  "key": "2.8 Standar Jarak Jalan Kaki ke Halte"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 2.1 Jarak tempat henti menurut tata guna lahan",
+  "key": "Tabel 2.1 Jarak tempat henti menurut tata guna l"
+ },
+ {
+  "level": 2,
+  "text": "2.9 Vercel, Neon, dan Turf.js",
+  "key": "2.9 Vercel, Neon, dan Turf.js"
+ },
+ {
+  "level": 1,
+  "text": "BAB 3 ANALISIS DAN PERANCANGAN",
+  "key": "BAB 3"
+ },
+ {
+  "level": 2,
+  "text": "3.1 Studi Kasus",
+  "key": "3.1 Studi Kasus"
+ },
+ {
+  "level": 2,
+  "text": "3.2 Data yang Digunakan",
+  "key": "3.2 Data yang Digunakan"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.1 Data hasil survei lapangan",
+  "key": "Tabel 3.1 Data hasil survei lapangan"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.2 Data tambahan dari OpenStreetMap",
+  "key": "Tabel 3.2 Data tambahan dari OpenStreetMap"
+ },
+ {
+  "level": 2,
+  "text": "3.3 Pengolahan Data",
+  "key": "3.3 Pengolahan Data"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 3.1 Alur pengolahan data",
+  "key": "Gambar 3.1 Alur pengolahan data"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.3 Aturan penentuan jenjang sekolah",
+  "key": "Tabel 3.3 Aturan penentuan jenjang sekolah"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.4 Hasil pembersihan data sekolah OSM",
+  "key": "Tabel 3.4 Hasil pembersihan data sekolah OSM"
+ },
+ {
+  "level": 2,
+  "text": "3.4 Arsitektur Sistem",
+  "key": "3.4 Arsitektur Sistem"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 3.2 Arsitektur sistem WebGIS Jangkau",
+  "key": "Gambar 3.2 Arsitektur sistem WebGIS Jangkau"
+ },
+ {
+  "level": 2,
+  "text": "3.5 Perancangan Basis Data",
+  "key": "3.5 Perancangan Basis Data"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 3.3 Rancangan basis data",
+  "key": "Gambar 3.3 Rancangan basis data"
+ },
+ {
+  "level": 2,
+  "text": "3.6 Perancangan Analisis",
+  "key": "3.6 Perancangan Analisis"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 3.4 Alur analisis keterjangkauan dan usulan halte baru",
+  "key": "Gambar 3.4 Alur analisis keterjangkauan dan usul"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.5 Parameter analisis",
+  "key": "Tabel 3.5 Parameter analisis"
+ },
+ {
+  "level": 2,
+  "text": "3.7 Perancangan API",
+  "key": "3.7 Perancangan API"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.6 Daftar endpoint API",
+  "key": "Tabel 3.6 Daftar endpoint API"
+ },
+ {
+  "level": 2,
+  "text": "3.8 Perancangan Antarmuka dan Visualisasi",
+  "key": "3.8 Perancangan Antarmuka dan Visualisasi"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.7 Rancangan halaman",
+  "key": "Tabel 3.7 Rancangan halaman"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 3.8 Simbologi peta",
+  "key": "Tabel 3.8 Simbologi peta"
+ },
+ {
+  "level": 1,
+  "text": "BAB 4 IMPLEMENTASI DAN PEMBAHASAN",
+  "key": "BAB 4"
+ },
+ {
+  "level": 2,
+  "text": "4.1 Lingkungan Implementasi",
+  "key": "4.1 Lingkungan Implementasi"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.1 Lingkungan implementasi",
+  "key": "Tabel 4.1 Lingkungan implementasi"
+ },
+ {
+  "level": 2,
+  "text": "4.2 Implementasi Basis Data",
+  "key": "4.2 Implementasi Basis Data"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.2 Jumlah data di database",
+  "key": "Tabel 4.2 Jumlah data di database"
+ },
+ {
+  "level": 2,
+  "text": "4.3 Implementasi Halaman Web",
+  "key": "4.3 Implementasi Halaman Web"
+ },
+ {
+  "level": 3,
+  "text": "4.3.1 Halaman Beranda",
+  "key": "4.3.1 Halaman Beranda"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.1 Halaman Beranda",
+  "key": "Gambar 4.1 Halaman Beranda"
+ },
+ {
+  "level": 3,
+  "text": "4.3.2 Halaman Peta dan Filter Layer",
+  "key": "4.3.2 Halaman Peta dan Filter Layer"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.2 Halaman Peta dengan semua layer aktif",
+  "key": "Gambar 4.2 Halaman Peta dengan semua layer aktif"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.3 Filter jenjang: hanya sekolah SD/MI yang ditampilkan",
+  "key": "Gambar 4.3 Filter jenjang: hanya sekolah SD/MI y"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.4 Popup informasi sekolah dan area sekolah hasil survei di sekitar SMPN 6",
+  "key": "Gambar 4.4 Popup informasi sekolah dan area seko"
+ },
+ {
+  "level": 3,
+  "text": "4.3.3 Analisis Buffer dan Usulan Halte Baru",
+  "key": "4.3.3 Analisis Buffer dan Usulan Halte Baru"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.5 Hasil analisis buffer 500 m dan usulan halte baru",
+  "key": "Gambar 4.5 Hasil analisis buffer 500 m dan usula"
+ },
+ {
+  "level": 3,
+  "text": "4.3.4 Spatial Query: Cari Halte Terdekat",
+  "key": "4.3.4 Spatial Query: Cari Halte Terdekat"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.6 Spatial query: halte terdekat dan sekolah di sekitar titik yang diklik",
+  "key": "Gambar 4.6 Spatial query: halte terdekat dan sek"
+ },
+ {
+  "level": 3,
+  "text": "4.3.5 Peta Kepadatan Sekolah",
+  "key": "4.3.5 Peta Kepadatan Sekolah"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.7 Peta kepadatan sekolah (heatmap) dan usulan halte baru",
+  "key": "Gambar 4.7 Peta kepadatan sekolah (heatmap) dan "
+ },
+ {
+  "level": 3,
+  "text": "4.3.6 Overlay Area Survei dan OSM",
+  "key": "4.3.6 Overlay Area Survei dan OSM"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.8 Perbandingan area sekolah hasil survei dengan poligon OSM",
+  "key": "Gambar 4.8 Perbandingan area sekolah hasil surve"
+ },
+ {
+  "level": 3,
+  "text": "4.3.7 Halaman Data",
+  "key": "4.3.7 Halaman Data"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.9 Halaman Data (bagian atas)",
+  "key": "Gambar 4.9 Halaman Data (bagian atas)"
+ },
+ {
+  "level": 3,
+  "text": "4.3.8 Halaman Admin",
+  "key": "4.3.8 Halaman Admin"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.10 Halaman Admin untuk mengelola titik di database",
+  "key": "Gambar 4.10 Halaman Admin untuk mengelola titik "
+ },
+ {
+  "level": 3,
+  "text": "4.3.9 Mode Cadangan dan Tampilan Ponsel",
+  "key": "4.3.9 Mode Cadangan dan Tampilan Ponsel"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.11 Label sumber data saat mode cadangan aktif",
+  "key": "Gambar 4.11 Label sumber data saat mode cadangan"
+ },
+ {
+  "level": "g",
+  "text": "Gambar 4.12 Halaman Peta pada layar ponsel",
+  "key": "Gambar 4.12 Halaman Peta pada layar ponsel"
+ },
+ {
+  "level": 2,
+  "text": "4.4 Hasil Analisis dan Pembahasan",
+  "key": "4.4 Hasil Analisis dan Pembahasan"
+ },
+ {
+  "level": 3,
+  "text": "4.4.1 Keterjangkauan Sekolah terhadap Halte",
+  "key": "4.4.1 Keterjangkauan Sekolah terhadap Halte"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.3 Keterjangkauan sekolah pada beberapa radius",
+  "key": "Tabel 4.3 Keterjangkauan sekolah pada beberapa r"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.4 Keterjangkauan per jenjang pada radius 500 m",
+  "key": "Tabel 4.4 Keterjangkauan per jenjang pada radius"
+ },
+ {
+  "level": 3,
+  "text": "4.4.2 Usulan Halte Baru",
+  "key": "4.4.2 Usulan Halte Baru"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.5 Sepuluh usulan halte baru teratas (radius 500 m)",
+  "key": "Tabel 4.5 Sepuluh usulan halte baru teratas (rad"
+ },
+ {
+  "level": 3,
+  "text": "4.4.3 Perbandingan Area Survei dan OSM",
+  "key": "4.4.3 Perbandingan Area Survei dan OSM"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.6 Perbandingan poligon area sekolah hasil survei dan OSM",
+  "key": "Tabel 4.6 Perbandingan poligon area sekolah hasi"
+ },
+ {
+  "level": 3,
+  "text": "4.4.4 Fasilitas di Dalam Area Sekolah",
+  "key": "4.4.4 Fasilitas di Dalam Area Sekolah"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.7 Fasilitas dan titik literasi di dalam area sekolah",
+  "key": "Tabel 4.7 Fasilitas dan titik literasi di dalam "
+ },
+ {
+  "level": 3,
+  "text": "4.4.5 Panjang Jalur Survei",
+  "key": "4.4.5 Panjang Jalur Survei"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.8 Panjang dan waktu tempuh jalur survei",
+  "key": "Tabel 4.8 Panjang dan waktu tempuh jalur survei"
+ },
+ {
+  "level": 3,
+  "text": "4.4.6 Keterbatasan",
+  "key": "4.4.6 Keterbatasan"
+ },
+ {
+  "level": 2,
+  "text": "4.5 Pengujian",
+  "key": "4.5 Pengujian"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.9 Pengujian black-box",
+  "key": "Tabel 4.9 Pengujian black-box"
+ },
+ {
+  "level": 2,
+  "text": "4.6 Pemenuhan Ketentuan Project",
+  "key": "4.6 Pemenuhan Ketentuan Project"
+ },
+ {
+  "level": "t",
+  "text": "Tabel 4.10 Pemenuhan ketentuan project",
+  "key": "Tabel 4.10 Pemenuhan ketentuan project"
+ },
+ {
+  "level": 1,
+  "text": "DAFTAR PUSTAKA",
+  "key": "DAFTAR PUSTAKA"
+ }
+]
