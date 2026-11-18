@@ -115,6 +115,44 @@ def test_halte_optional(out):
     assert len(_props(out["titik"], kategori="halte")) == 4
 
 
+@pytest.fixture(scope="module")
+def full(tmp_path_factory):
+    d = tmp_path_factory.mktemp("full")
+    counts = bd.build(SRC, d / "geo", d / "seed.sql")
+    load = lambda n: json.loads((d / "geo" / f"{n}.geojson").read_text())
+    return {"counts": counts, "titik": load("titik"), "sekolah": load("sekolah_analisis"), "jalan": load("jalan"),
+            "seed": (d / "seed.sql").read_text()}
+
+
+def test_halte_osm_bukan_halte_umum_dibuang(full):
+    names = [p["nama"] for p in _props(full["titik"], kategori="halte", sumber="osm")]
+    for bukan in ("Travel Bintang Tasya", "Pertamina Retail UNRI", "Chevron Rumbai Bus Station"):
+        assert bukan not in names
+    assert names.count("Halte Bus UNRI") == 1  # 3 bangunan berdempetan digabung
+    assert "Kantor Pos" in names and "Halte (OSM)" in names
+    assert 50 <= len(names) <= 61
+
+
+def test_titik_osm_tidak_dobel_per_osm_id(full):
+    ids = [p["osm_id"] for p in _props(full["titik"], sumber="osm") if p["osm_id"]]
+    assert len(ids) == len(set(ids))
+    # titik pusat poligon (way/...) dari export "out center" tidak masuk sebagai titik sekolah
+    assert not [i for i in ids if i.startswith("way/") and _props(full["titik"], osm_id=i)[0]["kategori"] == "sekolah"]
+
+
+def test_unit_sekolah_tidak_berubah_oleh_file_titik_kedua(out, full):
+    assert len(full["sekolah"]["features"]) == len(out["sekolah"]["features"])
+
+
+def test_jalan_osm(full):
+    feats = full["jalan"]["features"]
+    assert len(feats) == 398
+    assert all(f["geometry"]["type"] == "LineString" for f in feats)
+    p = feats[0]["properties"]
+    assert {"id", "nama", "kelas", "osm_id", "panjang_m"} <= set(p)
+    assert "INSERT INTO jalan" in full["seed"]
+
+
 def test_seed_sql(out):
     s = out["seed"]
     for t in ("INSERT INTO titik", "INSERT INTO area_sekolah", "INSERT INTO jalur"):
@@ -125,6 +163,8 @@ def test_seed_sql(out):
 def test_halte_osm_merge(tmp_path):
     src = tmp_path / "src"
     shutil.copytree(SRC, src)
+    for f in src.glob("halte_osm*"):
+        f.unlink()
     gj = {"type": "FeatureCollection", "features": [
         {"type": "Feature", "properties": {"name": "Halte A", "@id": "node/1"},
          "geometry": {"type": "Point", "coordinates": [101.4500, 0.5100]}},

@@ -12,6 +12,8 @@ export const LAYER = {
   jalur: fc(`SELECT ${feat(`'id',id,'nama',nama,'jenis',jenis,'waktu_mulai',waktu_mulai,'waktu_selesai',waktu_selesai,
     'panjang_m',round(ST_Length(geom::geography)::numeric,1)`)} AS f
     FROM jalur WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR TRUE) ORDER BY id`),
+  jalan: fc(`SELECT ${feat(`'id',id,'nama',nama,'kelas',kelas,'osm_id',osm_id,'panjang_m',round(ST_Length(geom::geography)::numeric,1)`)} AS f
+    FROM jalan WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR TRUE) ORDER BY id`),
   sekolah: fc(`SELECT json_build_object('type','Feature','id',uid,'properties',json_build_object('uid',uid,'nama',nama,
     'jenjang',jenjang,'sumber',sumber),'geometry',ST_AsGeoJSON(geom,7)::json) AS f
     FROM v_sekolah_analisis WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR sumber = $2) ORDER BY uid`),
@@ -35,7 +37,8 @@ cl AS (SELECT tak.*, ST_ClusterDBSCAN(ST_Transform(geom, 32647), eps := $1, minp
 c AS (SELECT cid, ST_Transform(ST_Centroid(ST_Collect(ST_Transform(geom, 32647))), 4326) AS geom
       FROM cl WHERE cid IS NOT NULL GROUP BY cid),
 sn AS (SELECT c.cid, c.geom, j.snap_geom FROM c
-       LEFT JOIN LATERAL (SELECT ST_ClosestPoint(jl.geom, c.geom) AS snap_geom FROM jalur jl
+       LEFT JOIN LATERAL (SELECT ST_ClosestPoint(jl.geom, c.geom) AS snap_geom
+                          FROM (SELECT geom FROM jalur UNION ALL SELECT geom FROM jalan) jl
                           WHERE ST_DWithin(jl.geom::geography, c.geom::geography, $2)
                           ORDER BY ST_Distance(jl.geom::geography, c.geom::geography) LIMIT 1) j ON TRUE),
 k AS (SELECT cid, COALESCE(snap_geom, geom) AS geom, snap_geom IS NOT NULL AS snap FROM sn),

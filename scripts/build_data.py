@@ -100,6 +100,38 @@ def same_school(a, b):
     return bool(ta and tb) and len(ta & tb) / len(ta | tb) >= 0.5
 
 
+_BUKAN_HALTE_NAMA = re.compile(r"^Travel\b|Pertamina|Retail", re.I)
+
+
+def halte_umum(tags, nama):
+    """Hanya halte/terminal yang bisa dipakai umum (bukan milik perusahaan, SPBU, atau agen travel)."""
+    if (tags.get("access") or "").lower() in ("private", "designated", "no"):
+        return False
+    if re.search(r"chevron", tags.get("operator") or "", re.I):
+        return False
+    return not (nama and _BUKAN_HALTE_NAMA.search(nama))
+
+
+def read_jalan(path):
+    out = []
+    for f in read_osm_kml_lines(path):
+        out.append({"osm_id": f["osm_id"], "nama": f["nama"] or "Jalan tanpa nama",
+                    "kelas": f["tags"].get("highway"), "geom": f["geom"]})
+    return out
+
+
+def read_osm_kml_lines(path):
+    out = []
+    for pm in etree.parse(str(path)).iter("{%s}Placemark" % NS["k"]):
+        tags = _tags(pm)
+        for ls in pm.findall(".//k:LineString/k:coordinates", NS):
+            cs = _coords(ls.text)
+            if len(cs) >= 2:
+                out.append({"osm_id": tags.get("@id"), "nama": (tags.get("name") or "").strip() or None,
+                            "tags": tags, "geom": LineString(cs)})
+    return out
+
+
 # ---------------------------------------------------------------- pembaca KML
 def _coords(text):
     return [tuple(map(float, c.split(",")[:2])) for c in text.split()]
@@ -292,9 +324,14 @@ def build(src_dir, out_dir, seed_path):
         osm_area_raw += read_osm_kml(f)
     osm_area = clean_osm(osm_area_raw)
 
-    osm_pt_raw = []
+    poly_ids = {i for a in osm_area for i in a["osm_id"].split(",")} | {f["osm_id"] for f in osm_area_raw}
+    osm_pt_raw, seen_pt = [], set()
     for f in sorted(src_dir.glob("osm_sekolah_titik*.kml")):
-        osm_pt_raw += read_osm_kml(f)
+        for p in read_osm_kml(f):
+            if p["osm_id"] in poly_ids or p["osm_id"] in seen_pt:
+                continue  # titik pusat poligon (export "out center") atau titik yang sama dari file lain
+            seen_pt.add(p["osm_id"])
+            osm_pt_raw.append(p)
     osm_pt = dedup_points([p for p in osm_pt_raw if p["nama"] and not KELAS.search(p["nama"])], GABUNG_NAMA_M,
                           key=lambda p, q: p["nama"].lower() == q["nama"].lower())
     for p in osm_pt:
@@ -305,6 +342,7 @@ def build(src_dir, out_dir, seed_path):
     halte_raw = []
     for f in sorted(src_dir.glob("halte_osm*")):
         halte_raw += read_points_geojson(f) if f.suffix.lower() in (".geojson", ".json") else read_osm_kml(f)
+    halte_raw = [h for h in halte_raw if halte_umum(h["tags"], h["nama"])]
     halte_osm = dedup_points(halte_raw, GABUNG_HALTE_M, key=lambda p, q: True, existing=survei_halte)
     for h in halte_osm:
         titik.append({"nama": h["nama"] or "Halte (OSM)", "kategori": "halte", "jenjang": None,
@@ -328,6 +366,14 @@ def build(src_dir, out_dir, seed_path):
     jalur = read_jalur(src_dir / "rute_sman_olahraga.kml", "rute", "Rute SMAN Olahraga - ") + \
         read_jalur(src_dir / "jalur_survei.kml", "jalur", "")
     for i, j in enumerate(jalur, 1):
+        j["id"] = i
+        j["panjang_m"] = round(UTM(j["geom"]).length, 1)
+
+    # --- jalan OSM (dipakai sebagai layer dan tempat menempelkan usulan halte)
+    jalan = []
+    for f in sorted(src_dir.glob("jalan_osm*.kml")):
+        jalan += read_jalan(f)
+    for i, j in enumerate(jalan, 1):
         j["id"] = i
         j["panjang_m"] = round(UTM(j["geom"]).length, 1)
 
@@ -359,13 +405,14 @@ def build(src_dir, out_dir, seed_path):
         "area": _fc(area, ["id", "nama", "sumber", "osm_id", "jenjang", "luas_m2"]),
         "jalur": _fc(jalur, ["id", "nama", "jenis", "waktu_mulai", "waktu_selesai", "panjang_m"]),
         "sekolah_analisis": _fc(unit, ["uid", "nama", "jenjang", "sumber"]),
+        "jalan": _fc(jalan, ["id", "nama", "kelas", "osm_id", "panjang_m"]),
     }
     for name, fc in files.items():
         (out_dir / f"{name}.geojson").write_text(json.dumps(fc, ensure_ascii=False, separators=(",", ":")))
 
     # --- seed SQL
     L = ["-- Dibuat otomatis oleh scripts/build_data.py. Jangan diedit manual.", "BEGIN;",
-         "TRUNCATE titik, area_sekolah, jalur RESTART IDENTITY;"]
+         "TRUNCATE titik, area_sekolah, jalur, jalan RESTART IDENTITY;"]
     for t in titik:
         L.append("INSERT INTO titik (id,nama,kategori,jenjang,deskripsi,sumber,osm_id,waktu_survei,duplikat_osm,geom) "
                  f"VALUES ({t['id']},{_q(t['nama'])},{_q(t['kategori'])},{_q(t['jenjang'])},{_q(t['deskripsi'])},"
@@ -381,14 +428,17 @@ def build(src_dir, out_dir, seed_path):
         L.append("INSERT INTO jalur (id,nama,jenis,waktu_mulai,waktu_selesai,geom) VALUES "
                  f"({j['id']},{_q(j['nama'])},{_q(j['jenis'])},{_q(j['waktu_mulai'])},{_q(j['waktu_selesai'])},"
                  f"ST_GeomFromText({_q(j['geom'].wkt)},4326));")
-    for tbl in ("titik", "area_sekolah", "jalur"):
-        L.append(f"SELECT setval(pg_get_serial_sequence('{tbl}','id'), (SELECT MAX(id) FROM {tbl}));")
+    for j in jalan:
+        L.append("INSERT INTO jalan (id,nama,kelas,osm_id,geom) VALUES "
+                 f"({j['id']},{_q(j['nama'])},{_q(j['kelas'])},{_q(j['osm_id'])},ST_GeomFromText({_q(j['geom'].wkt)},4326));")
+    for tbl in ("titik", "area_sekolah", "jalur", "jalan"):
+        L.append(f"SELECT setval(pg_get_serial_sequence('{tbl}','id'), GREATEST((SELECT MAX(id) FROM {tbl}), 1));")
     L.append("COMMIT;")
     seed_path.write_text("\n".join(L) + "\n")
 
     return {"titik": len(titik), "area": len(area), "jalur": len(jalur), "sekolah_analisis": len(unit),
             "halte": sum(1 for t in titik if t["kategori"] == "halte"),
-            "area_osm": len(osm_area), "titik_osm": len(osm_pt)}
+            "area_osm": len(osm_area), "titik_osm": len(osm_pt), "jalan": len(jalan)}
 
 
 if __name__ == "__main__":

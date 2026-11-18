@@ -44,7 +44,7 @@ async function loadAnalisis() {
     const p = f.properties;
     const [lon, lat] = f.geometry.coordinates;
     return `<tr><td class="num">${p.rank}</td><td class="num">${p.jumlah_sekolah}</td><td>${p.sekolah.map(escapeHtml).join(', ')}</td>
-      <td class="num">${fmtMeter(p.jarak_rata_m)}</td><td>${lat.toFixed(5)}, ${lon.toFixed(5)}${p.snap ? '<br><span class="hint">ditempel ke jalur survei</span>' : ''}</td></tr>`;
+      <td class="num">${fmtMeter(p.jarak_rata_m)}</td><td>${lat.toFixed(5)}, ${lon.toFixed(5)}${p.snap ? '<br><span class="hint">ditempel ke jalan terdekat</span>' : ''}</td></tr>`;
   }).join('') || '<tr><td colspan="5">Tidak ada usulan pada radius ini.</td></tr>';
 }
 

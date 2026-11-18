@@ -77,6 +77,9 @@ def test_peta_layer_dan_filter(page):
     assert page.evaluate("window.__jangkau.layers.halte.getVisible()") is False
     page.locator("[data-layer-toggle='halte']").check()
     assert page.evaluate("window.__jangkau.layers.halte.getVisible()") is True
+    page.locator("[data-layer-toggle='jalan']").check()
+    assert page.evaluate("window.__jangkau.layers.jalan.getVisible()") is True
+    assert page.evaluate("window.__jangkau.layers.jalan.getSource().getFeatures().length") > 300
     # filter jenjang: matikan SD/MI → tidak ada fitur SD/MI yang terlihat
     page.locator("[data-jenjang-toggle='SD/MI']").uncheck()
     hidden = page.evaluate("window.__jangkau.visibleJenjang().includes('SD/MI')")

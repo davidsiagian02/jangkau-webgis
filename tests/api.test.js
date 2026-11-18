@@ -49,7 +49,7 @@ test('layers: filter kategori halte', async () => {
 });
 
 test('layers: area, jalur, sekolah, halte tersedia', async () => {
-  for (const [layer, n] of [['area', file('area').features.length], ['jalur', 6], ['sekolah', file('sekolah_analisis').features.length], ['halte', halteFC().features.length]]) {
+  for (const [layer, n] of [['area', file('area').features.length], ['jalur', 6], ['jalan', file('jalan').features.length], ['sekolah', file('sekolah_analisis').features.length], ['halte', halteFC().features.length]]) {
     const r = await call(layers, { url: `/api/layers?layer=${layer}` });
     assert.equal(r.status, 200, layer);
     assert.equal(r.body.features.length, n, layer);
@@ -85,8 +85,11 @@ test('analysis recommend: maksimal 10 kandidat terurut menurun', async () => {
   assert.ok(k.length > 0 && k.length <= 10);
   k.forEach((p, i) => { assert.equal(p.rank, i + 1); if (i) assert.ok(k[i - 1].jumlah_sekolah >= p.jumlah_sekolah); });
   assert.equal(typeof r.body.terisolasi, 'number');
-  const l = local.recommend(file('sekolah_analisis'), halteFC(), file('jalur'), 500);
+  const garis = { type: 'FeatureCollection', features: [...file('jalur').features, ...file('jalan').features] };
+  const l = local.recommend(file('sekolah_analisis'), halteFC(), garis, 500);
   assert.equal(k[0].jumlah_sekolah, l.kandidat.features[0].properties.jumlah_sekolah);
+  assert.equal(k.filter((p) => p.snap).length, l.kandidat.features.filter((f) => f.properties.snap).length);
+  assert.ok(k.some((p) => p.snap), 'ada usulan yang ditempel ke jalan');
 });
 
 test('analysis nearest: klik tepat di Halte Smpn 14', async () => {

@@ -52,7 +52,9 @@
           <dt>OpenStreetMap</dt>
           <dd>Diunduh lewat Overpass Turbo pada 18 November 2026. Setelah poligon ruang kelas dan data ganda dibuang, tersisa <b data-stat="sekolah_osm">–</b> sekolah.</dd>
           <dt>Halte</dt>
-          <dd><b data-stat="halte">–</b> halte dari survei dan OpenStreetMap. Kelengkapan data halte sangat menentukan hasil analisis.</dd>
+          <dd><b data-stat="halte">–</b> halte dan terminal dari survei dan OpenStreetMap, termasuk halte Trans Metro Pekanbaru. Kelengkapan data halte sangat menentukan hasil analisis.</dd>
+          <dt>Jalan</dt>
+          <dd>398 ruas jalan menuju sekolah dari OpenStreetMap, dipakai sebagai layer peta dan untuk menempatkan usulan halte tepat di jalan.</dd>
           <dt>Penyimpanan</dt>
           <dd>Semua data disimpan di PostgreSQL dengan ekstensi PostGIS, dan analisisnya dijalankan langsung sebagai query spasial di database.</dd>
         </dl>
@@ -65,7 +67,7 @@
         <li><h3>Buat zona jangkauan</h3><p>Setiap halte diberi buffer. Radius bawaannya 500 m, kira-kira 6 menit berjalan kaki, dan bisa diubah di peta.</p></li>
         <li><h3>Ukur jarak sekolah</h3><p>Jarak setiap sekolah ke halte terdekat dihitung. Sekolah di luar zona ditandai belum terjangkau.</p></li>
         <li><h3>Kelompokkan yang belum terjangkau</h3><p>Sekolah yang belum terjangkau dan saling berdekatan dikelompokkan dengan metode DBSCAN.</p></li>
-        <li><h3>Usulkan halte baru</h3><p>Titik tengah setiap kelompok menjadi usulan halte. Kalau ada jalur survei dalam 150 m, titiknya ditempelkan ke jalur itu.</p></li>
+        <li><h3>Usulkan halte baru</h3><p>Titik tengah setiap kelompok menjadi usulan halte. Kalau ada jalan atau jalur survei dalam 150 m, titiknya ditempelkan ke jalan itu.</p></li>
       </ol>
     </section>
 

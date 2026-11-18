@@ -63,6 +63,20 @@ test('getAnalysis buffer cadangan menghasilkan bentuk yang sama dengan API', asy
   assert.ok('persen' in r.data.ringkasan);
 });
 
+test('getAnalysis recommend cadangan memakai jalur + jalan untuk menempel kandidat', async () => {
+  apiStatus = 503;
+  const r = await api.getAnalysis('recommend', { radius: 500 });
+  assert.equal(r.sumber, 'cadangan');
+  assert.ok(calls.includes('/data/jalan.geojson'));
+  assert.ok(r.data.kandidat.features.some((f) => f.properties.snap));
+});
+
+test('getLayer jalan tersedia pada mode cadangan', async () => {
+  apiStatus = 503;
+  const r = await api.getLayer('jalan');
+  assert.equal(r.data.features.length, file('jalan').features.length);
+});
+
 test('setelah API gagal sekali, permintaan berikutnya langsung ke cadangan', async () => {
   apiStatus = 'down';
   await api.getLayer('titik');

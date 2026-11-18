@@ -56,6 +56,7 @@ output { font-weight: 800; }
 .mk-area-survei { border: 2px dashed var(--navy); }
 .mk-rute { height: 4px; background: #39424e; }
 .mk-jalur { height: 0; border-top: 3px dashed #0b7285; }
+.mk-jalan { height: 3px; background: #c0703a; }
 .mk-buffer { border-radius: 50%; background: rgba(245, 196, 0, .35); border: 1.5px dashed #9c7c00; }
 .mk-heat { border-radius: 50%; background: radial-gradient(#f5c400, #4fb3a5 55%, transparent 72%); }
 

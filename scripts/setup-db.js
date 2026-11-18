@@ -29,7 +29,7 @@ export async function setupDb(connectionString) {
     await client.query('COMMIT');
     const { rows } = await client.query(`SELECT
       (SELECT count(*) FROM titik) titik, (SELECT count(*) FROM area_sekolah) area,
-      (SELECT count(*) FROM jalur) jalur, (SELECT count(*) FROM v_halte) halte,
+      (SELECT count(*) FROM jalur) jalur, (SELECT count(*) FROM jalan) jalan, (SELECT count(*) FROM v_halte) halte,
       (SELECT count(*) FROM v_sekolah_analisis) sekolah_analisis`);
     return rows[0];
   } catch (e) {

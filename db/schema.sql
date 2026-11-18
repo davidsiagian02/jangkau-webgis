@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 
 DROP VIEW IF EXISTS v_sekolah_analisis;
 DROP VIEW IF EXISTS v_halte;
-DROP TABLE IF EXISTS titik, area_sekolah, jalur, kategori CASCADE;
+DROP TABLE IF EXISTS titik, area_sekolah, jalur, jalan, kategori CASCADE;
 
 -- Referensi kategori titik (dipakai untuk legenda & validasi)
 CREATE TABLE kategori (
@@ -60,6 +60,16 @@ CREATE TABLE jalur (
   geom          geometry(LineString, 4326) NOT NULL
 );
 CREATE INDEX jalur_geom_gix ON jalur USING gist (geom);
+
+-- Jaringan jalan dari OpenStreetMap (layer peta dan tempat menempelkan usulan halte)
+CREATE TABLE jalan (
+  id     serial PRIMARY KEY,
+  nama   text NOT NULL,
+  kelas  text,               -- nilai tag highway OSM: primary, secondary, residential, ...
+  osm_id text,
+  geom   geometry(LineString, 4326) NOT NULL
+);
+CREATE INDEX jalan_geom_gix ON jalan USING gist (geom);
 
 -- Semua halte yang dipakai analisis
 CREATE VIEW v_halte AS

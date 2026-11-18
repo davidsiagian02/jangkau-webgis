@@ -23,6 +23,11 @@ test('jumlah data survei sesuai file sumber', async () => {
   assert.equal(await one(`SELECT count(*) n FROM jalur`), 6);
 });
 
+test('jalan OSM tersimpan', async () => {
+  const fc = JSON.parse(readFileSync(new URL('../public/data/jalan.geojson', import.meta.url)));
+  assert.equal(await one(`SELECT count(*) n FROM jalan`), fc.features.length);
+});
+
 test('view unit analisis sama dengan GeoJSON cadangan', async () => {
   const fc = JSON.parse(readFileSync(new URL('../public/data/sekolah_analisis.geojson', import.meta.url)));
   assert.equal(await one(`SELECT count(*) n FROM v_sekolah_analisis`), fc.features.length);
@@ -37,7 +42,7 @@ test('view halte memuat semua titik kategori halte', async () => {
 test('index GIST ada di semua tabel spasial', async () => {
   const rows = (await client.query(`SELECT tablename FROM pg_indexes WHERE indexdef ILIKE '%USING gist%'`)).rows;
   const t = new Set(rows.map((r) => r.tablename));
-  for (const name of ['titik', 'area_sekolah', 'jalur']) assert.ok(t.has(name), `GIST di ${name}`);
+  for (const name of ['titik', 'area_sekolah', 'jalur', 'jalan']) assert.ok(t.has(name), `GIST di ${name}`);
 });
 
 test('kategori referensi berisi 4 kategori titik', async () => {

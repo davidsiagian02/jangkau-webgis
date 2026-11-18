@@ -8,7 +8,7 @@ import { getAnalysis, getLayer, setForceFallback } from '../lib/api.js';
 import { JENJANG, RADIUS } from '../lib/config.js';
 import { escapeHtml, fmtAngka, fmtMenit, fmtMeter } from '../lib/util.js';
 import {
-  areaStyle, bufferStyle, createMap, createPopup, fasilitasStyle, fmt, halteStyle, jalurStyle,
+  areaStyle, bufferStyle, createMap, jalanStyle, createPopup, fasilitasStyle, fmt, halteStyle, jalurStyle,
   kandidatStyle, klikStyle, literasiStyle, readFC, sekolahStyle, vectorLayer,
 } from '../lib/map.js';
 
@@ -33,6 +33,7 @@ const L = {
   buffer: vectorLayer(bufferStyle(), { tipe: 'buffer' }),
   rute: vectorLayer((f) => jalurStyle(f.getProperties()), { tipe: 'jalur' }),
   jalur: vectorLayer((f) => jalurStyle(f.getProperties()), { tipe: 'jalur' }),
+  jalan: vectorLayer((f) => jalanStyle(f.getProperties()), { tipe: 'jalan' }),
   sekolah: vectorLayer((f) => {
     const p = f.getProperties();
     if (!srcOk(p.sumber) || !state.jenjang.has(p.jenjang || 'Tidak diketahui')) return null;
@@ -55,7 +56,8 @@ L.heatmap = new Heatmap({ source: L.sekolah.getSource(), blur: 22, radius: 12, v
   gradient: ['#13284b', '#1f6f8b', '#4fb3a5', '#f5c400', '#e8590c'], properties: { tipe: 'heatmap' } });
 
 const map = createMap('map', { zoom: 12 });
-for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
+L.jalan.setVisible(false);
+for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'jalan', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
 const popup = createPopup(map);
 if (window.matchMedia('(max-width: 860px)').matches) document.querySelector('.legend').open = false;
 
@@ -74,8 +76,9 @@ function fill(layer, fc) {
 
 // ---------- muat data
 async function loadLayers() {
-  const [titik, area, jalur, sekolah] = await Promise.all([getLayer('titik'), getLayer('area'), getLayer('jalur'), getLayer('sekolah')]);
-  [titik, area, jalur, sekolah].forEach((r) => noteSumber(r.sumber));
+  const [titik, area, jalur, sekolah, jalan] = await Promise.all([getLayer('titik'), getLayer('area'), getLayer('jalur'), getLayer('sekolah'), getLayer('jalan')]);
+  [titik, area, jalur, sekolah, jalan].forEach((r) => noteSumber(r.sumber));
+  fill(L.jalan, jalan.data);
   const by = (fc, pred) => ({ type: 'FeatureCollection', features: fc.features.filter((f) => pred(f.properties)) });
   fill(L.sekolah, sekolah.data);
   fill(L.sekolah_survei, by(titik.data, (p) => p.kategori === 'sekolah' && p.sumber !== 'osm'));
@@ -185,7 +188,7 @@ function renderKandidat(k) {
     const p = f.properties;
     const nama = p.sekolah.slice(0, 3).map(escapeHtml).join(', ') + (p.sekolah.length > 3 ? `, dan ${p.sekolah.length - 3} lainnya` : '');
     return `<li><button type="button" class="kandidat-btn" data-lonlat="${f.geometry.coordinates.join(',')}">
-      <span class="kandidat-rank">${p.rank}</span><span><b>${p.jumlah_sekolah} sekolah</b> akan terjangkau, rata-rata ${fmtMeter(p.jarak_rata_m)}${p.snap ? ', ditempel ke jalur survei' : ''}<br><span class="hint">${nama}</span></span></button></li>`;
+      <span class="kandidat-rank">${p.rank}</span><span><b>${p.jumlah_sekolah} sekolah</b> akan terjangkau, rata-rata ${fmtMeter(p.jarak_rata_m)}${p.snap ? ', ditempel ke jalan terdekat' : ''}<br><span class="hint">${nama}</span></span></button></li>`;
   }).join('') : '<li class="hint">Tidak ada kelompok sekolah yang perlu halte baru pada radius ini.</li>';
   $('[data-terisolasi]').textContent = k.terisolasi
     ? `${fmtAngka(k.terisolasi)} sekolah belum terjangkau tetapi letaknya terpencar, jadi tidak masuk kelompok mana pun.` : '';
@@ -220,6 +223,7 @@ function popupHtml(f, layer) {
     const m = Number(p.panjang_m);
     return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Panjang', fmtMeter(m))}${row('Jalan kaki', fmtMenit(m / 83.33))}${row('Bersepeda', fmtMenit(m / 250))}</table>`;
   }
+  if (tipe === 'jalan') return `<h3>${escapeHtml(p.nama)}</h3><table>${row('Kelas jalan', p.kelas)}${row('Panjang ruas', fmtMeter(Number(p.panjang_m)))}${row('Sumber', 'OpenStreetMap')}</table>`;
   if (tipe === 'kandidat') return `<h3>Usulan halte #${p.rank}</h3><p>${p.jumlah_sekolah} sekolah akan terjangkau dalam ${fmtMeter(state.radius)}.</p>`;
   return null;
 }

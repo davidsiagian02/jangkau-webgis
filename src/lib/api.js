@@ -34,7 +34,7 @@ async function fromApi(url) {
   }
 }
 
-const FILES = { titik: 'titik', area: 'area', jalur: 'jalur', sekolah: 'sekolah_analisis', halte: 'titik' };
+const FILES = { titik: 'titik', area: 'area', jalur: 'jalur', jalan: 'jalan', sekolah: 'sekolah_analisis', halte: 'titik' };
 async function file(name) {
   if (!cache.has(name)) cache.set(name, getJson(`/data/${name}.geojson`).catch((e) => { cache.delete(name); throw e; }));
   return cache.get(name);
@@ -59,8 +59,9 @@ export async function getLayer(name, params = {}) {
 }
 
 async function bundle() {
-  const [titik, area, jalur, sekolah] = await Promise.all(['titik', 'area', 'jalur', 'sekolah_analisis'].map(file));
-  return { titik, area, jalur, sekolah, halte: filterFC(titik, { kategori: 'halte' }) };
+  const [titik, area, jalur, sekolah, jalan] = await Promise.all(['titik', 'area', 'jalur', 'sekolah_analisis', 'jalan'].map(file));
+  return { titik, area, jalur, jalan, sekolah, halte: filterFC(titik, { kategori: 'halte' }),
+    garis: { type: 'FeatureCollection', features: [...jalur.features, ...jalan.features] } };
 }
 
 export async function getAnalysis(type, params = {}) {
@@ -70,7 +71,7 @@ export async function getAnalysis(type, params = {}) {
   const r = Number(params.radius) || 500;
   const out = {
     buffer: () => local.buffer(d.sekolah, d.halte, r),
-    recommend: () => local.recommend(d.sekolah, d.halte, d.jalur, r),
+    recommend: () => local.recommend(d.sekolah, d.halte, d.garis, r),
     nearest: () => local.nearest(d.sekolah, d.halte, Number(params.lon), Number(params.lat), r),
     overlay: () => local.overlay(d.area, d.titik),
   }[type];

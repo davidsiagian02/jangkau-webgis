@@ -91,6 +91,10 @@ export function jalurStyle(p) {
     : memo('j|jalur', () => [new Style({ stroke: new Stroke({ color: '#ffffff', width: 5 }) }), new Style({ stroke: new Stroke({ color: '#0b7285', width: 3, lineDash: [8, 5] }) })]);
 }
 
+export const jalanStyle = (p) => memo(`jl|${p.kelas}`, () => new Style({
+  stroke: new Stroke({ color: '#c0703a', width: ['primary', 'secondary', 'trunk'].includes(p.kelas) ? 3 : 1.6 }),
+}));
+
 export const bufferStyle = () => memo('buf', () => new Style({
   fill: new Fill({ color: 'rgba(245,196,0,0.22)' }), stroke: new Stroke({ color: '#9c7c00', width: 1.5, lineDash: [5, 4] }),
 }));
