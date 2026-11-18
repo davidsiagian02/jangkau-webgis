@@ -38,7 +38,7 @@ terjangkau, lalu mengusulkan lokasi halte baru.
    ```
 2. **Import ke Vercel.** Buka vercel.com → *Add New… → Project* → pilih repository tadi.
    Framework otomatis terbaca **Vite**. Klik **Deploy**. Web sudah bisa dibuka, tapi masih memakai
-   *data cadangan* (badge kuning di peta) karena database belum dibuat.
+   *data salinan* (label kuning **Data salinan** di peta) karena database belum dibuat.
 3. **Buat database.** Di halaman project Vercel → tab **Storage** → *Create Database* → pilih **Neon**
    (Serverless Postgres) → region Singapore → *Create* → *Connect* ke project ini.
    Vercel otomatis menambahkan environment variable `DATABASE_URL`.
@@ -61,7 +61,7 @@ terjangkau, lalu mengusulkan lokasi halte baru.
    (isi bebas, jangan dibagikan) untuk Production, Preview, dan Development.
 7. **Redeploy.** Tab *Deployments* → titik tiga di deployment terbaru → *Redeploy*.
 8. **Cek.** Buka `https://NAMA-PROJECT.vercel.app/api/health`. Hasil yang benar:
-   `{"ok":true,"db":true,"admin":false}`. Di halaman Peta, badge berubah jadi **Database PostGIS**.
+   `{"ok":true,"db":true,"admin":false}`. Di halaman Peta, labelnya berubah jadi **Data terkini**.
 
 ## Menjalankan di laptop
 
@@ -105,7 +105,7 @@ out body;
 ## Mode cadangan
 
 Kalau database tidak bisa dihubungi, semua halaman (kecuali Admin) otomatis memakai `public/data/*.geojson`
-dan menjalankan analisis yang sama di browser. Badge di peta berubah menjadi **Data cadangan (GeoJSON)**.
+dan menjalankan analisis yang sama di browser. Label di peta berubah menjadi **Data salinan**.
 Untuk mendemokan mode ini saat presentasi, buka `/peta.html?cadangan=1`.
 
 ## Tes

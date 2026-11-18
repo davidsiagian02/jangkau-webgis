@@ -35,6 +35,7 @@ const titikLayer = vectorLayer((f) => {
   return sekolahStyle(p);
 });
 const pilihLayer = vectorLayer(klikStyle());
+window.addEventListener('temachange', () => { titikLayer.changed(); pilihLayer.changed(); });
 
 function initMap() {
   if (map) return;
