@@ -1,0 +1,127 @@
+/* Diorama kota mini — CSS 3D murni. Semua warna mengikuti tema. */
+@property --h { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+.diorama {
+  --dio-tanah: #E4EAF1; --dio-blok: #D7DFE8; --dio-blok-garis: #CAD3DE;
+  --dio-jalan: #3B4556; --dio-marka: #F4F6F9;
+  --dio-dinding-1: #FFFFFF; --dio-dinding-2: #E6EBF2; --dio-jendela: #9DB0C8;
+  --dio-pohon: #3E9B5F; --dio-pohon-2: #2F7D4C;
+  --dio-sd: #B3262D; --dio-smp: #1F3A68; --dio-sma: #7A828C;
+  --dio-bus: #F7F9FC; --dio-bus-2: #DCE3EC; --dio-kaca: #1F3A68;
+  --dio-bayang: rgba(19, 35, 63, .18);
+  position: relative; width: 100%; aspect-ratio: 1 / .8; display: grid; place-items: center;
+  -webkit-user-select: none; user-select: none;
+}
+[data-theme='dark'] .diorama {
+  --dio-tanah: #16243A; --dio-blok: #1C2D47; --dio-blok-garis: #22355A;
+  --dio-jalan: #0A1220; --dio-marka: #5C6B82;
+  --dio-dinding-1: #2C3E5E; --dio-dinding-2: #22324D; --dio-jendela: #F2BE1A;
+  --dio-pohon: #2E7F4E; --dio-pohon-2: #23663E;
+  --dio-smp: #3D63A8;
+  --dio-bus: #DCE3EC; --dio-bus-2: #A9B5C6; --dio-kaca: #0D1626;
+  --dio-bayang: rgba(0, 0, 0, .45);
+}
+
+.panggung { width: 560px; height: 560px; position: absolute; left: 50%; top: 50%; margin: -280px 0 0 -280px; perspective: 1700px; transform: scale(var(--skala, 1)); transform-origin: center; }
+.lantai {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 58deg)) rotateZ(var(--rz, -36deg));
+  transition: transform 900ms var(--ease);
+  background: var(--dio-tanah); border-radius: 30px;
+  box-shadow: 0 40px 70px -30px var(--dio-bayang);
+}
+.blok { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--d); border-radius: 14px;
+  background: var(--dio-blok) repeating-linear-gradient(90deg, transparent 0 46px, var(--dio-blok-garis) 46px 48px); }
+
+.jalan { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--d); background: var(--dio-jalan); }
+.jalan.datar span { position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px;
+  background: repeating-linear-gradient(90deg, var(--dio-marka) 0 22px, transparent 22px 40px); }
+
+/* ---- balok 3D: lantai seluas w×d, tinggi --h */
+.halte { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
+.balok { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--d);
+  transform-style: preserve-3d; transform: translateZ(var(--z, 0px)); --h: var(--h-akhir); }
+.balok > i { position: absolute; display: block; }
+.balok .atas { inset: 0; transform: translateZ(var(--h)); background: var(--atap, var(--dio-dinding-2)); }
+.balok .n, .balok .s { left: 0; width: 100%; height: var(--h); transform-origin: top; transform: rotateX(90deg); }
+.balok .n { top: 0; background: var(--dio-dinding-2); }
+.balok .s { top: 100%; background: var(--dio-dinding-1); }
+.balok .w, .balok .e { top: 0; height: 100%; width: var(--h); transform-origin: left; transform: rotateY(-90deg); }
+.balok .w { left: 0; background: var(--dio-dinding-1); }
+.balok .e { left: 100%; background: var(--dio-dinding-2); }
+
+/* gedung sekolah: jendela berderet */
+.gedung .s, .gedung .w, .gedung .e, .gedung .n {
+  background-image: repeating-linear-gradient(0deg, transparent 0 7px, var(--dio-jendela) 7px 13px, transparent 13px 20px),
+    repeating-linear-gradient(90deg, var(--dio-dinding-1) 0 6px, transparent 6px 16px);
+  background-blend-mode: normal;
+}
+.gedung .e, .gedung .n { background-color: var(--dio-dinding-2); }
+.gedung .atas { box-shadow: inset 0 0 0 5px color-mix(in srgb, var(--atap) 70%, #fff); }
+
+.pohon > i { background: var(--dio-pohon-2); }
+.pohon .atas { background: var(--dio-pohon); border-radius: 4px; }
+
+.tiang > i, .tiang .atas { background: #6B7686; }
+.atap-halte > i, .atap-halte .atas { background: #F2BE1A; }
+.atap-halte .s, .atap-halte .w { background: #D4A30F; }
+.papan .s { background: #F2BE1A; display: grid; place-items: center; }
+.papan .s b { font: 800 11px/1 var(--f); color: #13233F; transform: scaleY(-1); }
+.papan > i:not(.s) { background: #D4A30F; }
+
+/* ---- zona jalan kaki */
+.cincin { position: absolute; left: calc(var(--cx) - var(--r)); top: calc(var(--cy) - var(--r)); width: calc(var(--r) * 2); height: calc(var(--r) * 2);
+  border-radius: 50%; border: 2.5px dashed var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); transform: translateZ(1px); }
+.cincin.denyut { border-style: solid; border-width: 2px; background: none; animation: denyut 3.2s var(--ease) infinite; }
+@keyframes denyut { from { transform: translateZ(1px) scale(.12); opacity: .9; } to { transform: translateZ(1px) scale(1); opacity: 0; } }
+
+/* ---- usulan halte baru (kotak bergaris yang berkedip pelan) */
+.usulan { position: absolute; left: var(--x); top: var(--y); width: 34px; height: 34px; border: 2.5px dashed var(--accent); border-radius: 6px;
+  transform: translateZ(1px); animation: kedip 2.4s ease-in-out infinite; }
+.usulan span { position: absolute; inset: 9px; background: var(--accent); border-radius: 2px; opacity: .55; }
+@keyframes kedip { 50% { opacity: .35; } }
+
+/* ---- bus melaju, berhenti di halte, lalu lanjut */
+.bus { position: absolute; inset: 0; transform-style: preserve-3d; animation: bus 12s var(--ease) infinite; }
+.badan-bus > i { background: var(--dio-bus-2); }
+.badan-bus .s, .badan-bus .w { background: var(--dio-bus); }
+.badan-bus .atas { background: var(--dio-bus); box-shadow: inset 0 0 0 3px var(--dio-bus-2); }
+.badan-bus .s .jendela { position: absolute; left: 8px; right: 8px; bottom: 9px; height: 12px; border-radius: 2px;
+  background: repeating-linear-gradient(90deg, var(--dio-kaca) 0 16px, transparent 16px 20px); }
+.badan-bus .s::after { content: ''; position: absolute; left: 0; right: 0; bottom: 3px; height: 4px; background: var(--accent); }
+@keyframes bus {
+  0% { transform: translateX(-170px); opacity: 0; }
+  6% { opacity: 1; }
+  36% { transform: translateX(238px); }
+  52% { transform: translateX(238px); }
+  92% { opacity: 1; }
+  100% { transform: translateX(640px); opacity: 0; }
+}
+
+/* ---- siswa turun dari bus lalu berjalan ke sekolah di dalam zona */
+.siswa { position: absolute; inset: 0; transform-style: preserve-3d; opacity: 0; animation: jalan 12s linear infinite; animation-delay: var(--tunda); }
+.siswa .badan > i { background: #1F3A68; }
+.siswa .badan .atas { background: #F4F6F9; border-radius: 50%; }
+@keyframes jalan {
+  0%, 44% { transform: translate(300px, 284px); opacity: 0; }
+  47% { opacity: 1; }
+  62% { transform: translate(332px, 236px); }
+  80% { transform: translate(384px, 196px); opacity: 1; }
+  86%, 100% { transform: translate(394px, 190px); opacity: 0; }
+}
+
+/* ---- momen pembuka: lantai muncul, gedung tumbuh */
+.diorama:not(.siap) .lantai { opacity: 0; transform: rotateX(62deg) rotateZ(-30deg) translateZ(-40px); }
+.diorama.siap .lantai { opacity: 1; transition: transform 900ms var(--ease), opacity 600ms var(--ease); }
+.diorama.siap .gedung { animation: tumbuh 900ms var(--ease) both; }
+.diorama.siap .gedung.smp { animation-delay: 120ms; }
+.diorama.siap .gedung.sma { animation-delay: 240ms; }
+@keyframes tumbuh { from { --h: 0px; } to { --h: var(--h-akhir); } }
+
+.diorama.jeda *, .diorama.jeda *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .bus { transform: translateX(238px); }
+  .siswa { opacity: 1; transform: translate(336px, 232px); }
+  .siswa + .siswa { transform: translate(356px, 216px); }
+  .siswa + .siswa + .siswa { transform: translate(376px, 202px); }
+}

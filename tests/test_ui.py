@@ -109,6 +109,45 @@ def test_ukuran_js_beranda(servers):
     assert total <= 25_000, f"JS Beranda {total} byte gzip"
 
 
+TERLARANG = re.compile(r"PostGIS|GeoJSON|\bIoU\b|DBSCAN|environment|ADMIN_PASSWORD|\bOSM\b|unit analisis|\bAPI\b", re.I)
+
+
+def teks_publik(page):
+    return page.evaluate("""() => {
+      const sembunyi = [...document.querySelectorAll('.istilah, .ol-attribution')];
+      sembunyi.forEach((e) => { e.dataset.d = e.style.display; e.style.display = 'none'; });
+      const t = document.body.innerText;
+      sembunyi.forEach((e) => { e.style.display = e.dataset.d; });
+      return t;
+    }""")
+
+
+@pytest.mark.parametrize("path", ["/"])
+def test_bahasa_publik(page, path):
+    page.goto(BASE + path)
+    page.wait_for_timeout(1500)
+    temuan = sorted(set(m.group(0) for m in TERLARANG.finditer(teks_publik(page))))
+    assert temuan == [], f"istilah teknis terlihat di {path}: {temuan}"
+
+
+def test_diorama(page):
+    page.goto(BASE + "/")
+    d = page.locator("[data-diorama]")
+    expect(d).to_be_visible()
+    assert d.locator(".gedung").count() >= 3
+    assert d.locator(".halte").count() >= 1
+    assert d.locator(".bus").count() == 1
+    assert d.locator(".cincin").count() >= 1
+    assert page.evaluate("getComputedStyle(document.querySelector('[data-diorama] .bus')).animationName") != "none"
+
+
+def test_diorama_reduced_motion(page):
+    page.emulate_media(reduced_motion="reduce")
+    page.goto(BASE + "/")
+    assert page.evaluate("getComputedStyle(document.querySelector('[data-diorama] .bus')).animationName") == "none"
+    assert page.errors == []
+
+
 def test_beranda_tanpa_peta(page):
     page.goto(BASE + "/")
     expect(page.locator("h1")).to_be_visible()
