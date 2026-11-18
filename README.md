@@ -4,7 +4,7 @@ Project akhir mata kuliah Sistem Informasi Geografis (Politeknik Caltex Riau, 20
 Web ini menghitung jarak jalan kaki dari setiap sekolah ke halte bus terdekat, menandai sekolah yang belum
 terjangkau, lalu mengusulkan lokasi halte baru.
 
-- Peta: **OpenLayers 10** (basemap CARTO, OpenStreetMap, citra Esri)
+- Peta: **OpenLayers 10** (basemap OpenStreetMap, citra Esri, dan CARTO jika `VITE_CARTO_KEY` diisi)
 - Database: **PostgreSQL + PostGIS** di **Neon** (terhubung lewat Vercel)
 - Backend: **Vercel Functions** di folder `api/`
 - Frontend: **Vite** + JavaScript biasa, analisis cadangan dengan **Turf.js**
@@ -54,10 +54,13 @@ terjangkau, lalu mengusulkan lokasi halte baru.
      Kalau berhasil muncul `Database siap: { titik: …, area: …, … }`.
    - **Tanpa CLI:** buka database di dashboard Neon → *SQL Editor* → tempel isi `db/schema.sql` → *Run*,
      lalu tempel isi `db/seed.sql` → *Run*.
-5. **Password admin.** Vercel → *Settings → Environment Variables* → tambah `ADMIN_PASSWORD`
+5. **(Opsional) Basemap CARTO.** CARTO sekarang wajib memakai API key. Minta key gratis di
+   https://carto.com/basemaps/apikey, lalu tambahkan environment variable `VITE_CARTO_KEY`. Tanpa key,
+   pilihan CARTO disembunyikan dan peta memakai OpenStreetMap.
+6. **Password admin.** Vercel → *Settings → Environment Variables* → tambah `ADMIN_PASSWORD`
    (isi bebas, jangan dibagikan) untuk Production, Preview, dan Development.
-6. **Redeploy.** Tab *Deployments* → titik tiga di deployment terbaru → *Redeploy*.
-7. **Cek.** Buka `https://NAMA-PROJECT.vercel.app/api/health`. Hasil yang benar:
+7. **Redeploy.** Tab *Deployments* → titik tiga di deployment terbaru → *Redeploy*.
+8. **Cek.** Buka `https://NAMA-PROJECT.vercel.app/api/health`. Hasil yang benar:
    `{"ok":true,"db":true,"admin":false}`. Di halaman Peta, badge berubah jadi **Database PostGIS**.
 
 ## Menjalankan di laptop

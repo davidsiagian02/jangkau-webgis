@@ -8,7 +8,7 @@ import { getAnalysis, getLayer, setForceFallback } from '../lib/api.js';
 import { JENJANG, RADIUS } from '../lib/config.js';
 import { escapeHtml, fmtAngka, fmtMenit, fmtMeter } from '../lib/util.js';
 import {
-  areaStyle, bufferStyle, createMap, jalanStyle, createPopup, fasilitasStyle, fmt, halteStyle, jalurStyle,
+  areaStyle, bufferStyle, createMap, jalanStyle, hasCartoKey, DEFAULT_BASEMAP, createPopup, fasilitasStyle, fmt, halteStyle, jalurStyle,
   kandidatStyle, klikStyle, literasiStyle, readFC, sekolahStyle, vectorLayer,
 } from '../lib/map.js';
 
@@ -59,6 +59,8 @@ const map = createMap('map', { zoom: 12 });
 L.jalan.setVisible(false);
 for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'jalan', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
 const popup = createPopup(map);
+$('[data-basemap-carto]').hidden = !hasCartoKey;
+document.querySelector(`input[name='basemap'][value='${DEFAULT_BASEMAP}']`).checked = true;
 if (window.matchMedia('(max-width: 860px)').matches) document.querySelector('.legend').open = false;
 
 window.__jangkau = { ready: false, layers: L, map, visibleJenjang: () => [...state.jenjang] };

@@ -9,7 +9,7 @@ digraph G {
     geo [label="GeoJSON cadangan\n/data/*.geojson"];
   }
   db [label="Neon PostgreSQL\n+ PostGIS", shape=cylinder];
-  tiles [label="Server tile basemap\nCARTO, OSM, Esri", shape=box];
+  tiles [label="Server tile basemap\nOSM, Esri, CARTO (opsional)", shape=box];
   user -> static [label="HTTP"];
   static -> api [label="fetch JSON"];
   api -> db [label="SQL spasial"];

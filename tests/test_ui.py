@@ -67,6 +67,18 @@ def test_beranda_tanpa_peta(page):
     assert page.errors == []
 
 
+def test_basemap_tanpa_api_key_carto(page):
+    carto = []
+    page.on("request", lambda r: "cartocdn" in r.url and carto.append(r.url))
+    page.goto(BASE + "/peta.html")
+    page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
+    page.wait_for_timeout(500)
+    assert page.evaluate("window.__jangkau.map.getLayers().item(0).get('basemap')") == "osm"
+    expect(page.locator("input[name='basemap'][value='osm']")).to_be_checked()
+    expect(page.locator("input[name='basemap'][value='terang']")).to_be_hidden()
+    assert carto == []
+
+
 def test_peta_layer_dan_filter(page):
     page.goto(BASE + "/peta.html")
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)

@@ -18,13 +18,18 @@ export const fmt = new GeoJSON({ featureProjection: 'EPSG:3857' });
 export const readFC = (fc) => fmt.readFeatures(fc);
 
 const ATTR_OSM = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">kontributor OpenStreetMap</a>';
+// CARTO sekarang wajib memakai API key (gratis di carto.com/basemaps/apikey). Isi VITE_CARTO_KEY di .env.local / Vercel.
+const CARTO_KEY = (import.meta.env && import.meta.env.VITE_CARTO_KEY) || '';
+export const hasCartoKey = Boolean(CARTO_KEY);
+export const DEFAULT_BASEMAP = hasCartoKey ? 'terang' : 'osm';
+
 export const BASEMAPS = {
-  terang: { nama: 'Peta terang (CARTO)', source: () => new XYZ({ url: 'https://{a-d}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', attributions: `${ATTR_OSM} © CARTO`, crossOrigin: 'anonymous' }) },
+  terang: { nama: 'Peta terang (CARTO)', source: () => new XYZ({ url: `https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=${encodeURIComponent(CARTO_KEY)}`, attributions: `${ATTR_OSM} © CARTO`, crossOrigin: 'anonymous' }) },
   osm: { nama: 'OpenStreetMap', source: () => new OSM({ attributions: ATTR_OSM }) },
   citra: { nama: 'Citra satelit (Esri)', source: () => new XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attributions: 'Citra © Esri, Maxar, Earthstar Geographics', maxZoom: 19 }) },
 };
 
-export function createMap(target, { zoom = 13, basemap = 'terang' } = {}) {
+export function createMap(target, { zoom = 13, basemap = DEFAULT_BASEMAP } = {}) {
   const base = new TileLayer({ source: BASEMAPS[basemap].source(), properties: { basemap } });
   const map = new Map({
     target,
@@ -32,7 +37,7 @@ export function createMap(target, { zoom = 13, basemap = 'terang' } = {}) {
     view: new View({ center: fromLonLat(PUSAT_PETA), zoom, minZoom: 10, maxZoom: 19 }),
     controls: defaultControls({ attributionOptions: { collapsible: true } }).extend([new ScaleLine({ units: 'metric' })]),
   });
-  map.setBasemap = (key) => base.setSource(BASEMAPS[key].source());
+  map.setBasemap = (key) => { base.setSource(BASEMAPS[key].source()); base.set('basemap', key); };
   return map;
 }
 

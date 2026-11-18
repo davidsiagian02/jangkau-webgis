@@ -356,7 +356,7 @@ add(H1('IMPLEMENTASI DAN PEMBAHASAN'));
 add(H2('Lingkungan Implementasi'));
 add(P('Perangkat lunak dan layanan yang dipakai selama implementasi dapat dilihat pada Tabel 4.1.'));
 add(Tbl('Lingkungan implementasi', ['Komponen', 'Teknologi', 'Keterangan'], [
-  ['Peta', 'OpenLayers 10', 'Basemap CARTO, OpenStreetMap, dan citra Esri'],
+  ['Peta', 'OpenLayers 10', 'Basemap OpenStreetMap dan citra Esri; CARTO jika API key diisi'],
   ['Analisis di browser', 'Turf.js 7', 'Untuk mode cadangan'],
   ['Frontend', 'Vite 6, HTML, CSS, JavaScript', 'Empat halaman (multi-page)'],
   ['Backend', 'Vercel Functions (Node.js 22), pg 8', 'Lima endpoint di folder /api'],
@@ -510,7 +510,7 @@ add(Tbl('Pengujian black-box', ['No', 'Skenario', 'Hasil yang diharapkan', 'Hasi
 add(H2('Pemenuhan Ketentuan Project'));
 add(P('Tabel 4.10 merangkum bagaimana setiap ketentuan project dipenuhi oleh WebGIS Jangkau.'));
 add(Tbl('Pemenuhan ketentuan project', ['No', 'Ketentuan', 'Implementasi'], [
-  ['1', 'OpenLayers sebagai basemap service', 'OpenLayers 10 dengan tiga basemap: CARTO, OpenStreetMap, dan citra Esri'],
+  ['1', 'OpenLayers sebagai basemap service', 'OpenLayers 10 dengan basemap OpenStreetMap dan citra Esri, ditambah CARTO bila API key diisi'],
   ['2', 'Filter data dengan checkbox atau list box', 'Checkbox kategori, jenjang, sumber, area, jalur, dan hasil analisis; list box di halaman Data'],
   ['3', 'Halaman home berisi profil web', 'Beranda berisi profil, data, cara kerja, fitur, dan pembuat tanpa peta'],
   ['4', 'Visualisasi data', 'Warna jenjang, bentuk per kategori, ukuran titik sesuai status, garis putus-putus, heatmap'],
