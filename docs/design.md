@@ -1,6 +1,6 @@
 # Desain — WebGIS "JANGKAU": Akses Transportasi Umum ke Sekolah di Kota Pekanbaru
 
-Tanggal: 2026-11-18 (revisi 2) · Pemilik: Fire (David Geraldo Joshua Siagian, 3 TI A PCR) · Mata kuliah: SIG
+Tanggal: 2026-11-18 (revisi 2) · Pemilik: Kelompok 10 (3 TI A PCR) · Mata kuliah: SIG
 
 ## 1. Maksud dan alasan
 Project akhir SIG berupa WebGIS dari data survei lapangan 30 Sep 2026 (Avenza Maps), dilengkapi data OpenStreetMap.

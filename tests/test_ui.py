@@ -340,3 +340,10 @@ def test_mobile_peta(page):
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
     page.screenshot(path=str(SHOTS / "07-peta-mobile.png"))
     assert page.errors == []
+
+
+def test_pembuat_kelompok(page):
+    page.goto(BASE + "/")
+    teks = page.locator(".pembuat").inner_text()
+    assert "Kelompok 10" in teks
+    assert "2455301043" not in teks and "David" not in teks
