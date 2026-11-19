@@ -157,16 +157,17 @@ def test_beranda_tanpa_peta(page):
     assert page.errors == []
 
 
-def test_basemap_tanpa_api_key_carto(page):
+def test_basemap_carto_bawaan(page):
+    # kunci peta CARTO sudah tertanam: tanpa .env pun peta polos CARTO jadi peta dasar
     carto = []
     page.on("request", lambda r: "cartocdn" in r.url and carto.append(r.url))
     page.goto(BASE + "/peta.html")
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
-    page.wait_for_timeout(500)
-    assert page.evaluate("window.__jangkau.map.getLayers().item(0).get('basemap')") == "osm"
-    expect(page.locator("input[name='basemap'][value='osm']")).to_be_checked()
-    expect(page.locator("input[name='basemap'][value='terang']")).to_be_hidden()
-    assert carto == []
+    page.wait_for_timeout(800)
+    assert page.evaluate("window.__jangkau.map.getLayers().item(0).get('basemap')") == "terang"
+    expect(page.locator("input[name='basemap'][value='terang']")).to_be_checked()
+    expect(page.locator("input[name='basemap'][value='terang']")).to_be_visible()
+    assert carto and all("key=cb1_5bmx_1_86a3fc9b366d983e9445e12f" in u and "light_all" in u for u in carto)
 
 
 def test_peta_layer_dan_filter(page):
@@ -300,12 +301,17 @@ def test_peta_bahasa_analisis(page):
 
 
 def test_peta_tema_gelap(page):
+    carto = []
+    page.on("request", lambda r: "cartocdn" in r.url and carto.append(r.url))
     page.add_init_script("try{localStorage.setItem('jangkau-tema','dark')}catch(e){}")
     page.goto(BASE + "/peta.html")
     page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
-    f = page.evaluate("getComputedStyle(document.querySelector('.basemap')).filter")
-    assert f != "none"
-    # ganti ke tema terang lewat tombol: filter hilang
+    page.wait_for_timeout(800)
+    # peta CARTO memakai versi gelapnya sendiri
+    assert carto and all("dark_all" in u for u in carto)
+    # OpenStreetMap digelapkan lewat filter, dan filter hilang di tema terang
+    page.locator("input[name='basemap'][value='osm']").check()
+    assert page.evaluate("getComputedStyle(document.querySelector('.basemap')).filter") != "none"
     page.locator(".pill [data-theme-toggle]").click()
     page.wait_for_timeout(400)
     assert page.evaluate("getComputedStyle(document.querySelector('.basemap')).filter") == "none"

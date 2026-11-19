@@ -4,7 +4,7 @@ Project akhir mata kuliah Sistem Informasi Geografis (Politeknik Caltex Riau, 20
 Web ini menghitung jarak jalan kaki dari setiap sekolah ke halte bus terdekat, menandai sekolah yang belum
 terjangkau, lalu mengusulkan lokasi halte baru.
 
-- Peta: **OpenLayers 10** (basemap OpenStreetMap, citra Esri, dan CARTO jika `VITE_CARTO_KEY` diisi)
+- Peta: **OpenLayers 10** (basemap CARTO, OpenStreetMap, dan foto satelit Esri)
 - Database: **PostgreSQL + PostGIS** di **Neon** (terhubung lewat Vercel)
 - Backend: **Vercel Functions** di folder `api/`
 - Frontend: **Vite** + JavaScript biasa, analisis cadangan dengan **Turf.js**
@@ -25,43 +25,42 @@ terjangkau, lalu mengusulkan lokasi halte baru.
 | `public/data/*.geojson` | salinan data untuk mode cadangan |
 | `scripts/build_data.py` | mengubah `data/source` menjadi `db/seed.sql` + GeoJSON |
 | `scripts/setup-db.js` | membuat tabel dan mengisi data ke database |
+| `scripts/siapkan-db.js` | dijalankan Vercel sebelum build: mengisi database kalau masih kosong |
 | `tests/` | tes otomatis (node:test, pytest, Playwright) |
 
 ## Deploy ke Vercel (langkah lengkap)
 
-1. **Upload ke GitHub.** Buat repository baru, lalu dari folder project jalankan:
+Semua langkah setelah langkah 1 bisa dikerjakan dari browser HP. Kunci peta CARTO sudah tertanam di kode,
+dan database diisi otomatis saat Vercel membangun situs, jadi tidak perlu terminal maupun SQL Editor.
+
+1. **Kode di GitHub.** Repository harus berisi isi folder ini (bukan file zip-nya). Dari laptop:
    ```bash
    git init && git add -A && git commit -m "WebGIS Jangkau"
    git branch -M main
    git remote add origin https://github.com/USERNAME/jangkau-webgis.git
    git push -u origin main
    ```
-2. **Import ke Vercel.** Buka vercel.com → *Add New… → Project* → pilih repository tadi.
-   Framework otomatis terbaca **Vite**. Klik **Deploy**. Web sudah bisa dibuka, tapi masih memakai
-   *data salinan* (label kuning **Data salinan** di peta) karena database belum dibuat.
-3. **Buat database.** Di halaman project Vercel → tab **Storage** → *Create Database* → pilih **Neon**
-   (Serverless Postgres) → region Singapore → *Create* → *Connect* ke project ini.
-   Vercel otomatis menambahkan environment variable `DATABASE_URL`.
-4. **Isi database.** Pilih salah satu:
-   - **Lewat laptop (disarankan):**
-     ```bash
-     npm install
-     npm i -g vercel
-     vercel link            # pilih project yang tadi
-     vercel env pull .env.local
-     npm run db:setup
-     ```
-     Kalau berhasil muncul `Database siap: { titik: …, area: …, … }`.
-   - **Tanpa CLI:** buka database di dashboard Neon → *SQL Editor* → tempel isi `db/schema.sql` → *Run*,
-     lalu tempel isi `db/seed.sql` → *Run*.
-5. **(Opsional) Basemap CARTO.** CARTO sekarang wajib memakai API key. Minta key gratis di
-   https://carto.com/basemaps/apikey, lalu tambahkan environment variable `VITE_CARTO_KEY`. Tanpa key,
-   pilihan CARTO disembunyikan dan peta memakai OpenStreetMap.
-6. **Password admin.** Vercel → *Settings → Environment Variables* → tambah `ADMIN_PASSWORD`
-   (isi bebas, jangan dibagikan) untuk Production, Preview, dan Development.
-7. **Redeploy.** Tab *Deployments* → titik tiga di deployment terbaru → *Redeploy*.
-8. **Cek.** Buka `https://NAMA-PROJECT.vercel.app/api/health`. Hasil yang benar:
-   `{"ok":true,"db":true,"admin":false}`. Di halaman Peta, labelnya berubah jadi **Data terkini**.
+2. **Import ke Vercel.** Buka vercel.com → *Add New… → Project* → pilih repository tadi → **Deploy**.
+   Pengaturan build sudah ada di `vercel.json`, jadi tidak ada yang perlu diubah. Situs langsung bisa dibuka
+   dengan label **Data salinan** karena database belum ada.
+3. **Buat database.** Halaman project Vercel → tab **Storage** → *Create Database* → **Neon**
+   → region Singapore → *Create* → *Connect* ke project ini. `DATABASE_URL` terisi otomatis.
+4. **Kata sandi pengelola.** *Settings → Environment Variables* → tambah `ADMIN_PASSWORD`
+   (isi bebas, jangan dibagikan), centang Production, Preview, dan Development → *Save*.
+5. **Redeploy.** Tab *Deployments* → titik tiga di deployment teratas → *Redeploy*. Saat build, skrip
+   `scripts/siapkan-db.js` membuat tabel dan mengisi data kalau database masih kosong. Di log build akan
+   muncul `[database] Tabel dibuat dan diisi`. Kalau database sudah berisi, datanya tidak ditimpa.
+6. **Cek.** Buka `https://NAMA-PROJECT.vercel.app/api/health`. Hasil yang benar: `"db":true`.
+   Di halaman Peta, labelnya berubah jadi **Data terkini**. Halaman pengelola ada di `/admin.html`
+   (tautan "Masuk pengelola" di bagian bawah halaman).
+
+Catatan:
+- **Mengisi ulang database dari awal** (misalnya setelah data sumber diperbarui): tambah environment variable
+  `RESET_DB` bernilai `1`, Redeploy, lalu hapus lagi variabel itu. Titik tambahan pengelola ikut terhapus.
+- **Kunci peta CARTO** tertanam di `src/lib/map.js`. Kunci peta memang selalu terlihat di browser, jadi
+  batasi pemakaiannya ke domain situs (misalnya `*.vercel.app`) di pengaturan kunci di CARTO. Untuk memakai
+  kunci lain, isi environment variable `VITE_CARTO_KEY`.
+- Dari laptop, database juga bisa diisi manual: `vercel env pull .env.local` lalu `npm run db:setup`.
 
 ## Menjalankan di laptop
 

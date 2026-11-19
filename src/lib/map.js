@@ -18,8 +18,11 @@ export const fmt = new GeoJSON({ featureProjection: 'EPSG:3857' });
 export const readFC = (fc) => fmt.readFeatures(fc);
 
 const ATTR_OSM = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">kontributor OpenStreetMap</a>';
-// CARTO sekarang wajib memakai API key (gratis di carto.com/basemaps/apikey). Isi VITE_CARTO_KEY di .env.local / Vercel.
-const CARTO_KEY = (import.meta.env && import.meta.env.VITE_CARTO_KEY) || '';
+// CARTO wajib memakai kunci. Kunci milik proyek ini sudah tertanam di sini (kunci peta memang
+// selalu terlihat di browser), jadi tidak perlu file .env. VITE_CARTO_KEY tetap bisa dipakai untuk menggantinya.
+// Batasi kuncinya ke domain situs di pengaturan CARTO agar tidak dipakai orang lain.
+const CARTO_KEY_BAWAAN = 'cb1_5bmx_1_86a3fc9b366d983e9445e12f';
+const CARTO_KEY = (import.meta.env && import.meta.env.VITE_CARTO_KEY) || CARTO_KEY_BAWAAN;
 export const hasCartoKey = Boolean(CARTO_KEY);
 export const DEFAULT_BASEMAP = hasCartoKey ? 'terang' : 'osm';
 
