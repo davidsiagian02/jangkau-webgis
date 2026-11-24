@@ -7,9 +7,10 @@ import { KECEPATAN, SNAP_M, TOP_N } from '../src/lib/config.js';
 const r1 = (x) => (x === null || x === undefined ? null : Math.round(Number(x) * 10) / 10);
 const fc = (features = []) => ({ type: 'FeatureCollection', features });
 
-async function buffer(r) {
+// geom=false: hanya angka (dipakai Beranda & halaman Data) — lebih kecil dan tanpa menghitung gabungan buffer.
+async function buffer(r, geom = true) {
   const rows = await q(SQL.BUFFER_SEKOLAH);
-  const [u] = await q(SQL.BUFFER_UNION, [r]);
+  const [u] = geom ? await q(SQL.BUFFER_UNION, [r]) : [null];
   const per = {};
   let terlayani = 0;
   const features = rows.map((s) => {
@@ -19,7 +20,7 @@ async function buffer(r) {
     per[j].total += 1;
     if (ok) { per[j].terlayani += 1; terlayani += 1; }
     return { type: 'Feature', properties: { uid: s.uid, nama: s.nama, jenjang: s.jenjang, sumber: s.sumber,
-      jarak_halte_m: r1(s.jarak), halte_terdekat: s.halte_terdekat, terlayani: ok }, geometry: s.gj };
+      jarak_halte_m: r1(s.jarak), halte_terdekat: s.halte_terdekat, terlayani: ok }, geometry: geom ? s.gj : null };
   });
   const total = features.length;
   return { radius: r, buffer: u && u.geom ? fc([{ type: 'Feature', properties: { radius: r }, geometry: u.geom }]) : fc(),
@@ -57,7 +58,7 @@ export default handle(async (req, res) => {
   const p = params(req);
   const type = p.get('type');
   let data;
-  if (type === 'buffer') data = await buffer(parseRadius(p.get('radius')));
+  if (type === 'buffer') data = await buffer(parseRadius(p.get('radius')), p.get('geom') !== '0');
   else if (type === 'recommend') data = await recommend(parseRadius(p.get('radius')));
   else if (type === 'nearest') {
     const [lon, lat] = lonLat(p.get('lon'), p.get('lat'));

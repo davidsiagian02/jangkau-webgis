@@ -113,22 +113,22 @@ p { margin: 0 0 var(--s-4); }
 .pill { --pulau: 460ms cubic-bezier(.32, .72, 0, 1); transition: top var(--pulau), padding var(--pulau), gap var(--pulau), background-color var(--pulau), border-color var(--pulau), box-shadow var(--pulau); }
 .merek span { display: inline-block; max-width: 7em; overflow: hidden; white-space: nowrap; transition: max-width var(--pulau), opacity 240ms ease; }
 .merek, .pill-tautan, .pill-tautan a, .tombol-tema, .pill .logo { transition: padding var(--pulau), gap var(--pulau), font-size var(--pulau), width var(--pulau), height var(--pulau), margin var(--pulau), color var(--dur) var(--ease), background-color var(--dur) var(--ease), border-color var(--pulau), transform var(--dur) var(--ease); }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) {
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) {
   top: 10px; padding: 4px; gap: 4px;
   background: #13233F; border-color: rgba(255, 255, 255, .08);
   -webkit-backdrop-filter: none; backdrop-filter: none;
   box-shadow: 0 8px 24px rgba(8, 15, 30, .28);
 }
-[data-theme='dark'] .pill[data-ringkas='true']:not(:hover):not(:focus-within) { background: #050A13; border-color: rgba(255, 255, 255, .10); }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .merek { gap: 0; padding: 0 6px 0 2px; color: #F5F7FA; }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .merek span { max-width: 0; opacity: 0; }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .logo { width: 26px; height: 26px; }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .pill-tautan { padding-left: 4px; border-color: rgba(255, 255, 255, .12); }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .pill-tautan a { padding: 5px 11px 4px; font-size: 13.5px; color: #B9C4D6; }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .pill-tautan a[aria-current='page'] { color: #13233F; }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .tombol-tema { width: 28px; height: 28px; margin-left: 0; background: rgba(255, 255, 255, .10); color: #F5F7FA; }
+[data-theme='dark'] .pill[data-mengecil='true']:not(:hover):not(:focus-within) { background: #050A13; border-color: rgba(255, 255, 255, .10); }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek { gap: 0; padding: 0 6px 0 2px; color: #F5F7FA; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek span { max-width: 0; opacity: 0; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .logo { width: 26px; height: 26px; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan { padding-left: 4px; border-color: rgba(255, 255, 255, .12); }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a { padding: 5px 11px 4px; font-size: 13.5px; color: #B9C4D6; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a[aria-current='page'] { color: #13233F; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .tombol-tema { width: 28px; height: 28px; margin-left: 0; background: rgba(255, 255, 255, .10); color: #F5F7FA; }
 .ikon-tema { transition: width var(--pulau, 0s), height var(--pulau, 0s); }
-.pill[data-ringkas='true']:not(:hover):not(:focus-within) .ikon-tema { width: 16px; height: 16px; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .ikon-tema { width: 16px; height: 16px; }
 
 /* ---------- tab bar bawah (HP) + merek kecil */
 .tabbar, .merek-hp { display: none; }

@@ -74,7 +74,7 @@ def test_nav_pil_mengecil_saat_gulir(page):
     awal = pill.bounding_box()
     page.mouse.move(5, 600)  # kursor jauh dari navbar
     page.evaluate("window.scrollTo(0, 700)")
-    expect(pill).to_have_attribute("data-ringkas", "true")
+    expect(pill).to_have_attribute("data-mengecil", "true")
     page.wait_for_timeout(700)
     kecil = pill.bounding_box()
     assert kecil["width"] < awal["width"] - 60 and kecil["height"] < awal["height"]
@@ -85,7 +85,7 @@ def test_nav_pil_mengecil_saat_gulir(page):
     assert pill.bounding_box()["width"] > kecil["width"] + 40
     page.mouse.move(5, 600)
     page.evaluate("window.scrollTo(0, 0)")
-    expect(pill).to_have_attribute("data-ringkas", "false")
+    expect(pill).to_have_attribute("data-mengecil", "false")
     assert page.errors == []
 
 
@@ -203,7 +203,7 @@ def test_peta_layer_dan_filter(page):
     assert page.evaluate("window.__jangkau.layers.halte.getVisible()") is True
     page.locator("[data-layer-toggle='jalan']").check()
     assert page.evaluate("window.__jangkau.layers.jalan.getVisible()") is True
-    assert page.evaluate("window.__jangkau.layers.jalan.getSource().getFeatures().length") > 300
+    page.wait_for_function("window.__jangkau.layers.jalan.getSource().getFeatures().length > 300", timeout=15000)
     # filter jenjang: matikan SD/MI → tidak ada fitur SD/MI yang terlihat
     page.locator("[data-jenjang-toggle='SD/MI']").uncheck()
     hidden = page.evaluate("window.__jangkau.visibleJenjang().includes('SD/MI')")
@@ -308,6 +308,36 @@ def test_admin_tanpa_istilah(page):
     temuan = sorted(set(m.group(0) for m in TERLARANG.finditer(teks_publik(page))))
     assert temuan == [], f"istilah teknis terlihat di halaman pengelola: {temuan}"
     expect(page.locator("label[for='pw']")).to_have_text("Kata sandi pengelola")
+    assert page.errors == []
+
+
+def test_peta_lapisan_berat_dimuat_saat_dibutuhkan(page):
+    minta = []
+    page.on("request", lambda r: minta.append(r.url))
+    page.goto(BASE + "/peta.html")
+    page.wait_for_function("window.__jangkau && window.__jangkau.ready === true", timeout=20000)
+    page.wait_for_timeout(500)
+    # jalan menuju sekolah dan peta kepadatan tersembunyi saat awal, jadi belum diunduh
+    assert not any("layer=jalan" in u for u in minta)
+    assert page.evaluate("!window.__jangkau.layers.heatmap")
+    page.locator("[data-layer-toggle='heatmap']").check()
+    page.wait_for_function("window.__jangkau.layers.heatmap && window.__jangkau.layers.heatmap.getVisible()", timeout=15000)
+    page.locator("[data-layer-toggle='jalan']").check()
+    page.wait_for_function("window.__jangkau.layers.jalan.getSource().getFeatures().length > 300", timeout=15000)
+    assert sum("layer=jalan" in u for u in minta) == 1
+    page.locator("[data-layer-toggle='jalan']").uncheck(); page.locator("[data-layer-toggle='jalan']").check()
+    page.wait_for_timeout(300)
+    assert sum("layer=jalan" in u for u in minta) == 1
+    assert page.errors == []
+
+
+def test_beranda_data_ringkas(page):
+    minta = []
+    page.on("request", lambda r: minta.append(r.url))
+    page.goto(BASE + "/")
+    expect(page.locator("[data-strip] .strip-sekolah").first).to_be_visible(timeout=15000)
+    analisis = [u for u in minta if "/api/analysis" in u]
+    assert analisis and all("geom=0" in u for u in analisis)
     assert page.errors == []
 
 

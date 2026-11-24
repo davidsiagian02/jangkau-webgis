@@ -1,9 +1,8 @@
 import { initLayout as initNav, setBadge } from '../lib/layout.js';
 import '../styles/peta.css';
-import Heatmap from 'ol/layer/Heatmap.js';
 import Feature from 'ol/Feature.js';
 import { fromLonLat, toLonLat } from 'ol/proj.js';
-import { circle as turfCircle } from '@turf/turf';
+import { circular } from 'ol/geom/Polygon.js';
 import { getAnalysis, getLayer, setForceFallback } from '../lib/api.js';
 import { JENJANG, JENJANG_LABEL, RADIUS } from '../lib/config.js';
 import { escapeHtml, fmtAngka, fmtMenit, fmtMeter } from '../lib/util.js';
@@ -52,12 +51,36 @@ const L = {
   rekomendasi: vectorLayer((f) => kandidatStyle(f.get('rank')), { tipe: 'kandidat' }),
   klik: vectorLayer(klikStyle(), { tipe: 'klik' }),
 };
-L.heatmap = new Heatmap({ source: L.sekolah.getSource(), blur: 22, radius: 12, visible: false,
-  gradient: ['#13284b', '#1f6f8b', '#4fb3a5', '#f5c400', '#e8590c'], properties: { tipe: 'heatmap' } });
-
 const map = createMap('map', { zoom: 12 });
 L.jalan.setVisible(false);
-for (const k of ['area_osm', 'area_survei', 'buffer', 'heatmap', 'jalan', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
+for (const k of ['area_osm', 'area_survei', 'buffer', 'jalan', 'rute', 'jalur', 'sekolah', 'sekolah_survei', 'fasilitas', 'literasi', 'halte', 'rekomendasi', 'klik']) map.addLayer(L[k]);
+
+// Lapisan yang tersembunyi saat awal baru diunduh ketika dinyalakan, supaya halaman Peta terbuka lebih cepat:
+// kepadatan sekolah (kode WebGL-nya dimuat terpisah) dan jalan menuju sekolah (datanya cukup besar).
+let heatmapSiap = null;
+function siapkanHeatmap() {
+  heatmapSiap ||= import('ol/layer/Heatmap.js').then(({ default: Heatmap }) => {
+    L.heatmap = new Heatmap({ source: L.sekolah.getSource(), blur: 22, radius: 12, visible: false,
+      gradient: ['#13284b', '#1f6f8b', '#4fb3a5', '#f5c400', '#e8590c'], properties: { tipe: 'heatmap' } });
+    map.getLayers().insertAt(map.getLayers().getArray().indexOf(L.buffer) + 1, L.heatmap);
+  });
+  return heatmapSiap;
+}
+let jalanSiap = null;
+function siapkanJalan() {
+  jalanSiap ||= getLayer('jalan').then((r) => {
+    noteSumber(r.sumber);
+    fill(L.jalan, r.data);
+    const c = document.querySelector('[data-count="jalan"]');
+    if (c) c.textContent = fmtAngka(r.data.features.length);
+  }).catch(() => { jalanSiap = null; });
+  return jalanSiap;
+}
+async function aturLapisan(nama, nyala) {
+  if (nama === 'heatmap') { if (!nyala && !L.heatmap) return; await siapkanHeatmap(); }
+  if (nama === 'jalan' && nyala) siapkanJalan();
+  L[nama].setVisible(nyala);
+}
 const popup = createPopup(map);
 window.addEventListener('temachange', () => Object.values(L).forEach((l) => l.changed()));
 $('[data-basemap-carto]').hidden = !hasCartoKey;
@@ -127,9 +150,8 @@ function fill(layer, fc) {
 
 // ---------- muat data
 async function loadLayers() {
-  const [titik, area, jalur, sekolah, jalan] = await Promise.all([getLayer('titik'), getLayer('area'), getLayer('jalur'), getLayer('sekolah'), getLayer('jalan')]);
-  [titik, area, jalur, sekolah, jalan].forEach((r) => noteSumber(r.sumber));
-  fill(L.jalan, jalan.data);
+  const [titik, area, jalur, sekolah] = await Promise.all([getLayer('titik'), getLayer('area'), getLayer('jalur'), getLayer('sekolah')]);
+  [titik, area, jalur, sekolah].forEach((r) => noteSumber(r.sumber));
   const by = (fc, pred) => ({ type: 'FeatureCollection', features: fc.features.filter((f) => pred(f.properties)) });
   fill(L.sekolah, sekolah.data);
   fill(L.sekolah_survei, by(titik.data, (p) => p.kategori === 'sekolah' && p.sumber !== 'osm'));
@@ -141,7 +163,7 @@ async function loadLayers() {
   fill(L.rute, by(jalur.data, (p) => p.jenis === 'rute'));
   fill(L.jalur, by(jalur.data, (p) => p.jenis === 'jalur'));
   for (const el of document.querySelectorAll('[data-count]')) {
-    el.textContent = fmtAngka(L[el.dataset.count].getSource().getFeatures().length);
+    if (el.dataset.count !== 'jalan') el.textContent = fmtAngka(L[el.dataset.count].getSource().getFeatures().length);
   }
   renderJenjang();
   const ext = L.sekolah.getSource().getExtent();
@@ -164,7 +186,7 @@ function renderJenjang() {
 // ---------- kontrol layer
 document.addEventListener('change', (e) => {
   const t = e.target;
-  if (t.dataset.layerToggle) L[t.dataset.layerToggle].setVisible(t.checked);
+  if (t.dataset.layerToggle) aturLapisan(t.dataset.layerToggle, t.checked);
   if (t.dataset.jenjangToggle) {
     t.checked ? state.jenjang.add(t.dataset.jenjangToggle) : state.jenjang.delete(t.dataset.jenjangToggle);
     ['sekolah', 'sekolah_survei', 'area_osm'].forEach((k) => L[k].changed());
@@ -292,8 +314,8 @@ async function nearestAt(coord) {
     noteSumber(sumber);
     const src = L.klik.getSource();
     src.clear();
-    const ring = turfCircle([lon, lat], state.radius / 1000, { units: 'kilometers', steps: 48 });
-    src.addFeatures([fmt.readFeature(ring), new Feature({ geometry: fmt.readGeometry({ type: 'Point', coordinates: [lon, lat] }) })]);
+    const ring = circular([lon, lat], state.radius, 48).transform('EPSG:4326', 'EPSG:3857');
+    src.addFeatures([new Feature({ geometry: ring }), new Feature({ geometry: fmt.readGeometry({ type: 'Point', coordinates: [lon, lat] }) })]);
     const h = data.halte;
     out.innerHTML = `<p><b>Halte terdekat:</b> ${h ? `${escapeHtml(h.nama)}, ${fmtMeter(h.jarak_m)} (${fmtMenit(h.waktu_menit)} jalan kaki)` : 'belum ada data halte'}</p>
       <p><b>${data.sekolah.length} sekolah</b> dalam radius ${fmtMeter(state.radius)}${data.sekolah.length ? ':' : '.'}</p>

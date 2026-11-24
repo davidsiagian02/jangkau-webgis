@@ -57,5 +57,7 @@ export function handle(fn) {
   };
 }
 
-// Tanpa cache CDN: perubahan dari halaman Admin harus langsung terlihat di peta dan analisis.
-export const cacheGet = { 'Cache-Control': 'no-store', 'X-Sumber-Data': 'database' };
+// Data publik disimpan sebentar di CDN Vercel: pengunjung berikutnya dilayani dari cache tanpa menjalankan
+// fungsi dan tanpa membangunkan database. Perubahan dari halaman pengelola muncul di peta paling lambat ±1 menit.
+// (Browser tidak ikut menyimpan karena tidak ada max-age; halaman pengelola memakai /api/titik yang tidak di-cache.)
+export const cacheGet = { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=600', 'X-Sumber-Data': 'database' };

@@ -41,8 +41,8 @@ function pantauGulir() {
   penanda.setAttribute('aria-hidden', 'true');
   penanda.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none;visibility:hidden';
   document.body.prepend(penanda);
-  pill.dataset.ringkas = 'false';
-  new IntersectionObserver(([e]) => { pill.dataset.ringkas = String(!e.isIntersecting); }).observe(penanda);
+  pill.dataset.mengecil = 'false';
+  new IntersectionObserver(([e]) => { pill.dataset.mengecil = String(!e.isIntersecting); }).observe(penanda);
 }
 
 export function initLayout() {

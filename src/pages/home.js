@@ -62,7 +62,7 @@ function drawLegend(el, sekolah) {
 async function main() {
   const radius = RADIUS.default;
   try {
-    const [{ data: buf }, { data: st }] = await Promise.all([getAnalysis('buffer', { radius }), getStats()]);
+    const [{ data: buf }, { data: st }] = await Promise.all([getAnalysis('buffer', { radius, geom: 0 }), getStats()]);
     drawStrip(document.querySelector('[data-strip-canvas]'), buf.sekolah.features, radius);
     drawLegend(document.querySelector('[data-strip-legend]'), buf.sekolah.features);
     const r = buf.ringkasan;

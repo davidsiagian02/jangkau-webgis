@@ -1,6 +1,6 @@
 // Query SQL (PostGIS). Jarak memakai geography (meter), klaster memakai UTM 47N (EPSG:32647).
 const fc = (inner) => `SELECT json_build_object('type','FeatureCollection','features',COALESCE(json_agg(f),'[]'::json)) AS fc FROM (${inner}) f`;
-const feat = (props, geom = 'geom') => `json_build_object('type','Feature','id',id,'properties',json_build_object(${props}),'geometry',ST_AsGeoJSON(${geom},7)::json)`;
+const feat = (props, geom = 'geom') => `json_build_object('type','Feature','id',id,'properties',json_build_object(${props}),'geometry',ST_AsGeoJSON(${geom},6)::json)`;
 
 export const LAYER = {
   titik: fc(`SELECT ${feat(`'id',id,'nama',nama,'kategori',kategori,'jenjang',jenjang,'deskripsi',deskripsi,'sumber',sumber,
@@ -15,7 +15,7 @@ export const LAYER = {
   jalan: fc(`SELECT ${feat(`'id',id,'nama',nama,'kelas',kelas,'osm_id',osm_id,'panjang_m',round(ST_Length(geom::geography)::numeric,1)`)} AS f
     FROM jalan WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR TRUE) ORDER BY id`),
   sekolah: fc(`SELECT json_build_object('type','Feature','id',uid,'properties',json_build_object('uid',uid,'nama',nama,
-    'jenjang',jenjang,'sumber',sumber),'geometry',ST_AsGeoJSON(geom,7)::json) AS f
+    'jenjang',jenjang,'sumber',sumber),'geometry',ST_AsGeoJSON(geom,6)::json) AS f
     FROM v_sekolah_analisis WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR sumber = $2) ORDER BY uid`),
   halte: fc(`SELECT ${feat(`'id',id,'nama',nama,'sumber',sumber,'kategori','halte'`)} AS f
     FROM v_halte WHERE ($1::text[] IS NULL OR TRUE) AND ($2::text IS NULL OR sumber = $2) ORDER BY id`),
@@ -27,8 +27,8 @@ const JARAK = `SELECT s.uid, s.nama, s.jenjang, s.sumber, s.geom, n.nama AS halt
   LEFT JOIN LATERAL (SELECT h.nama, ST_Distance(s.geom::geography, h.geom::geography) AS jarak
                      FROM v_halte h ORDER BY 2 LIMIT 1) n ON TRUE`;
 
-export const BUFFER_SEKOLAH = `SELECT j.*, ST_AsGeoJSON(j.geom, 7)::json AS gj FROM (${JARAK}) j ORDER BY j.uid`;
-export const BUFFER_UNION = `SELECT ST_AsGeoJSON(ST_Union(ST_Buffer(geom::geography, $1, 16)::geometry), 7)::json AS geom FROM v_halte`;
+export const BUFFER_SEKOLAH = `SELECT j.*, ST_AsGeoJSON(j.geom, 6)::json AS gj FROM (${JARAK}) j ORDER BY j.uid`;
+export const BUFFER_UNION = `SELECT ST_AsGeoJSON(ST_Union(ST_Buffer(geom::geography, $1, 16)::geometry), 6)::json AS geom FROM v_halte`;
 
 export const RECOMMEND = `
 WITH s AS (${JARAK}),

@@ -65,3 +65,12 @@ test('Vercel menyiapkan database sebelum membangun situs', async () => {
   const v = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
   assert.equal(v.buildCommand, 'node scripts/siapkan-db.js && vite build');
 });
+
+test('Vercel: fungsi di Singapura (dekat database Neon) dan aset statis di-cache browser', async () => {
+  const { readFileSync } = await import('node:fs');
+  const v = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  assert.deepEqual(v.regions, ['sin1']);
+  const header = (src) => Object.fromEntries((v.headers.find((h) => h.source === src)?.headers || []).map((h) => [h.key, h.value]));
+  assert.equal(header('/assets/(.*)')['Cache-Control'], 'public, max-age=31536000, immutable');
+  assert.match(header('/data/(.*)')['Cache-Control'] || '', /max-age=3600/);
+});

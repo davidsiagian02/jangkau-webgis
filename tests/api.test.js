@@ -199,11 +199,33 @@ test('health: melaporkan status database dan admin', async () => {
   assert.equal(no.body.admin, false);
 });
 
-test('GET data tidak di-cache CDN supaya perubahan admin langsung terlihat', async () => {
+test('GET data publik di-cache sebentar di CDN Vercel (hemat fungsi & database)', async () => {
   for (const [h, url] of [[layers, '/api/layers?layer=titik'], [analysis, '/api/analysis?type=buffer&radius=500'], [stats, '/api/stats']]) {
     const r = await call(h, { url });
-    assert.equal(r.headers['cache-control'], 'no-store', url);
+    assert.match(r.headers['cache-control'], /public, s-maxage=60, stale-while-revalidate=600/, url);
   }
+});
+
+test('data titik untuk pengelola tetap tidak di-cache', async () => {
+  const r = await call(titik, { url: '/api/titik' });
+  assert.equal(r.headers['cache-control'], 'no-store');
+});
+
+test('buffer tanpa geometri (geom=0) untuk Beranda & Data: isi sama, ukuran sekitar separuhnya', async () => {
+  const penuh = await call(analysis, { url: '/api/analysis?type=buffer&radius=500' });
+  const ringan = await call(analysis, { url: '/api/analysis?type=buffer&radius=500&geom=0' });
+  assert.deepEqual(ringan.body.ringkasan, penuh.body.ringkasan);
+  assert.equal(ringan.body.sekolah.features.length, penuh.body.sekolah.features.length);
+  assert.ok(ringan.body.sekolah.features.every((f) => f.geometry === null));
+  assert.equal(ringan.body.buffer.features.length, 0);
+  assert.ok(JSON.stringify(ringan.body).length < JSON.stringify(penuh.body).length * 0.6);
+});
+
+test('koordinat dibulatkan 6 desimal (±10 cm) agar data lebih kecil', async () => {
+  const r = await call(layers, { url: '/api/layers?layer=sekolah' });
+  const desimal = (n) => (String(n).split('.')[1] || '').length;
+  const [lon, lat] = r.body.features[0].geometry.coordinates;
+  assert.ok(desimal(lon) <= 6 && desimal(lat) <= 6, `${lon}, ${lat}`);
 });
 
 test('database kosong (tabel belum dibuat) → 503 dengan petunjuk db:setup', async () => {

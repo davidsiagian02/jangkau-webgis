@@ -59,7 +59,7 @@ function unduhCsv() {
 }
 
 async function loadAnalisis() {
-  const [{ data: b, sumber: s1 }, { data: k, sumber: s2 }] = await Promise.all([getAnalysis('buffer', { radius }), getAnalysis('recommend', { radius })]);
+  const [{ data: b, sumber: s1 }, { data: k, sumber: s2 }] = await Promise.all([getAnalysis('buffer', { radius, geom: 0 }), getAnalysis('recommend', { radius })]);
   note(s1); note(s2);
   sekolah = b.sekolah.features.map((f) => f.properties).sort((a, c) => (c.jarak_halte_m ?? 1e9) - (a.jarak_halte_m ?? 1e9));
   renderKeputusan();

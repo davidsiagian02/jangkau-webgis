@@ -61,6 +61,11 @@ Catatan:
   batasi pemakaiannya ke domain situs (misalnya `*.vercel.app`) di pengaturan kunci di CARTO. Untuk memakai
   kunci lain, isi environment variable `VITE_CARTO_KEY`.
 - Dari laptop, database juga bisa diisi manual: `vercel env pull .env.local` lalu `npm run db:setup`.
+- **Kecepatan.** Fungsi API dijalankan di region Singapura (`"regions": ["sin1"]` di `vercel.json`), jadi pilih juga
+  region Singapore saat membuat database Neon agar jarak server ke database dekat. Data publik (`/api/layers`,
+  `/api/analysis`, `/api/stats`) disimpan 60 detik di CDN Vercel, sehingga titik yang baru ditambah pengelola muncul
+  di peta paling lambat sekitar 1 menit. File di `/assets` disimpan permanen di browser karena namanya selalu berubah
+  setiap build.
 
 ## Menjalankan di laptop
 
