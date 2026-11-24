@@ -107,28 +107,30 @@ p { margin: 0 0 var(--s-4); }
 [data-theme='light'] .ikon-tema .matahari, [data-theme='light'] .ikon-tema .sinar { display: none; }
 [data-theme='dark'] .ikon-tema .bulan { display: none; }
 
-/* ---------- pil ringkas saat digulir ("dynamic island")
-   Ukuran berubah lewat padding, ukuran huruf, dan lebar teks merek, sehingga lebar pil ikut beranimasi
-   tanpa menghitung lebar di JavaScript. Kursor atau fokus keyboard di atas pil membuatnya mengembang lagi. */
-.pill { --pulau: 460ms cubic-bezier(.32, .72, 0, 1); transition: top var(--pulau), padding var(--pulau), gap var(--pulau), background-color var(--pulau), border-color var(--pulau), box-shadow var(--pulau); }
-.merek span { display: inline-block; max-width: 7em; overflow: hidden; white-space: nowrap; transition: max-width var(--pulau), opacity 240ms ease; }
-.merek, .pill-tautan, .pill-tautan a, .tombol-tema, .pill .logo { transition: padding var(--pulau), gap var(--pulau), font-size var(--pulau), width var(--pulau), height var(--pulau), margin var(--pulau), color var(--dur) var(--ease), background-color var(--dur) var(--ease), border-color var(--pulau), transform var(--dur) var(--ease); }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) {
-  top: 10px; padding: 4px; gap: 4px;
-  background: #13233F; border-color: rgba(255, 255, 255, .08);
-  -webkit-backdrop-filter: none; backdrop-filter: none;
-  box-shadow: 0 8px 24px rgba(8, 15, 30, .28);
+/* ---------- pil menutup saat digulir ("dynamic island")
+   Warna pil tidak berubah. Semua isi kecuali logo dan nama halaman yang sedang dibuka menutup ke lebar 0,
+   jadi pil menyempit ke tengah. Kursor atau fokus keyboard di atas pil membukanya lagi. */
+.pill { --pulau: 520ms cubic-bezier(.32, .72, 0, 1); transition: gap var(--pulau); }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) { gap: 4px; }
+.merek span, .pill-tautan a, .tombol-tema {
+  max-width: 9em; overflow: hidden; white-space: nowrap;
+  transition: max-width var(--pulau), padding var(--pulau), margin var(--pulau), opacity 260ms ease,
+    color var(--dur) var(--ease), background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-[data-theme='dark'] .pill[data-mengecil='true']:not(:hover):not(:focus-within) { background: #050A13; border-color: rgba(255, 255, 255, .10); }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek { gap: 0; padding: 0 6px 0 2px; color: #F5F7FA; }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek span { max-width: 0; opacity: 0; }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .logo { width: 26px; height: 26px; }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan { padding-left: 4px; border-color: rgba(255, 255, 255, .12); }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a { padding: 5px 11px 4px; font-size: 13.5px; color: #B9C4D6; }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a[aria-current='page'] { color: #13233F; }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .tombol-tema { width: 28px; height: 28px; margin-left: 0; background: rgba(255, 255, 255, .10); color: #F5F7FA; }
-.ikon-tema { transition: width var(--pulau, 0s), height var(--pulau, 0s); }
-.pill[data-mengecil='true']:not(:hover):not(:focus-within) .ikon-tema { width: 16px; height: 16px; }
+.merek span { display: inline-block; }
+.pill-tautan a { display: inline-block; }
+.merek, .pill-tautan { transition: gap var(--pulau), padding var(--pulau), border-color 260ms ease; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek { gap: 0; padding-right: 6px; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek span,
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a:not([aria-current='page']),
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .tombol-tema {
+  max-width: 0; padding-left: 0; padding-right: 0; margin-left: 0; opacity: 0;
+}
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan { gap: 0; padding-left: 2px; border-left-color: transparent; }
+/* yang paling jauh dari tengah menutup lebih dulu, lalu menyusul ke dalam */
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .tombol-tema,
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .merek span { transition-delay: 0ms; }
+.pill[data-mengecil='true']:not(:hover):not(:focus-within) .pill-tautan a { transition-delay: 60ms; }
 
 /* ---------- tab bar bawah (HP) + merek kecil */
 .tabbar, .merek-hp { display: none; }

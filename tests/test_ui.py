@@ -69,23 +69,34 @@ def test_nav_desktop_pil(page):
 
 
 def test_nav_pil_mengecil_saat_gulir(page):
-    page.goto(BASE + "/")
+    page.goto(BASE + "/data.html")
     pill = page.locator("nav.pill")
     awal = pill.bounding_box()
+    warna = page.evaluate("getComputedStyle(document.querySelector('nav.pill')).backgroundColor")
     page.mouse.move(5, 600)  # kursor jauh dari navbar
     page.evaluate("window.scrollTo(0, 700)")
     expect(pill).to_have_attribute("data-mengecil", "true")
     page.wait_for_timeout(700)
     kecil = pill.bounding_box()
-    assert kecil["width"] < awal["width"] - 60 and kecil["height"] < awal["height"]
-    expect(pill.get_by_role("link", name="Peta", exact=True)).to_be_visible()
-    # disentuh kursor: mengembang lagi seperti dynamic island
+    # menutup makin sempit: tinggal logo dan nama halaman yang sedang dibuka
+    assert kecil["width"] < awal["width"] * 0.55
+    expect(pill.locator(".logo")).to_be_visible()
+    expect(pill.get_by_role("link", name="Data", exact=True)).to_be_visible()
+    for teks in ("Beranda", "Peta"):
+        expect(pill.get_by_role("link", name=teks, exact=True)).to_be_hidden()
+    expect(pill.locator(".merek span")).to_be_hidden()
+    expect(pill.locator("[data-theme-toggle]")).to_be_hidden()
+    # warna pil tidak berubah
+    assert page.evaluate("getComputedStyle(document.querySelector('nav.pill')).backgroundColor") == warna
+    # disentuh kursor: membuka lagi
     pill.hover()
     page.wait_for_timeout(700)
-    assert pill.bounding_box()["width"] > kecil["width"] + 40
+    expect(pill.get_by_role("link", name="Peta", exact=True)).to_be_visible()
     page.mouse.move(5, 600)
     page.evaluate("window.scrollTo(0, 0)")
     expect(pill).to_have_attribute("data-mengecil", "false")
+    page.wait_for_timeout(700)
+    assert abs(pill.bounding_box()["width"] - awal["width"]) < 2
     assert page.errors == []
 
 
