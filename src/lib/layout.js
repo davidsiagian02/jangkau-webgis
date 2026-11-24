@@ -32,8 +32,22 @@ export function setTheme(tema) {
   else terapkan(tema);
 }
 
+// Navbar pil mengecil seperti "dynamic island" begitu halaman digulir.
+// Memakai IntersectionObserver pada penanda kecil di puncak halaman, jadi tidak ada kerja di setiap event scroll.
+function pantauGulir() {
+  const pill = document.querySelector('.pill');
+  if (!pill || !('IntersectionObserver' in window)) return;
+  const penanda = document.createElement('div');
+  penanda.setAttribute('aria-hidden', 'true');
+  penanda.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none;visibility:hidden';
+  document.body.prepend(penanda);
+  pill.dataset.ringkas = 'false';
+  new IntersectionObserver(([e]) => { pill.dataset.ringkas = String(!e.isIntersecting); }).observe(penanda);
+}
+
 export function initLayout() {
   terapkan(getTheme());
+  pantauGulir();
   document.querySelectorAll('[data-theme-toggle]').forEach((b) => b.addEventListener('click', () => setTheme(getTheme() === 'dark' ? 'light' : 'dark')));
   // Ikuti perubahan tema sistem selama pengguna belum memilih sendiri.
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', (e) => {

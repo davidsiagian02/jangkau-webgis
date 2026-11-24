@@ -68,6 +68,27 @@ def test_nav_desktop_pil(page):
     expect(page.locator("nav.tabbar")).to_be_hidden()
 
 
+def test_nav_pil_mengecil_saat_gulir(page):
+    page.goto(BASE + "/")
+    pill = page.locator("nav.pill")
+    awal = pill.bounding_box()
+    page.mouse.move(5, 600)  # kursor jauh dari navbar
+    page.evaluate("window.scrollTo(0, 700)")
+    expect(pill).to_have_attribute("data-ringkas", "true")
+    page.wait_for_timeout(700)
+    kecil = pill.bounding_box()
+    assert kecil["width"] < awal["width"] - 60 and kecil["height"] < awal["height"]
+    expect(pill.get_by_role("link", name="Peta", exact=True)).to_be_visible()
+    # disentuh kursor: mengembang lagi seperti dynamic island
+    pill.hover()
+    page.wait_for_timeout(700)
+    assert pill.bounding_box()["width"] > kecil["width"] + 40
+    page.mouse.move(5, 600)
+    page.evaluate("window.scrollTo(0, 0)")
+    expect(pill).to_have_attribute("data-ringkas", "false")
+    assert page.errors == []
+
+
 def test_nav_mobile_tabbar(page):
     page.set_viewport_size({"width": 390, "height": 844})
     page.goto(BASE + "/data.html")
